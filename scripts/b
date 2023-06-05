@@ -1,0 +1,1 @@
+monitor-sensor | awk ' ~ /normal/ { print 0 };  ~ /left-up/ { print 1 };  ~ /right-up/ { print 3 };  ~ /bottom-up/ { print 2 }; { system() }' | xargs -rI{} hyprctl keyword monitor 'eDP-1,transform,{}'
