@@ -11,12 +11,12 @@ System: Lenovo ThinkPad L13 Yoga Gen2 (2-in-1 convertible Laptop) on NixOS unsta
 - Fix weird Bash Shell in TTY and nvim-toggleterm
 
 ## I currently have 1 problem:
-<p>Since I have a 2-in-1 convertible Laptop, I want to makeuse of the touchscreen in tablet mode. Tablet mode (disabling the keyboard and touchpad when folded backwards) works,
+<p>Since I have a 2-in-1 convertible Laptop, I want to make use of the touchscreen in tablet mode. Tablet mode (disabling the keyboard and touchpad when folded backwards) works,
 but rotating the screen orientation (horizontal to vertical), does not.<br>
 For that I have found a program called 'iio-hyprland' on GitHub. I added the Wacom HID names of my own device into main.c<br>
 Building this the normal "non Nix method", I get a binary called "iio-hyprland" in /usr/local/bin which I can run.<br>
-Since building it the normal way doens't add the build binary into /nix/store, and I am using NixOS, I figured I'll try building it the Nix way by writing a default.nix file and running it with "nix-build -E 'with import <:nixpkgs> {}; callPackage ./default.nix' (had to put a : in front of nixpkgs because it wouldn't be displayed in this README without it.)".
-For that I found two guides:
+Since building it the normal way doesn't add the build binary into /nix/store, and I am using NixOS, I figured I'll try building it the Nix way by writing a default.nix file and running it with "nix-build -E 'with import <:nixpkgs> {}; callPackage ./default.nix' (had to put a : in front of nixpkgs because it wouldn't be displayed in this README without it.)".
+For that I found two guides:<br>
 - https://elatov.github.io/2022/01/building-a-nix-package/
 - https://nix-tutorial.gitlabpages.inria.fr/nix-tutorial/first-experiment.html
 <br>
