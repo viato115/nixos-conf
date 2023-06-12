@@ -2,16 +2,16 @@
 {
   services.greetd = {
     enable = true;
-    restart = false;
+    # restart = false;
     settings = {
       default_session = {
-        command = "${lib.makeBinPath [pkgs.greetd.tuigreet] }/tuigreet --time --cmd ${Hyprland}";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd /home/nico/.local/bin/wrappedhl";
         user = "greeter";
       };
-      initial_session = {
-        command = "${Hyprland}";
-        user = "nico";
-      };
+     # initial_session = {
+     #   command = "${Hyprland}";
+     #   user = "nico";
+     # };
     };
   };
 }

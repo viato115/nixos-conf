@@ -21,7 +21,6 @@
   home.packages = with pkgs; [
 
    # Basics
-   greetd.tuigreet
    acpi
    kitty
    pfetch
@@ -57,6 +56,19 @@
    hunspellDicts.de_DE
    hunspellDicts.en_US
    jre8
+   tldr
+   playerctl
+   networkmanagerapplet
+   gjs
+   gnome.gnome-bluetooth
+   upower
+   gtk3
+   wl-gammactl
+   wlsunset
+   hyprpicker
+   hyprshot
+   blueberry
+   polkit_gnome
 
 
    # Hyprland specific
