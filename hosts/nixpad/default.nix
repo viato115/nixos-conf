@@ -20,15 +20,6 @@
   };
 
 
-#  services.openssh = {
-#    enable = true;
-#    settings = {
-#      permitRootLogin = "no"; # Disable root login (recommended) 
-#      passwordAuthentication = false;  # Disable password authentication 
-#      # other SSH server configuration options... refer to NixOS manual for additional options and settings.
-#    };
-#  };
-
   sound.enable = true;
   sound.mediaKeys.enable = true;
   hardware.pulseaudio.enable = false;
@@ -165,7 +156,6 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-    #nixPath = ["nixpkgs=/etc/channels/nixpkgs"];
   };
 
 
