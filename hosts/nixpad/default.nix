@@ -179,7 +179,7 @@
     extraGroups = [ "wheel" "networkmanager" "video" "adbusers" ]; 
     packages = with pkgs; [                                 # User specific PKGS
     ];
-    shell = "${pkgs.bash}/bin/bash";
+#    shell = "${pkgs.bash}/bin/bash";
   };
 
   environment.systemPackages = with pkgs; [                 # System wide PKGS

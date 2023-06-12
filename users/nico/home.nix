@@ -23,7 +23,6 @@
    exa
    fortune 
    neovim
-   ranger
    zathura
    mpv
    ffmpeg
@@ -44,8 +43,6 @@
    w3m
    obsidian
    write_stylus
-   btop
-   wl-clipboard
    gawk
    libreoffice
    hunspell
@@ -59,8 +56,6 @@
    gnome.gnome-bluetooth
    upower
    gtk3
-   wl-gammactl
-   wlsunset
    hyprpicker
    blueberry
    polkit_gnome
@@ -68,15 +63,9 @@
 
    # Hyprland specific
    pulseaudio
-   qt6.qtwayland
-   libsForQt5.qt5.qtwayland
-   libsForQt5.kdegraphics-thumbnailers
-   libsForQt5.dolphin
-   libsForQt5.qt5ct
-   libsForQt5.dolphin-plugins
-   libsForQt5.kdegraphics-thumbnailers
-   libsForQt5.breeze-icons
-   libsForQt5.qtstyleplugin-kvantum
+   wl-clipboard
+   wl-gammactl
+   wlsunset
 
    (pkgs.nerdfonts.override { fonts = [ "Mononoki" ]; })
   ];
