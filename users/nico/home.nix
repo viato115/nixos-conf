@@ -9,9 +9,6 @@
 }: {
 
   imports = [
-   # /home/nico/.config/nixos/users/nico/modules/hypr/default.nix
-   # /home/nico/.config/nixos/users/nico/modules/kitty/default.nix
-   # /home/nico/.config/nixos/users/nico/modules/foot/default.nix
    /home/nico/.config/nixos/users/nico/modules/default.nix
   ];
 
@@ -91,32 +88,6 @@
     latitude = 52.52;
     longitude = 13.40;
   };
-
-#  services.iiorient = {
-#    enable = true;
-#    devices = [ "wacom-hid-51f8-finger" ];
-#    monitors = [ "eDP-1" ];
-#  };
-
-
-#  programs = {
-#    bash = {
-#      enable = true;
-#      interactiveShellInit = (builtins.readFile /home/nico/.bashrc);
-#     # initExtra = ''
-#     #   if test $(id --user $USER) = 1000 && test $(tty) = "/dev/tty1"
-#     #   then
-#     #     exec Hyprland
-#     #   fi
-#     # '';
-#    };
-#  };
-
-
-
- # Manage dotfiles
- # home.file = {
- # };
 
 
   home.username = "nico";
