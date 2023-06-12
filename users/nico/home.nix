@@ -13,7 +13,6 @@
    # /home/nico/.config/nixos/users/nico/modules/kitty/default.nix
    # /home/nico/.config/nixos/users/nico/modules/foot/default.nix
    /home/nico/.config/nixos/users/nico/modules/default.nix
-   /home/nico/.config/nixos/users/nico/modules/bash/bash.nix
   ];
 
 
@@ -66,7 +65,6 @@
    wl-gammactl
    wlsunset
    hyprpicker
-   hyprshot
    blueberry
    polkit_gnome
 
