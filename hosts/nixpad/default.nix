@@ -7,7 +7,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    /home/nico/.config/nixos/users/nico/modules/iio/iiorient.nix
+    ../../users/nico/modules/greetd/default.nix
   ];
 
   # System settings
@@ -20,14 +20,14 @@
   };
 
 
-  services.openssh = {
-    enable = true;
-    settings = {
-      permitRootLogin = "no"; # Disable root login (recommended) 
-      passwordAuthentication = false;  # Disable password authentication 
-      # other SSH server configuration options... refer to NixOS manual for additional options and settings.
-    };
-  };
+#  services.openssh = {
+#    enable = true;
+#    settings = {
+#      permitRootLogin = "no"; # Disable root login (recommended) 
+#      passwordAuthentication = false;  # Disable password authentication 
+#      # other SSH server configuration options... refer to NixOS manual for additional options and settings.
+#    };
+#  };
 
   sound.enable = true;
   sound.mediaKeys.enable = true;
@@ -163,7 +163,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 14d";
+      options = "--delete-older-than 7d";
     };
     #nixPath = ["nixpkgs=/etc/channels/nixpkgs"];
   };
@@ -215,6 +215,7 @@
     steam-run
     libinput
     pciutils
+    tree
   ];
 
   programs.light.enable = true;
