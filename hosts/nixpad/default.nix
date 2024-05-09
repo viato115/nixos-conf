@@ -7,7 +7,9 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ../../users/nico/modules/greetd/default.nix
+    /home/nico/.config/nixos/modules/greetd/default.nix
+    /home/nico/.config/nixos/modules/battery/battery_monitor.nix
+    /home/nico/.config/nixos/modules/battery/suspend.nix
   ];
 
   # System settings
@@ -74,7 +76,7 @@
   };
 
   
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
   services.printing.enable = true;
   services.logind = {
     lidSwitch = "suspend-then-hibernate";
@@ -101,12 +103,15 @@
       RUNTIME_PM_ON_BAT = "auto";
       SOUND_POWER_SAVE_ON_AC = 0;
       SOUND_POWER_SAVE_ON_BAT = 1;
-      CPU_MAX_PERF_ON_AC = 100;
-      CPU_MAX_PERF_ON_BAT = 70;
+    #  CPU_MAX_PERF_ON_AC = 100;
+    #  CPU_MAX_PERF_ON_BAT = 70;
     };
   };
 
   services.thermald.enable = true;
+
+
+  modules.battery_monitor.enable = true;
 
   services.journald.extraConfig = ''
     SystemMaxUse=50M
@@ -115,11 +120,17 @@
     RuntimeMaxFileSize=10M
   '';
 
+  services.throttled = {
+    enable = true;
+  };
+
   xdg.portal = {
     enable = true;
     extraPortals = [
-     pkgs.xdg-desktop-portal-hyprland
+    pkgs.xdg-desktop-portal-gtk
+    pkgs.xdg-desktop-portal-hyprland
     ];
+    config.common.default = "*";
   };
 
 
@@ -135,6 +146,8 @@
   };
 
 
+  hardware.ipu6.enable = false;
+
   hardware.sensor.iio = {
     enable = true;
   };
@@ -143,7 +156,9 @@
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
-      experimental-features = nix-command flakes
+#      experimental-features = nix-command flakes
+      experimental-features = flakes
+      extra-experimental-features = nix-command
       keep-outputs = true
       keep-derivations = true
     '';
@@ -169,6 +184,11 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.initrd.verbose = false;
+  boot.consoleLogLevel = 3;
+  boot.kernelParams = [ "quiet" "udev.log_priority=3" ];
+  boot.loader.timeout = 2;
+  networking.dhcpcd.wait = "background";
   system.stateVersion = "22.11"; 
 
 
@@ -176,7 +196,7 @@
 
   users.users.nico = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "adbusers" ]; 
+    extraGroups = [ "wheel" "networkmanager" "video" "adbusers" "libvirtd" ]; 
     packages = with pkgs; [                                 # User specific PKGS
     ];
 #    shell = "${pkgs.bash}/bin/bash";
@@ -206,12 +226,20 @@
     libinput
     pciutils
     tree
+    rustc
+    cargo
+    virt-manager
+    gnumake
   ];
 
   programs.light.enable = true;
   programs.adb.enable = true;
 
   environment.pathsToLink = [ "/share/bash-completion" ];
+
+  virtualisation.libvirtd.enable = true;
+
+  programs.dconf.enable = true;
 
   services.blueman.enable = true;
 
