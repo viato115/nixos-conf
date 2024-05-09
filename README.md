@@ -6,7 +6,7 @@ System: Lenovo ThinkPad L13 Yoga Gen2 (2-in-1 convertible Laptop) on NixOS unsta
 - Add a greeter (preferrebly tuigreet via greetd)
 - Change absolute paths to relative paths in home.nix
 - Build iio-hyprland the nix way (currently problem 1)
-- Configure Mako/Dusnt, EWW and Wofi/Rofi
+- Configure Mako/Dunst, EWW and Wofi/Rofi
 - Add ad blocking network module
 - Fix weird Bash Shell in TTY and nvim-toggleterm
 
