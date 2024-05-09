@@ -9,7 +9,7 @@
 }: {
 
   imports = [
-   /home/nico/.config/nixos/users/nico/modules/default.nix
+   /home/nico/.config/nixos/modules/default.nix
   ];
 
 
@@ -20,7 +20,7 @@
    acpi
    kitty
    pfetch
-   exa
+   eza
    fortune 
    neovim
    zathura
@@ -41,7 +41,7 @@
    foot
    imagemagick
    w3m
-   obsidian
+   #obsidian
    write_stylus
    gawk
    libreoffice
@@ -59,7 +59,11 @@
    hyprpicker
    blueberry
    polkit_gnome
-
+   alacritty
+   scrcpy
+   python2
+   glib
+#   renpy
 
    # Hyprland specific
    pulseaudio
@@ -69,6 +73,14 @@
 
    (pkgs.nerdfonts.override { fonts = [ "Mononoki" ]; })
   ];
+
+
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
+    };
+  };
 
 
   services.gammastep = {

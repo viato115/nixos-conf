@@ -14,7 +14,7 @@
        title=foot
        locked-title=no
        font=Mononoki Nerd Font:size=8
-       dpi-aware=auto
+       dpi-aware=yes
       [bell]
        urgent=no
        notify=no

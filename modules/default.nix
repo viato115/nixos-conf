@@ -13,6 +13,13 @@ let
     ./dolphin/dolphin.nix
     ./ranger/ranger.nix
     ./btop/btop.nix
+    ./dunst/dunst.nix
+    ./battery/battery_monitor.nix
+    ./battery/suspend.nix
+    ./gtk3/gtk3.nix
+
+
+    ./bin/default.nix
   ];
 in
 {

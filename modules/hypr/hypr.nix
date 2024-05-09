@@ -1,15 +1,18 @@
 {
+  config,
   pkgs,
   lib,
+  inputs,
   ...
 }: {
-  home.packages = with pkgs; [ mako libnotify grim slurp pamixer];
+  home.packages = with pkgs; [ libnotify grim slurp pamixer];
 
   home.file.".config/hypr/hyprpaper.conf" = {
     text = ''
       preload = ~/.config/nixos/pics/wallpaper.png
       preload = ~/.config/nixos/pics/neo_tokyo.png
       wallpaper = eDP-1, ~/.config/nixos/pics/neo_tokyo.png
+      wallpaper = DP-3, ~/.config/nixos/pics/neo_tokyo.png
     '';
   };
 
@@ -22,6 +25,7 @@
       cd ~
       
       export HYPRLAND_LOG_WLR=1
+      export WLR_RENDERER_ALLOW_SOFTWARE=1
       
       export XCURSOR_SIZE=24
 
@@ -43,7 +47,6 @@
     enable = true;
     xwayland = {
       enable = true;
-      hidpi = true;
     };
     extraConfig = lib.fileContents ./hyprland.conf;
   };
