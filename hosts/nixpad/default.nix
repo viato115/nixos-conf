@@ -108,7 +108,7 @@
     };
   };
 
-  services.thermald.enable = true;
+  # services.thermald.enable = true;
 
 
   modules.battery_monitor.enable = true;

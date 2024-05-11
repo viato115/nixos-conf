@@ -13,6 +13,7 @@
       preload = ~/.config/nixos/pics/neo_tokyo.png
       wallpaper = eDP-1, ~/.config/nixos/pics/neo_tokyo.png
       wallpaper = DP-3, ~/.config/nixos/pics/neo_tokyo.png
+      splash = false
     '';
   };
 
