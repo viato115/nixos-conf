@@ -3,12 +3,11 @@
 System: Lenovo ThinkPad L13 Yoga Gen2 (2-in-1 convertible Laptop) on NixOS unstable with standalone Home-Manager and Hyprland.
 
 **TODO**:
-- Add a greeter (preferrebly tuigreet via greetd)
+- Convert my current Neovim Config to Flakes
 - Change absolute paths to relative paths in home.nix
 - Build iio-hyprland the nix way (currently problem 1)
 - Configure Mako/Dunst, EWW and Wofi/Rofi
 - Add ad blocking network module
-- Fix weird Bash Shell in TTY and nvim-toggleterm
 
 ## I currently have 1 problem:
 <p>Since I have a 2-in-1 convertible Laptop, I want to make use of the touchscreen in tablet mode. Tablet mode (disabling the keyboard and touchpad when folded backwards) works,
