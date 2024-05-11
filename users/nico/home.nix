@@ -61,7 +61,7 @@
    polkit_gnome
    alacritty
    scrcpy
-   python2
+   python3
    glib
 #   renpy
 
