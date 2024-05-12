@@ -7,15 +7,31 @@
 }: {
   home.packages = with pkgs; [ libnotify grim slurp pamixer];
 
-  home.file.".config/hypr/hyprpaper.conf" = {
-    text = ''
-      preload = ~/.config/nixos/pics/wallpaper.png
-      preload = ~/.config/nixos/pics/neo_tokyo.png
-      wallpaper = eDP-1, ~/.config/nixos/pics/neo_tokyo.png
-      wallpaper = DP-3, ~/.config/nixos/pics/neo_tokyo.png
-      splash = false
-    '';
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      preload = [
+        "~/.config/nixos/pics/wallpaper.png"
+        "~/.config/nixos/pics/neo_tokyo.png"
+      ];
+      wallpaper = [
+        "eDP-1,~/.config/nixos/pics/neo_tokyo.png"
+        "DP-3,~/.config/nixos/pics/neo_tokyo.png"
+      ];
+
+      splash = false;
+    };
   };
+
+#  home.file.".config/hypr/hyprpaper.conf" = {
+#    text = ''
+#      preload = ~/.config/nixos/pics/wallpaper.png
+#      preload = ~/.config/nixos/pics/neo_tokyo.png
+#      wallpaper = eDP-1, ~/.config/nixos/pics/neo_tokyo.png
+#      wallpaper = DP-3, ~/.config/nixos/pics/neo_tokyo.png
+#      splash = false
+#    '';
+#  };
 
 
   home.file.".local/bin/wrappedhl" = {

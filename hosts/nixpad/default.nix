@@ -22,8 +22,14 @@
   };
 
 
-  sound.enable = true;
-  sound.mediaKeys.enable = true;
+  sound = {
+    enable = true;
+    mediaKeys = {
+      enable = true;
+      volumeStep = "5%";
+    };
+  };
+
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
@@ -110,6 +116,10 @@
 
   # services.thermald.enable = true;
 
+  services.throttled = {
+    enable = true;
+  };
+
 
   modules.battery_monitor.enable = true;
 
@@ -120,9 +130,6 @@
     RuntimeMaxFileSize=10M
   '';
 
-  services.throttled = {
-    enable = true;
-  };
 
   xdg.portal = {
     enable = true;
@@ -156,7 +163,6 @@
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
-#      experimental-features = nix-command flakes
       experimental-features = flakes
       extra-experimental-features = nix-command
       keep-outputs = true
@@ -169,7 +175,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 14d";
     };
   };
 
@@ -222,7 +228,6 @@
     powertop
     powerstat
     htop
-    steam-run
     libinput
     pciutils
     tree
@@ -256,4 +261,3 @@
 
   nixpkgs.config.allowUnfree = true;
 }
-
