@@ -18,7 +18,6 @@ let
     ./battery/suspend.nix
     ./gtk3/gtk3.nix
 
-
     ./bin/default.nix
   ];
 in
