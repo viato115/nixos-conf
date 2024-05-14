@@ -34,7 +34,6 @@
    bat
    zip
    unzip
-   #hyprpaper
    feh
    firefox-wayland
    chafa
@@ -83,20 +82,6 @@
     };
   };
 
-#  services.hyprpaper = {
-#    enable = true;
-#    settings = {
-#      preload = [
-#        ~/.config/nixos/pics/wallpaper.png
-#        ~/.config/nixos/pics/neo_tokyo.png
-#      ];
-#      wallpaper = [
-#        eDP-1, ~/.config/nixos/pics/neo_tokyo.png
-#        DP-3, ~/.config/nixos/pics/neo_tokyo.png
-#      ];
-#      splash = false
-#    };
-#  };
 
   services.gammastep = {
     enable = true;
