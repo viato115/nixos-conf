@@ -21,7 +21,6 @@
     allowedTCPPorts = [ 22 ];
   };
 
-
   sound = {
     enable = true;
     mediaKeys = {

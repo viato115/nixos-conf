@@ -17,6 +17,7 @@ let
     ./battery/battery_monitor.nix
     ./battery/suspend.nix
     ./gtk3/gtk3.nix
+    ./firefox/firefox.nix
 
     ./bin/default.nix
   ];
