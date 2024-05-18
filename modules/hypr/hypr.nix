@@ -7,6 +7,14 @@
 }: {
   home.packages = with pkgs; [ libnotify grim slurp pamixer];
 
+  wayland.windowManager.hyprland = {
+    enable = true;
+    xwayland = {
+      enable = true;
+    };
+    extraConfig = lib.fileContents ./hyprland.conf;
+  };
+
   services.hyprpaper = {
     enable = true;
     settings = {
@@ -22,17 +30,6 @@
       splash = false;
     };
   };
-
-#  home.file.".config/hypr/hyprpaper.conf" = {
-#    text = ''
-#      preload = ~/.config/nixos/pics/wallpaper.png
-#      preload = ~/.config/nixos/pics/neo_tokyo.png
-#      wallpaper = eDP-1, ~/.config/nixos/pics/neo_tokyo.png
-#      wallpaper = DP-3, ~/.config/nixos/pics/neo_tokyo.png
-#      splash = false
-#    '';
-#  };
-
 
   home.file.".local/bin/wrappedhl" = {
     executable = true;
@@ -59,13 +56,5 @@
       
       exec Hyprland
     '';
-  };
-
-  wayland.windowManager.hyprland = {
-    enable = true;
-    xwayland = {
-      enable = true;
-    };
-    extraConfig = lib.fileContents ./hyprland.conf;
   };
 }

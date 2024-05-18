@@ -20,6 +20,10 @@ let
     ./firefox/firefox.nix
 
     ./bin/default.nix
+
+
+    ./waybar/waybar.nix
+    ./wofi/wofi.nix
   ];
 in
 {
