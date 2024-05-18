@@ -35,7 +35,7 @@
    zip
    unzip
    feh
-   firefox-wayland
+   #firefox-wayland
    chafa
    foot
    imagemagick
@@ -64,6 +64,7 @@
    glib
    steam-run
 #   renpy
+   rofi-wayland
 
    # Hyprland specific
    pulseaudio
