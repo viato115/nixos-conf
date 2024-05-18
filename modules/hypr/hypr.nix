@@ -162,6 +162,13 @@
       # Move and resize windows with mouse too
         "$mainMod, mouse:272, movewindow"
         "$mainMod SHIFT, mouse:272, resizewindow"
+      bindle = [
+        # Backlight Keys
+        ",XF86MonBrightnessUp,exec,light -A 5"
+        ",XF86MonBrightnessDown,exec,light -U 5"
+        # Volume Keys
+        ",XF86AudioRaiseVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ +5%  "
+        ",XF86AudioLowerVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ -5%  "
       ];
       layerrule = [
         "blur, waybar"
