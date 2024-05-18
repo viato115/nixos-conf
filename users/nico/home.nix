@@ -1,4 +1,5 @@
 {
+  profile,
   config, 
   pkgs,
   lib,
@@ -6,8 +7,24 @@
   inputs,
   hyprland,
   ... 
-}: {
+}:
 
+let 
+  custom = {
+    font = "Mononoki Nerd Font";
+    fontsitze = 12;
+    primary_accent = "cba6f7";
+    secondary_accent = "89b4fa";
+    tertiary_accent = "f5f5f5";
+    background = "11111B";
+    opacity = "1";
+    cursor = "Numix-Cursor";
+    palette = import /home/nico/.config/nixos/users/nico/colors.nix;
+  };
+in
+{
+  _module.args = { inherit inputs custom; };
+  
   imports = [
    /home/nico/.config/nixos/modules/default.nix
   ];
