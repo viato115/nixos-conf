@@ -26,12 +26,8 @@ in
   _module.args = { inherit inputs custom; };
   
   imports = [
-  ~/.config/nixos/users/nico/imports.nix
- #  /home/nico/.config/nixos/modules/default.nix
- #  ../../modules/gui/bars/waybar/waybar.nix
- #  ../../modules/gui/DEs/wayland/hypr/hypr.nix
- #  ../../modules/gui/launcher/wofi/wofi.nix
- #  ../../modules/gui/
+  #~/.config/nixos/users/nico/imports.nix
+  ./imports.nix
   ];
 
 
