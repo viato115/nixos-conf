@@ -3,13 +3,15 @@
   pkgs,
   user,
   lib,
+  inputs,
   ... 
 }: {
+
   imports = [
     ./hardware-configuration.nix
-    /home/nico/.config/nixos/modules/greetd/default.nix
-    /home/nico/.config/nixos/modules/battery/battery_monitor.nix
-    /home/nico/.config/nixos/modules/battery/suspend.nix
+    /home/nico/.config/nixos/modules/services/greetd/default.nix
+    /home/nico/.config/nixos/modules/services/battery/battery_monitor.nix
+    /home/nico/.config/nixos/modules/services/battery/suspend.nix
   ];
 
   # System settings
@@ -208,6 +210,7 @@
   };
 
   environment.systemPackages = with pkgs; [                 # System wide PKGS
+    inputs.iio-hyprland.packages.${pkgs.system}.default
     vim 
     iio-sensor-proxy
     wget
