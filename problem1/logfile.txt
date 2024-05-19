@@ -1,0 +1,790 @@
+warning: Git tree '/home/nico/.config/nixos' is dirty
+building the system configuration...
+warning: Git tree '/home/nico/.config/nixos' is dirty
+error:
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/attrsets.nix:1571:24:
+
+         1570|     let f = attrPath:
+         1571|       zipAttrsWith (n: values:
+             |                        ^
+         1572|         let here = attrPath ++ [n]; in
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/attrsets.nix:1205:18:
+
+         1204|         mapAttrs
+         1205|           (name: value:
+             |                  ^
+         1206|             if isAttrs value && cond value
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/attrsets.nix:1208:18:
+
+         1207|             then recurse (path ++ [ name ]) value
+         1208|             else f (path ++ [ name ]) value);
+             |                  ^
+         1209|     in
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:242:72:
+
+          241|           # For definitions that have an associated option
+          242|           declaredConfig = mapAttrsRecursiveCond (v: ! isOption v) (_: v: v.value) options;
+             |                                                                        ^
+          243|
+
+       … while evaluating the option `system.build.toplevel':
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:824:28:
+
+          823|         # Process mkMerge and mkIf properties.
+          824|         defs' = concatMap (m:
+             |                            ^
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value))
+
+       … while evaluating definitions from `/nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/nixos/modules/system/activation/top-level.nix':
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:825:137:
+
+          824|         defs' = concatMap (m:
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value))
+             |                                                                                                                                         ^
+          826|         ) defs;
+
+       … while calling 'dischargeProperties'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:896:25:
+
+          895|   */
+          896|   dischargeProperties = def:
+             |                         ^
+          897|     if def._type or "" == "merge" then
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/nixos/modules/system/activation/top-level.nix:71:12:
+
+           70|   # Replace runtime dependencies
+           71|   system = foldr ({ oldDependency, newDependency }: drv:
+             |            ^
+           72|       pkgs.replaceDependency { inherit oldDependency newDependency drv; }
+
+       … while calling 'foldr'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/lists.nix:121:20:
+
+          120|   */
+          121|   foldr = op: nul: list:
+             |                    ^
+          122|     let
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/lists.nix:128:8:
+
+          127|         else op (elemAt list n) (fold' (n + 1));
+          128|     in fold' 0;
+             |        ^
+          129|
+
+       … while calling 'fold''
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/lists.nix:124:15:
+
+          123|       len = length list;
+          124|       fold' = n:
+             |               ^
+          125|         if n == len
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/nixos/modules/system/activation/top-level.nix:68:10:
+
+           67|     then throw "\nFailed assertions:\n${concatStringsSep "\n" (map (x: "- ${x}") failedAssertions)}"
+           68|     else showWarnings config.warnings baseSystem;
+             |          ^
+           69|
+
+       … while calling 'showWarnings'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/trivial.nix:867:28:
+
+          866|
+          867|   showWarnings = warnings: res: lib.foldr (w: x: warn w x) res warnings;
+             |                            ^
+          868|
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/trivial.nix:867:33:
+
+          866|
+          867|   showWarnings = warnings: res: lib.foldr (w: x: warn w x) res warnings;
+             |                                 ^
+          868|
+
+       … while calling 'foldr'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/lists.nix:121:20:
+
+          120|   */
+          121|   foldr = op: nul: list:
+             |                    ^
+          122|     let
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/lists.nix:128:8:
+
+          127|         else op (elemAt list n) (fold' (n + 1));
+          128|     in fold' 0;
+             |        ^
+          129|
+
+       … while calling 'fold''
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/lists.nix:124:15:
+
+          123|       len = length list;
+          124|       fold' = n:
+             |               ^
+          125|         if n == len
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/nixos/modules/system/activation/top-level.nix:48:16:
+
+           47|   # makes it bootable. See `activatable-system.nix`.
+           48|   baseSystem = pkgs.stdenvNoCC.mkDerivation ({
+             |                ^
+           49|     name = "nixos-system-${config.system.name}-${config.system.nixos.label}";
+
+       … while calling 'mkDerivation'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/pkgs/stdenv/generic/make-derivation.nix:46:5:
+
+           45|   mkDerivation =
+           46|     fnOrAttrs:
+             |     ^
+           47|       if builtins.isFunction fnOrAttrs
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/attrsets.nix:1205:18:
+
+         1204|         mapAttrs
+         1205|           (name: value:
+             |                  ^
+         1206|             if isAttrs value && cond value
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/attrsets.nix:1208:18:
+
+         1207|             then recurse (path ++ [ name ]) value
+         1208|             else f (path ++ [ name ]) value);
+             |                  ^
+         1209|     in
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:242:72:
+
+          241|           # For definitions that have an associated option
+          242|           declaredConfig = mapAttrsRecursiveCond (v: ! isOption v) (_: v: v.value) options;
+             |                                                                        ^
+          243|
+
+       … while evaluating the option `system.systemBuilderArgs':
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:846:59:
+
+          845|       if isDefined then
+          846|         if all (def: type.check def.value) defsFinal then type.merge loc defsFinal
+             |                                                           ^
+          847|         else let allInvalid = filter (def: ! type.check def.value) defsFinal;
+
+       … while calling 'merge'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/types.nix:583:20:
+
+          582|       check = isAttrs;
+          583|       merge = loc: defs:
+             |                    ^
+          584|         mapAttrs (n: v: v.value) (filterAttrs (n: v: v ? value) (zipAttrsWith (name: defs:
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/types.nix:584:35:
+
+          583|       merge = loc: defs:
+          584|         mapAttrs (n: v: v.value) (filterAttrs (n: v: v ? value) (zipAttrsWith (name: defs:
+             |                                   ^
+          585|             (mergeDefinitions (loc ++ [name]) elemType defs).optionalValue
+
+       … while calling 'filterAttrs'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/attrsets.nix:646:5:
+
+          645|     pred:
+          646|     set:
+             |     ^
+          647|     listToAttrs (concatMap (name: let v = set.${name}; in if pred name v then [(nameValuePair name v)] else []) (attrNames set));
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/attrsets.nix:647:29:
+
+          646|     set:
+          647|     listToAttrs (concatMap (name: let v = set.${name}; in if pred name v then [(nameValuePair name v)] else []) (attrNames set));
+             |                             ^
+          648|
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/attrsets.nix:647:62:
+
+          646|     set:
+          647|     listToAttrs (concatMap (name: let v = set.${name}; in if pred name v then [(nameValuePair name v)] else []) (attrNames set));
+             |                                                              ^
+          648|
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/types.nix:584:51:
+
+          583|       merge = loc: defs:
+          584|         mapAttrs (n: v: v.value) (filterAttrs (n: v: v ? value) (zipAttrsWith (name: defs:
+             |                                                   ^
+          585|             (mergeDefinitions (loc ++ [name]) elemType defs).optionalValue
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/types.nix:584:86:
+
+          583|       merge = loc: defs:
+          584|         mapAttrs (n: v: v.value) (filterAttrs (n: v: v ? value) (zipAttrsWith (name: defs:
+             |                                                                                      ^
+          585|             (mergeDefinitions (loc ++ [name]) elemType defs).optionalValue
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:824:28:
+
+          823|         # Process mkMerge and mkIf properties.
+          824|         defs' = concatMap (m:
+             |                            ^
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value))
+
+       … while evaluating definitions from `/nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/nixos/modules/system/activation/activatable-system.nix':
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:825:137:
+
+          824|         defs' = concatMap (m:
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value))
+             |                                                                                                                                         ^
+          826|         ) defs;
+
+       … while calling 'dischargeProperties'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:896:25:
+
+          895|   */
+          896|   dischargeProperties = def:
+             |                         ^
+          897|     if def._type or "" == "merge" then
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/nixos/modules/system/activation/activation-script.nix:133:18:
+
+          132|       apply = set: set // {
+          133|         script = systemActivationScript set false;
+             |                  ^
+          134|       };
+
+       … while calling 'systemActivationScript'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/nixos/modules/system/activation/activation-script.nix:20:33:
+
+           19|
+           20|   systemActivationScript = set: onlyDry: let
+             |                                 ^
+           21|     set' = mapAttrs (_: v: if isString v then (noDepEntry v) // { supportsDryActivation = false; } else v) set;
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/nixos/modules/system/activation/activation-script.nix:49:9:
+
+           48|
+           49|       ${textClosureMap id (withDrySnippets) (attrNames withDrySnippets)}
+             |         ^
+           50|
+
+       … while calling 'textClosureMap'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/strings-with-deps.nix:75:35:
+
+           74|
+           75|   textClosureMap = f: predefined: names:
+             |                                   ^
+           76|     concatStringsSep "\n" (map f (textClosureList predefined names));
+
+       … while calling 'id'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/trivial.nix:36:8:
+
+           35|   */
+           36|   id = x: x;
+             |        ^
+           37|
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/attrsets.nix:1205:18:
+
+         1204|         mapAttrs
+         1205|           (name: value:
+             |                  ^
+         1206|             if isAttrs value && cond value
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/attrsets.nix:1208:18:
+
+         1207|             then recurse (path ++ [ name ]) value
+         1208|             else f (path ++ [ name ]) value);
+             |                  ^
+         1209|     in
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:242:72:
+
+          241|           # For definitions that have an associated option
+          242|           declaredConfig = mapAttrsRecursiveCond (v: ! isOption v) (_: v: v.value) options;
+             |                                                                        ^
+          243|
+
+       … while evaluating the option `system.activationScripts.etc.text':
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:824:28:
+
+          823|         # Process mkMerge and mkIf properties.
+          824|         defs' = concatMap (m:
+             |                            ^
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value))
+
+       … while evaluating definitions from `/nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/nixos/modules/system/etc/etc-activation.nix':
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:825:137:
+
+          824|         defs' = concatMap (m:
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value))
+             |                                                                                                                                         ^
+          826|         ) defs;
+
+       … while calling 'dischargeProperties'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:896:25:
+
+          895|   */
+          896|   dischargeProperties = def:
+             |                         ^
+          897|     if def._type or "" == "merge" then
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/attrsets.nix:1571:24:
+
+         1570|     let f = attrPath:
+         1571|       zipAttrsWith (n: values:
+             |                        ^
+         1572|         let here = attrPath ++ [n]; in
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/types.nix:608:29:
+
+          607|       merge = loc: defs:
+          608|         zipAttrsWith (name: defs:
+             |                             ^
+          609|           let merged = mergeDefinitions (loc ++ [name]) elemType defs;
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:824:28:
+
+          823|         # Process mkMerge and mkIf properties.
+          824|         defs' = concatMap (m:
+             |                            ^
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value))
+
+       … while evaluating definitions from `/nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/nixos/modules/system/etc/etc.nix':
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:825:137:
+
+          824|         defs' = concatMap (m:
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value))
+             |                                                                                                                                         ^
+          826|         ) defs;
+
+       … while calling 'dischargeProperties'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:896:25:
+
+          895|   */
+          896|   dischargeProperties = def:
+             |                         ^
+          897|     if def._type or "" == "merge" then
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/attrsets.nix:273:39:
+
+          272|         then value
+          273|         else { ${elemAt attrPath n} = atDepth (n + 1); };
+             |                                       ^
+          274|     in atDepth 0;
+
+       … while calling 'atDepth'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/attrsets.nix:270:17:
+
+          269|       len = length attrPath;
+          270|       atDepth = n:
+             |                 ^
+          271|         if n == len
+
+       … while evaluating derivation 'etc'
+         whose name attribute is located at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/pkgs/stdenv/generic/make-derivation.nix:331:7
+
+       … while evaluating attribute 'buildCommand' of derivation 'etc'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/pkgs/build-support/trivial-builders/default.nix:68:16:
+
+           67|         enableParallelBuilding = true;
+           68|         inherit buildCommand name;
+             |                ^
+           69|         passAsFile = [ "buildCommand" ]
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/nixos/modules/system/etc/etc.nix:54:7:
+
+           53|     mkdir -p "$out/etc"
+           54|     ${concatMapStringsSep "\n" (etcEntry: escapeShellArgs [
+             |       ^
+           55|       "makeEtcEntry"
+
+       … while calling 'concatMapStringsSep'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/strings.nix:116:5:
+
+          115|     # List of input strings
+          116|     list: concatStringsSep sep (map f list);
+             |     ^
+          117|
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/nixos/modules/system/etc/etc.nix:54:33:
+
+           53|     mkdir -p "$out/etc"
+           54|     ${concatMapStringsSep "\n" (etcEntry: escapeShellArgs [
+             |                                 ^
+           55|       "makeEtcEntry"
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/nixos/modules/system/etc/etc.nix:54:43:
+
+           53|     mkdir -p "$out/etc"
+           54|     ${concatMapStringsSep "\n" (etcEntry: escapeShellArgs [
+             |                                           ^
+           55|       "makeEtcEntry"
+
+       … while calling 'concatMapStringsSep'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/strings.nix:116:5:
+
+          115|     # List of input strings
+          116|     list: concatStringsSep sep (map f list);
+             |     ^
+          117|
+
+       … while calling 'escapeShellArg'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/strings.nix:454:20:
+
+          453|   */
+          454|   escapeShellArg = arg: "'${replaceStrings ["'"] ["'\\''"] (toString arg)}'";
+             |                    ^
+          455|
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/attrsets.nix:1205:18:
+
+         1204|         mapAttrs
+         1205|           (name: value:
+             |                  ^
+         1206|             if isAttrs value && cond value
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/attrsets.nix:1208:18:
+
+         1207|             then recurse (path ++ [ name ]) value
+         1208|             else f (path ++ [ name ]) value);
+             |                  ^
+         1209|     in
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:242:72:
+
+          241|           # For definitions that have an associated option
+          242|           declaredConfig = mapAttrsRecursiveCond (v: ! isOption v) (_: v: v.value) options;
+             |                                                                        ^
+          243|
+
+       … while evaluating the option `environment.etc.dbus-1.source':
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:846:17:
+
+          845|       if isDefined then
+          846|         if all (def: type.check def.value) defsFinal then type.merge loc defsFinal
+             |                 ^
+          847|         else let allInvalid = filter (def: ! type.check def.value) defsFinal;
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:846:22:
+
+          845|       if isDefined then
+          846|         if all (def: type.check def.value) defsFinal then type.merge loc defsFinal
+             |                      ^
+          847|         else let allInvalid = filter (def: ! type.check def.value) defsFinal;
+
+       … while calling 'check'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/types.nix:535:15:
+
+          534|       descriptionClass = "noun";
+          535|       check = x: isStringLike x && builtins.substring 0 1 (toString x) == "/";
+             |               ^
+          536|       merge = mergeEqualOption;
+
+       … while evaluating derivation 'dbus-1'
+         whose name attribute is located at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/pkgs/stdenv/generic/make-derivation.nix:331:7
+
+       … while evaluating attribute 'serviceDirectories' of derivation 'dbus-1'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/pkgs/development/libraries/dbus/make-dbus-conf.nix:18:12:
+
+           17|   {
+           18|     inherit serviceDirectories suidHelper apparmor;
+             |            ^
+           19|     preferLocalBuild = true;
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/types.nix:553:14:
+
+          552|       merge = loc: defs:
+          553|         map (x: x.value) (filter (x: x ? value) (concatLists (imap1 (n: def:
+             |              ^
+          554|           imap1 (m: def':
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:846:17:
+
+          845|       if isDefined then
+          846|         if all (def: type.check def.value) defsFinal then type.merge loc defsFinal
+             |                 ^
+          847|         else let allInvalid = filter (def: ! type.check def.value) defsFinal;
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:846:22:
+
+          845|       if isDefined then
+          846|         if all (def: type.check def.value) defsFinal then type.merge loc defsFinal
+             |                      ^
+          847|         else let allInvalid = filter (def: ! type.check def.value) defsFinal;
+
+       … while calling 'check'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/types.nix:535:15:
+
+          534|       descriptionClass = "noun";
+          535|       check = x: isStringLike x && builtins.substring 0 1 (toString x) == "/";
+             |               ^
+          536|       merge = mergeEqualOption;
+
+       … while evaluating derivation 'system-path'
+         whose name attribute is located at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/pkgs/stdenv/generic/make-derivation.nix:331:7
+
+       … while evaluating attribute 'passAsFile' of derivation 'system-path'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/pkgs/build-support/trivial-builders/default.nix:69:9:
+
+           68|         inherit buildCommand name;
+           69|         passAsFile = [ "buildCommand" ]
+             |         ^
+           70|           ++ (derivationArgs.passAsFile or [ ]);
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/attrsets.nix:1205:18:
+
+         1204|         mapAttrs
+         1205|           (name: value:
+             |                  ^
+         1206|             if isAttrs value && cond value
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/attrsets.nix:1208:18:
+
+         1207|             then recurse (path ++ [ name ]) value
+         1208|             else f (path ++ [ name ]) value);
+             |                  ^
+         1209|     in
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:242:72:
+
+          241|           # For definitions that have an associated option
+          242|           declaredConfig = mapAttrsRecursiveCond (v: ! isOption v) (_: v: v.value) options;
+             |                                                                        ^
+          243|
+
+       … while evaluating the option `environment.systemPackages':
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:846:59:
+
+          845|       if isDefined then
+          846|         if all (def: type.check def.value) defsFinal then type.merge loc defsFinal
+             |                                                           ^
+          847|         else let allInvalid = filter (def: ! type.check def.value) defsFinal;
+
+       … while calling 'merge'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/types.nix:552:20:
+
+          551|       check = isList;
+          552|       merge = loc: defs:
+             |                    ^
+          553|         map (x: x.value) (filter (x: x ? value) (concatLists (imap1 (n: def:
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/types.nix:553:35:
+
+          552|       merge = loc: defs:
+          553|         map (x: x.value) (filter (x: x ? value) (concatLists (imap1 (n: def:
+             |                                   ^
+          554|           imap1 (m: def':
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/lists.nix:334:29:
+
+          333|   */
+          334|   imap1 = f: list: genList (n: f (n + 1) (elemAt list n)) (length list);
+             |                             ^
+          335|
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/lists.nix:334:32:
+
+          333|   */
+          334|   imap1 = f: list: genList (n: f (n + 1) (elemAt list n)) (length list);
+             |                                ^
+          335|
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/types.nix:554:21:
+
+          553|         map (x: x.value) (filter (x: x ? value) (concatLists (imap1 (n: def:
+          554|           imap1 (m: def':
+             |                     ^
+          555|             (mergeDefinitions
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:824:28:
+
+          823|         # Process mkMerge and mkIf properties.
+          824|         defs' = concatMap (m:
+             |                            ^
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value))
+
+       … while evaluating definitions from `/nix/store/9wqvirv6kljd33nzkdnppkh7sc27mrbc-source/hosts/nixpad/default.nix':
+
+       … from call site
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:825:137:
+
+          824|         defs' = concatMap (m:
+          825|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value))
+             |                                                                                                                                         ^
+          826|         ) defs;
+
+       … while calling 'dischargeProperties'
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:896:25:
+
+          895|   */
+          896|   dischargeProperties = def:
+             |                         ^
+          897|     if def._type or "" == "merge" then
+
+       … while calling anonymous lambda
+
+         at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:506:44:
+
+          505|       context = name: ''while evaluating the module argument `${name}' in "${key}":'';
+          506|       extraArgs = builtins.mapAttrs (name: _:
+             |                                            ^
+          507|         builtins.addErrorContext (context name)
+
+       … while evaluating the module argument `inputs' in "/nix/store/9wqvirv6kljd33nzkdnppkh7sc27mrbc-source/hosts/nixpad/default.nix":
+
+       error: attribute 'inputs' missing
+
+       at /nix/store/0aavdx9m5ms1cj5pb1dx0brbrbigy8ij-source/lib/modules.nix:508:28:
+
+          507|         builtins.addErrorContext (context name)
+          508|           (args.${name} or config._module.args.${name})
+             |                            ^
+          509|       ) (lib.functionArgs f);

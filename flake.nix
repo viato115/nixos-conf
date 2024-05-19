@@ -1,7 +1,4 @@
-{
-  description = "My main NixOS flake! ";
-
-
+{ description = "My main NixOS flake!";
   inputs = {
     nixpkgs = {
       url = github:nixos/nixpkgs/nixos-unstable;
@@ -27,7 +24,6 @@
     };
 
     hyprland = {
-#      url = github:hyprwm/Hyprland;
       url = git+https://github.com/hyprwm/Hyprland?submodules=1;
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -39,20 +35,21 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    iio-hyprland.url = "github:yassineibr/iio-hyprland/nix-support";
+
     firefox-addons = { 
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons"; 
       inputs.nixpkgs.follows = "nixpkgs"; 
     };
   };
 
-
   outputs = { 
-    self, 
     nixpkgs, 
     home-manager, 
     nixos-hardware, 
     hyprland, 
     flake-utils,
+    iio-hyprland,
     ... 
   }@inputs: { 
 
