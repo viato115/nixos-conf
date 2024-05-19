@@ -9,17 +9,8 @@ System: Lenovo ThinkPad L13 Yoga Gen2 (2-in-1 convertible Laptop) on NixOS unsta
 - Add ad blocking network module
 
 ## I currently have 1 problem:
-<p>Since I have a 2-in-1 convertible Laptop, I want to make use of the touchscreen in tablet mode. Tablet mode (disabling the keyboard and touchpad when folded backwards) works,
-but rotating the screen orientation (horizontal to vertical), does not.<br>
-For that I have found a program called 'iio-hyprland' on GitHub. I added the Wacom HID names of my own device into main.c<br>
-Building this the normal "non Nix method", I get a binary called "iio-hyprland" in /usr/local/bin which I can run.<br>
-Since building it the normal way doesn't add the build binary into /nix/store, and I am using NixOS, I figured I'll try building it the Nix way by writing a default.nix file and running it with "nix-build -E 'with import <:nixpkgs> {}; callPackage ./default.nix' (had to put a : in front of nixpkgs because it wouldn't be displayed in this README without it.)".
-For that I found two guides:<br>
-- https://elatov.github.io/2022/01/building-a-nix-package/
-- https://nix-tutorial.gitlabpages.inria.fr/nix-tutorial/first-experiment.html
-<br>
-It runs until ninja activate, where it throws me the error pasted in error1.txt.
-It seems the script doesn't have permissions to write to /run, so I've tried 'sudo nix-build ...', doesn't work...
-I've tried incorporating sudo into my default.nix, doesn't work. 
-I've tried searching online, found nothing similar.<br>
-And now I am out of ideas...</p>
+Thanks to the amazing c2vi for making me aware that there is now a nix compatibility for iio-hyprland, my old problem is finally obsolete. 
+I however encountered a new problem. 
+So I added the yassineibr/iio-hyprland/... to my flake inputs aswell as added the iio-hyprland package to my hosts/nixpad/default.nix,
+updating the system via "sudo nixos-rebuild switch --flake .#nixpad --impure" gives the error "error: attribute 'inputs' missing" (full log found in problem1/logfile.txt).
+I've yet to find a solution.
