@@ -7,7 +7,7 @@ custom ? {
   tertiary_accent = "f5f5f5";
   background = "11111B";
   opacity = ".85";
-  cursor = "Numix-Cursor";
+  #cursor = "Numix-Cursor";
 }, pkgs, ... }:
 {
   home.packages = with pkgs; [
@@ -27,7 +27,7 @@ custom ? {
     settings.mainBar = {
       position= "top";
       layer= "top";
-      height= 35;
+      height= 25;
       margin-top= 0;
       margin-bottom= 0;
       margin-left= 0;
@@ -296,12 +296,24 @@ custom ? {
                 border-radius: 0px 0px 40px 0px;
                 margin: 0px;
                 padding: 0px 35px 0px 15px;
-                font-size: 28px;
+                font-size: 25px;
             }
 
             #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.foward {
                 background: #${custom.palette.tertiary_background_hex};
                 font-size: 22px;
+                font = "Mononoki Nerd Font";
+                font = "Mononoki Nerd Font";
+                primary_accent = "cba6f7";
+                secondary_accent = "89b4fa";
+                tertiary_accent = "f5f5f5";
+                background = "11111B";
+                opacity = "1";
+                primary_accent = "cba6f7";
+                secondary_accent = "89b4fa";
+                tertiary_accent = "f5f5f5";
+                background = "11111B";
+                opacity = "1";
             }
             #custom-playerctl.backward:hover, #custom-playerctl.play:hover, #custom-playerctl.foward:hover{
                 color: #${custom.tertiary_accent};

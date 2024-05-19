@@ -21,6 +21,7 @@
         export QT_STYLE_OVERRIDE=kvantum
         pfetch
         date | awk '{print $1,$2,$3,$4,$6}' ; acpi | grep 'Battery 0' | awk '{print $1,$3,$4}' | sed 's/,$//'
+        bind 'set completion-ignore-case on'
       '';
      # initExtra = ''
      #   export TERM='foot'

@@ -18,7 +18,7 @@ let
     tertiary_accent = "f5f5f5";
     background = "11111B";
     opacity = "1";
-    cursor = "Numix-Cursor";
+    #cursor = "Numix-Cursor";
     palette = import /home/nico/.config/nixos/users/nico/colors.nix;
   };
 in
@@ -26,7 +26,12 @@ in
   _module.args = { inherit inputs custom; };
   
   imports = [
-   /home/nico/.config/nixos/modules/default.nix
+  ~/.config/nixos/users/nico/imports.nix
+ #  /home/nico/.config/nixos/modules/default.nix
+ #  ../../modules/gui/bars/waybar/waybar.nix
+ #  ../../modules/gui/DEs/wayland/hypr/hypr.nix
+ #  ../../modules/gui/launcher/wofi/wofi.nix
+ #  ../../modules/gui/
   ];
 
 

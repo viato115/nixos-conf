@@ -30,7 +30,7 @@
        hide-when-typing=yes
       [colors]
        alpha=0.9
-       background=282a36
+       background=16161e
        foreground=f8f8f2
       ## Normal/regular colors (color palette 0-7)
        regular0=21222c  # black
