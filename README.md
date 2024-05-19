@@ -4,7 +4,6 @@ System: Lenovo ThinkPad L13 Yoga Gen2 (2-in-1 convertible Laptop) on NixOS unsta
 
 **TODO**:
 - Convert my current Neovim Config to Flakes
-- Change absolute paths to relative paths in home.nix
 - Build iio-hyprland the nix way (currently problem 1)
 - Configure Mako/Dunst, EWW and Wofi/Rofi
 - Add ad blocking network module
