@@ -2,7 +2,7 @@
   config,
   pkgs,
   lib,
-  inputs,
+  #inputs,
   ...
 }: {
   home.file.".local/bin/menu" = {
