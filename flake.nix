@@ -49,9 +49,9 @@
     nixos-hardware, 
     hyprland, 
     flake-utils,
-    iio-hyprland,
+  #  iio-hyprland,
     ... 
-  }@inputs: { 
+  }@inputs:{ 
 
     nixosConfigurations = {
       nixpad = nixpkgs.lib.nixosSystem {

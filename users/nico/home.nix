@@ -26,7 +26,6 @@ in
   _module.args = { inherit inputs custom; };
   
   imports = [
-  #~/.config/nixos/users/nico/imports.nix
   ./imports.nix
   ];
 
