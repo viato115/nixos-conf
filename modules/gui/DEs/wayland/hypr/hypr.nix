@@ -11,7 +11,7 @@
   config,
   pkgs,
   lib,
-  inputs,
+  #inputs,
   ...
 }: 
 {
