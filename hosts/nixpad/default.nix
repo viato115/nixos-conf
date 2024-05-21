@@ -3,9 +3,8 @@
   pkgs,
   user,
   lib,
-  inputs,
   ... 
-}: {
+}@inputs:{
 
   imports = [
     ./hardware-configuration.nix
@@ -181,11 +180,16 @@
   };
 
 
-  environment.variables = {
-    EDITOR = "nvim";
-    BROWSER = "firefox";
-    NIXOS_CONFIG = "$HOME/.config/nixos/hosts/nixpad/default.nix";
-    NIXOS_CONFIG_DIR = "$HOME/.config/nixos/";
+  environment = {
+    variables = {
+      EDITOR = "nvim";
+      BROWSER = "firefox";
+      NIXOS_CONFIG = "$HOME/.config/nixos/hosts/nixpad/default.nix";
+      NIXOS_CONFIG_DIR = "$HOME/.config/nixos/";
+    };
+    sessionVariables = {
+      FLAKE = "$HOME/.config/nixos";
+    };
   };
 
 
@@ -210,7 +214,6 @@
   };
 
   environment.systemPackages = with pkgs; [                 # System wide PKGS
-    inputs.iio-hyprland.packages.${pkgs.system}.default
     vim 
     iio-sensor-proxy
     wget

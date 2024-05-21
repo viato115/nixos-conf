@@ -302,18 +302,17 @@ custom ? {
             #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.foward {
                 background: #${custom.palette.tertiary_background_hex};
                 font-size: 22px;
-                font = "Mononoki Nerd Font";
-                font = "Mononoki Nerd Font";
-                primary_accent = "cba6f7";
-                secondary_accent = "89b4fa";
-                tertiary_accent = "f5f5f5";
-                background = "11111B";
-                opacity = "1";
-                primary_accent = "cba6f7";
-                secondary_accent = "89b4fa";
-                tertiary_accent = "f5f5f5";
-                background = "11111B";
-                opacity = "1";
+                font-family: Mononoki Nerd Font;
+                primary_accent: "cba6f7";
+                secondary_accent: "89b4fa";
+                tertiary_accent: "f5f5f5";
+                background: "11111B";
+                opacity: "1";
+                primary_accent: "cba6f7";
+                secondary_accent: "89b4fa";
+                tertiary_accent: "f5f5f5";
+                background: "11111B";
+                opacity: "1";
             }
             #custom-playerctl.backward:hover, #custom-playerctl.play:hover, #custom-playerctl.foward:hover{
                 color: #${custom.tertiary_accent};

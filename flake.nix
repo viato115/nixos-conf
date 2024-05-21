@@ -35,8 +35,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    iio-hyprland.url = "github:yassineibr/iio-hyprland/nix-support";
-
     firefox-addons = { 
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons"; 
       inputs.nixpkgs.follows = "nixpkgs"; 
@@ -49,7 +47,6 @@
     nixos-hardware, 
     hyprland, 
     flake-utils,
-  #  iio-hyprland,
     ... 
   }@inputs:{ 
 
