@@ -21,6 +21,7 @@ let
     #cursor = "Numix-Cursor";
     palette = import /home/nico/.config/nixos/users/nico/colors.nix;
   };
+
 in
 {
   _module.args = { inherit inputs custom; };
@@ -34,6 +35,7 @@ in
   home.packages = with pkgs; [
 
    # Basics
+   nh
    acpi
    kitty
    pfetch
