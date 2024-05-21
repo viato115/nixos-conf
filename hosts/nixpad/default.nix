@@ -2,15 +2,16 @@
   config, 
   pkgs,
   user,
+  modules,
   lib,
   ... 
 }@inputs:{
 
   imports = [
     ./hardware-configuration.nix
-    /home/nico/.config/nixos/modules/services/greetd/default.nix
-    /home/nico/.config/nixos/modules/services/battery/battery_monitor.nix
-    /home/nico/.config/nixos/modules/services/battery/suspend.nix
+    ../../modules/services/battery/battery_monitor.nix
+    ../../modules/services/battery/suspend.nix
+    ../../modules/services/greetd/default.nix
   ];
 
   # System settings
