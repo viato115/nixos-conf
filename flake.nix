@@ -60,6 +60,14 @@
       };
     };
 
+  #  nixosConfigurations = {
+  #    nixtop = nixpkgs.lib.nixosSystem {
+  #      system = "x86_64-linux";
+  #      modules = [ 
+  #        ./hosts/nixtop/default.nix 
+  #      ];
+  #    };
+  #  };
 
     homeConfigurations = {
       "nico@nixpad" = home-manager.lib.homeManagerConfiguration {
