@@ -19,7 +19,8 @@ let
     background = "11111B";
     opacity = "1";
     #cursor = "Numix-Cursor";
-    palette = import /home/nico/.config/nixos/users/nico/colors.nix;
+#    palette = import /home/nico/.config/nixos/users/nico/colors.nix;
+    palette = import ./colors.nix;
   };
 
 in
@@ -36,6 +37,8 @@ in
 
    # Basics
    nh
+   nvd
+   nix-output-monitor
    acpi
    kitty
    pfetch
