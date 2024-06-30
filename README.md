@@ -8,4 +8,3 @@ System: Lenovo ThinkPad L13 Yoga Gen2 (2-in-1 convertible Laptop) on NixOS unsta
 - Configure EWW and Wofi/Rofi
 - Add ad blocking network module
 
-## I currently have a major problem
