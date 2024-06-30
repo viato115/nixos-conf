@@ -29,27 +29,27 @@
       [mouse]
        hide-when-typing=yes
       [colors]
-       alpha=0.9
-       background=16161e
-       foreground=f8f8f2
+       alpha=1
+       background=1a1b26
+       foreground=c0caf5
       ## Normal/regular colors (color palette 0-7)
-       regular0=21222c  # black
-       regular1=ff5555  # red
-       regular2=50fa7b  # green
-       regular3=f1fa8c  # yellow
-       regular4=bd93f9  # blue
-       regular5=ff79c6  # magenta
-       regular6=8be9fd  # cyan
-       regular7=f8f8f2  # white
+       regular0=15161E  # black
+       regular1=f7768e  # red
+       regular2=9ece6a  # green
+       regular3=e0af68  # yellow
+       regular4=7aa2f7  # blue
+       regular5=bb9af7  # magenta
+       regular6=7dcfff  # cyan
+       regular7=a9b1d6  # white
       # Bright colors (color palette 8-15)
-       bright0=6272a4   # bright black
-       bright1=ff6e6e   # bright red
-       bright2=69ff94   # bright green
-       bright3=ffffa5   # bright yellow
-       bright4=d6acff   # bright blue
-       bright5=ff92df   # bright magenta
-       bright6=a4ffff   # bright cyan
-       bright7=ffffff   # bright white
+       bright0=414868   # bright black
+       bright1=f7768e   # bright red
+       bright2=9ece6a   # bright green
+       bright3=e0af68   # bright yellow
+       bright4=7aa2f7   # bright blue
+       bright5=bb9af7   # bright magenta
+       bright6=7dcfff   # bright cyan
+       bright7=c0caf5   # bright white
        selection-foreground=ffffff
        selection-background=44475a
        urls=8be9fd
