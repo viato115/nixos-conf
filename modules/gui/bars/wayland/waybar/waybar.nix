@@ -1,356 +1,177 @@
-{ 
-custom ? {
-  font = "Mononoki Nerd Font";
-  fontsize = "12";
-  primary_accent = "cba6f7";
-  secondary_accent = "89b4fa";
-  tertiary_accent = "f5f5f5";
-  background = "11111B";
-  opacity = ".85";
-  #cursor = "Numix-Cursor";
-}, pkgs, ... }:
+{ pkgs, config, ... }:
 {
+
   home.packages = with pkgs; [
-    playerctl    
-    pavucontrol
   ];
-  #Overlays/Overrides
-  nixpkgs.overlays = [
-    (self: super: {
-      waybar = super.waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-      });
-    })
-  ];
+
   programs.waybar = {
     enable = true;
-    settings.mainBar = {
-      position= "top";
-      layer= "top";
-      height= 25;
-      margin-top= 0;
-      margin-bottom= 0;
-      margin-left= 0;
-      margin-right= 0;
-      modules-left= [
-        "custom/launcher" 
-        "custom/playerctl#backward" 
-        "custom/playerctl#play" 
-        "custom/playerctl#foward" 
-        "custom/playerlabel"
-      ];
-      modules-center= [
-        "cava#left"
-        "hyprland/workspaces"
-        "cava#right"
-      ];
-      modules-right= [
-        "tray" 
-        "battery"
-        "pulseaudio" 
-        "network"
-        "clock" 
-      ];
-      clock= {
-        format = " {:%a, %d %b, %I:%M %p}";
-        tooltip= "true";
-        tooltip-format= "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-        format-alt= " {:%d/%m}";
-      };
-      "wlr/workspaces"= {
-        active-only= false;
-        all-outputs= false;
-        disable-scroll= false;
-        on-scroll-up= "hyprctl dispatch workspace e-1";
-        on-scroll-down= "hyprctl dispatch workspace e+1";
-        format = "{name}";
-        on-click= "activate";
-        format-icons= {
-          urgent= "";
-          active= "";
-          default = "";
-          sort-by-number= true;
-        };
-      };
-      "cava#left" = {
-        framerate = 60;
-        autosens = 1;
-        bars = 18;
-        lower_cutoff_freq = 50;
-        higher_cutoff_freq = 10000;
-        method = "pipewire";
-        source = "auto";
-        stereo = true;
-        reverse = false;
-        bar_delimiter = 0;
-        monstercat = false;
-        waves = false;
-        input_delay = 2;
-        format-icons = [ 
-          "<span foreground='#${custom.primary_accent}'>▁</span>" 
-          "<span foreground='#${custom.primary_accent}'>▂</span>" 
-          "<span foreground='#${custom.primary_accent}'>▃</span>" 
-          "<span foreground='#${custom.primary_accent}'>▄</span>" 
-          "<span foreground='#${custom.secondary_accent}'>▅</span>" 
-          "<span foreground='#${custom.secondary_accent}'>▆</span>" 
-          "<span foreground='#${custom.secondary_accent}'>▇</span>" 
-          "<span foreground='#${custom.secondary_accent}'>█</span>" 
+    settings = {
+      mainBar = {
+        layer = "top";
+        position = "bottom";
+        height = 30;
+        modules-center = [
+          "hyprland/workspaces"
+            "network"
+            "pulseaudio"
+            "battery"
+            "custom/date"
+            "clock"
         ];
-      };
-      "cava#right" = {
-        framerate = 60;
-        autosens = 1;
-        bars = 18;
-        lower_cutoff_freq = 50;
-        higher_cutoff_freq = 10000;
-        method = "pipewire";
-        source = "auto";
-        stereo = true;
-        reverse = false;
-        bar_delimiter = 0;
-        monstercat = false;
-        waves = false;
-        input_delay = 2;
-        format-icons = [ 
-          "<span foreground='#${custom.primary_accent}'>▁</span>" 
-          "<span foreground='#${custom.primary_accent}'>▂</span>" 
-          "<span foreground='#${custom.primary_accent}'>▃</span>" 
-          "<span foreground='#${custom.primary_accent}'>▄</span>" 
-          "<span foreground='#${custom.secondary_accent}'>▅</span>" 
-          "<span foreground='#${custom.secondary_accent}'>▆</span>" 
-          "<span foreground='#${custom.secondary_accent}'>▇</span>" 
-          "<span foreground='#${custom.secondary_accent}'>█</span>" 
-        ];
-      };
-      "custom/playerctl#backward"= {
-        format= "󰙣 "; 
-        on-click= "playerctl previous";
-        on-scroll-up = "playerctl volume .05+";
-        on-scroll-down = "playerctl volume .05-";
-      };
-      "custom/playerctl#play"= {
-        format= "{icon}";
-        return-type= "json";
-        exec= "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
-        on-click= "playerctl play-pause";
-        on-scroll-up = "playerctl volume .05+";
-        on-scroll-down = "playerctl volume .05-";
-        format-icons= {
-          Playing = "<span>󰏥 </span>";
-          Paused = "<span> </span>";
-          Stopped = "<span> </span>";
+        "hyprland/workspaces" = let
+hyprctl = config.wayland.windowManager.hyprland.package + "/bin/hyprctl";
+        in {
+          on-click = "activate";
+          on-scroll-up = "${hyprctl} dispatch workspace m+1";
+          on-scroll-down = "${hyprctl} dispatch workspace m-1";
+          format = "{icon}";
+  #        active-only = true;
+          all-outputs = true;
+          format-icons = {
+           "1" = "一";
+           "2" = "二";
+           "3" = "三";
+           "4" = "四";
+           "5" = "五";
+           "6" = "六";
+           "7" = "七";
+           "8" = "八";
+           "9" = "九";
+           "10" = "〇";
+          };
         };
-      };
-      "custom/playerctl#foward"= {
-        format= "󰙡 ";
-        on-click= "playerctl next";
-        on-scroll-up = "playerctl volume .05+";
-        on-scroll-down = "playerctl volume .05-";
-      };
-      "custom/playerlabel"= {
-        format= "<span>󰎈 {} 󰎈</span>";
-        return-type= "json";
-        max-length= 40;
-        exec = "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
-        on-click= "";
-      };
-      battery= {
-        states= {
-          good= 95;
-          warning= 30;
-          critical= 15;
+        "custom/date" = {
+          format = "󰸗 {}";
+          interval = 3600;
+          exec = "$HOME/bin/waybar-date.sh";
         };
-        format="{icon}  {capacity}%";
-        format-charging= "  {capacity}%";
-        format-plugged= " {capacity}% ";
-        format-alt= "{icon} {time}";
-        format-icons= ["" "" "" "" ""];
-      };
-
-      memory= {
-        format= "󰍛 {}%";
-        format-alt= "󰍛 {used}/{total} GiB";
-        interval= 5;
-      };
-      cpu= {
-        format= "󰻠 {usage}%";
-        format-alt= "󰻠 {avg_frequency} GHz";
-        interval= 5;
-      };
-      network = {
-        format-wifi = "  {signalStrength}%";
-        format-ethernet = "󰈀 100% ";
-        tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
-        format-linked = "{ifname} (No IP)";
-        format-disconnected = "󰖪 0% ";
-      };
-      tray= {
-        icon-size= 20;
-        spacing= 8;
-      };
-      pulseaudio= {
-        format= "{icon} {volume}%";
-        format-muted= "󰝟";
-        format-icons= {
-          default= ["󰕿" "󰖀" "󰕾"];
+        "clock" = {
+          format = "󰅐 {:%H:%M} ";
+          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         };
-        # on-scroll-up= "bash ~/.scripts/volume up";
-        # on-scroll-down= "bash ~/.scripts/volume down";
-        scroll-step= 5;
-        on-click= "pavucontrol";
-      };
-      "custom/randwall"= {
-        format= "󰏘";
-        # on-click= "bash $HOME/.config/hypr/randwall.sh";
-        # on-click-right= "bash $HOME/.config/hypr/wall.sh";
-      };
-      "custom/launcher"= {
-        format= "";
-        # on-click= "bash $HOME/.config/rofi/launcher.sh";
-        # on-click-right= "bash $HOME/.config/rofi/run.sh"; 
-        tooltip= "false";
+        battery = {
+          states = {
+            warning = 20;
+            critical = 10;
+          };
+        	format = "{icon} {capacity}%";
+        	format-charging = "󰂄 {capacity}%";
+        	format-plugged = "󰂄{capacity}%";
+        	format-alt = "{icon} {time}";
+        	format-full = "󱈑 {capacity}%";
+        	format-icons = ["󱊡" "󱊢" "󱊣"];
+        };
+        network = {
+          format-wifi = "  {essid}";
+          format-ethernet = "󰤮 Disconnected";
+          format-linked = "{ifname} (No IP) ";
+          format-disconnected = "󰤮 Disconnected";
+          tooltip-format-wifi = "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}";
+        };
+        pulseaudio = {
+          on-click = "pactl set-sink-mute 45 toogle";
+          format = "{icon} {volume}%";
+          format-muted = "󰖁 Muted";
+          format-icons = {
+            headphone = "";
+            hands-free = "";
+            headset = "";
+            phone = "";
+            portable = "";
+            car = "";
+            default = ["" "" ""];
+          };
+        };
       };
     };
-    style = ''
-            * {
-                border: none;
-                border-radius: 0px;
-                font-family: ${custom.font};
-                font-size: 14px;
-                min-height: 0;
-            }
+      style = ''
+* {
+    border: none;
+    border-radius: 0;
+    font-family: mononoki Nerd Font;
+    font-size: 14px;
+    min-height: 0;
+}
 
-            window#waybar {
-                background: ${custom.palette.primary_background_rgba};
-            }
+window#waybar {
+    background: transparent;
+    color: white;
+}
 
-            #cava.left, #cava.right {
-                background: #${custom.palette.tertiary_background_hex};
-                margin: 5px; 
-                padding: 8px 16px;
-                color: #${custom.primary_accent};
-            }
-            #cava.left {
-                border-radius: 24px 10px 24px 10px;
-            }
-            #cava.right {
-                border-radius: 10px 24px 10px 24px;
-            }
-            #workspaces {
-                background: #${custom.palette.tertiary_background_hex};
-                margin: 5px 5px;
-                padding: 8px 5px;
-                border-radius: 16px;
-                color: #${custom.primary_accent}
-            }
-            #workspaces button {
-                padding: 0px 5px;
-                margin: 0px 3px;
-                border-radius: 16px;
-                color: transparent;
-                background: ${custom.palette.primary_background_rgba};
-                transition: all 0.3s ease-in-out;
-            }
+tooltip {
+	background: #0f0f0f;
+	border-radius: 15px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #262626;
+	}
 
-            #workspaces button.active {
-                background-color: #${custom.secondary_accent};
-                color: #${custom.background};
-                border-radius: 16px;
-                min-width: 50px;
-                background-size: 400% 400%;
-                transition: all 0.3s ease-in-out;
-            }
+#workspaces button {
+    padding: 5px 10px;
+    color: #f0f0f0;
+}
 
-            #workspaces button:hover {
-                background-color: #${custom.tertiary_accent};
-                color: #${custom.background};
-                border-radius: 16px;
-                min-width: 50px;
-                background-size: 400% 400%;
-            }
+#workspaces button.focused {
+    color: #0f0f0f;
+    background-color: #c49ec4;
+    border-radius: 15px;
+}
 
-            #tray, #pulseaudio, #network, #battery,
-            #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.foward{
-                background: #${custom.palette.tertiary_background_hex};
-                font-weight: bold;
-                margin: 5px 0px;
-            }
-            #tray, #pulseaudio, #network, #battery{
-                color: #${custom.tertiary_accent};
-                border-radius: 10px 24px 10px 24px;
-                padding: 0 20px;
-                margin-left: 7px;
-            }
-            #clock {
-                color: #${custom.tertiary_accent};
-                background: #${custom.palette.tertiary_background_hex};
-                border-radius: 0px 0px 0px 40px;
-                padding: 10px 10px 15px 25px;
-                margin-left: 7px;
-                font-weight: bold;
-                font-size: 16px;
-            }
-            #custom-launcher {
-                color: #${custom.secondary_accent};
-                background: #${custom.palette.tertiary_background_hex};
-                border-radius: 0px 0px 40px 0px;
-                margin: 0px;
-                padding: 0px 35px 0px 15px;
-                font-size: 25px;
-            }
+#workspaces button.urgent {
+    color: #0f0f0f;
+    background-color: #9ec3c4;
+    border-radius: 15px;
+}
 
-            #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.foward {
-                background: #${custom.palette.tertiary_background_hex};
-                font-size: 22px;
-                font-family: Mononoki Nerd Font;
-                primary_accent: "cba6f7";
-                secondary_accent: "89b4fa";
-                tertiary_accent: "f5f5f5";
-                background: "11111B";
-                opacity: "1";
-                primary_accent: "cba6f7";
-                secondary_accent: "89b4fa";
-                tertiary_accent: "f5f5f5";
-                background: "11111B";
-                opacity: "1";
-            }
-            #custom-playerctl.backward:hover, #custom-playerctl.play:hover, #custom-playerctl.foward:hover{
-                color: #${custom.tertiary_accent};
-            }
-            #custom-playerctl.backward {
-                color: #${custom.primary_accent};
-                border-radius: 24px 0px 0px 10px;
-                padding-left: 16px;
-                margin-left: 7px;
-            }
-            #custom-playerctl.play {
-                color: #${custom.secondary_accent};
-                padding: 0 5px;
-            }
-            #custom-playerctl.foward {
-                color: #${custom.primary_accent};
-                border-radius: 0px 10px 24px 0px;
-                padding-right: 12px;
-                margin-right: 7px
-            }
-            #custom-playerlabel {
-                background: #${custom.palette.tertiary_background_hex};
-                color: #${custom.tertiary_accent};
-                padding: 0 20px;
-                border-radius: 24px 10px 24px 10px;
-                margin: 5px 0;
-                font-weight: bold;
-            }
-            #window{
-                background: #${custom.palette.tertiary_background_hex};
-                padding-left: 15px;
-                padding-right: 15px;
-                border-radius: 16px;
-                margin-top: 5px;
-                margin-bottom: 5px;
-                font-weight: normal;
-                font-style: normal;
-            }
-        '';
-  };
+#workspaces button:hover {
+	background-color: #c49ec4;
+	color: #0f0f0f;
+	border-radius: 15px;
+}
+
+#custom-date, #clock, #battery, #pulseaudio, #network, #workspaces {
+	background-color: #0f0f0f;
+	padding: 5px 10px;
+	margin: 5px 0px;
+}
+
+#workspaces {
+	background-color: #262626;
+	border-radius: 15px 0px 0px 15px;
+}
+
+#custom-date {
+	color: #9ec3c4;
+}
+
+#clock {
+    color: #a39ec4;
+    border-radius: 0px 15px 15px 0px;
+    margin-right: 10px;
+}
+
+#battery {
+    color: #9ec49f;
+}
+
+#battery.charging {
+    color: #9ec49f;
+}
+
+#battery.warning:not(.charging) {
+    background-color: #c49ea0;
+    color: #0f0f0f;
+}
+
+#network {
+	color: #c4c19e;
+	border-radius: 0px 0px 0px 0px;
+}
+
+#pulseaudio {
+	color: #a5b4cb;
+}
+      '';
+    };
 }

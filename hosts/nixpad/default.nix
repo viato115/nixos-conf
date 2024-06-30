@@ -94,6 +94,9 @@
     '';
   };
 
+  hardware.bluetooth = {
+    enable = true;
+  };
 
 ## ## Battery management ##
 
@@ -110,8 +113,6 @@
       RUNTIME_PM_ON_BAT = "auto";
       SOUND_POWER_SAVE_ON_AC = 0;
       SOUND_POWER_SAVE_ON_BAT = 1;
-    #  CPU_MAX_PERF_ON_AC = 100;
-    #  CPU_MAX_PERF_ON_BAT = 70;
     };
   };
 
@@ -121,6 +122,9 @@
     enable = true;
   };
 
+  services.upower.enable = true;
+
+  powerManagement.powertop.enable = true;
 
   modules.battery_monitor.enable = true;
 
@@ -241,6 +245,7 @@
     cargo
     virt-manager
     gnumake
+    bluez
   ];
 
   programs.light.enable = true;

@@ -20,7 +20,7 @@ let
     ../../modules/services/gtk3/gtk3.nix
     ../../modules/gui/programs/browser/firefox/firefox.nix
     ../../modules/scripts/bin/default.nix
-    ../../modules/gui/bars/wayland/waybar/waybar.nix
+    #../../modules/gui/bars/wayland/waybar/waybar.nix
     ../../modules/gui/launcher/wofi/wofi.nix
   ];
 in
