@@ -23,13 +23,13 @@
     allowedTCPPorts = [ 22 ];
   };
 
-  sound = {
-    enable = true;
-    mediaKeys = {
-      enable = true;
-      volumeStep = "5%";
-    };
-  };
+ # sound = {
+ #   enable = true;
+ #   mediaKeys = {
+ #     enable = true;
+ #     volumeStep = "5%";
+ #   };
+ # };
 
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -83,8 +83,14 @@
   };
 
   
+  services = {
+    printing = {
+      enable = true;
+      drivers = [ pkgs.cnijfilter2 ];
+    };
+  };
+
   services.libinput.enable = true;
-  services.printing.enable = true;
   services.logind = {
     lidSwitch = "suspend-then-hibernate";
     lidSwitchDocked = "suspend-then-hibernate";
@@ -103,7 +109,7 @@
   services.tlp = {
     enable = true;
     settings = {
-      START_CHARGE_THRESH_BAT0 = 40;
+  #    START_CHARGE_THRESH_BAT0 = 40;
       STOP_CHARGE_THRESH_BAT0 = 90;
       CPU_BOOST_ON_AC= 1;
       CPU_BOOST_ON_BAT= 0;
@@ -147,15 +153,16 @@
 
 
   # Intel/OpenGL
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver
-      vaapiIntel
+      #vaapiIntel
       vaapiVdpau
       libvdpau-va-gl
     ];
   };
+
 
 
   hardware.ipu6.enable = false;
@@ -166,7 +173,7 @@
 
 
   nix = {
-    package = pkgs.nixFlakes;
+    #package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = flakes
       extra-experimental-features = nix-command
@@ -265,8 +272,8 @@
      # { keys = [ 113 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'amixer -q set Master toggle'"; }
      # { keys = [ 114 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'amixer -q set Master 5%- unmute'"; }
      # { keys = [ 115 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'amixer -q set Master 5%+ unmute'"; }
-      { keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'light -U 5'"; }
-      { keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'light -A 5'"; }
+     #{ keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'light -U 5'"; }
+     #{ keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'light -A 5'"; }
     ];
   };
 

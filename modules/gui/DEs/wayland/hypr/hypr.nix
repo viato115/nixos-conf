@@ -191,10 +191,11 @@
           "~/.config/nixos/pics/wallpaper.png"
           "~/.config/nixos/pics/neo_tokyo.png"
           "~/.config/nixos/pics/floral.png"
+          "~/.config/nixos/pics/a_drawing_of_a_wolf_and_a_lion.png"
         ];
         wallpaper = [
-          "eDP-1,~/.config/nixos/pics/floral.png"
-          "DP-3,~/.config/nixos/pics/floral.png"
+          "eDP-1,~/.config/nixos/pics/a_drawing_of_a_wolf_and_a_lion.png"
+          "DP-3,~/.config/nixos/pics/a_drawing_of_a_wolf_and_a_lion.png"
         ];
         splash = false;
       };

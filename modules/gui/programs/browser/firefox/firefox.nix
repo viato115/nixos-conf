@@ -13,11 +13,12 @@
     profiles.nicolas = {
       bookmarks = {};
 
-      extensions = with inputs.firefox-addons.packages.${pkgs.system}; [ 
+      extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [ 
         ublock-origin 
         localcdn
         privacy-badger
       ];
+
 
       userChrome = builtins.readFile ./userChrome.css;
       userContent = builtins.readFile ./userContent.css;
