@@ -57,7 +57,7 @@ in
    zip
    unzip
    feh
-   #firefox-wayland
+   #opengafirefox-wayland
    chafa
    foot
    imagemagick
@@ -74,7 +74,7 @@ in
    playerctl
    networkmanagerapplet
    gjs
-   gnome.gnome-bluetooth
+   gnome-bluetooth
    upower
    gtk3
    hyprpicker
@@ -87,14 +87,19 @@ in
    steam-run
 #   renpy
    rofi-wayland
+   brave
+   brightnessctl
 
    # Hyprland specific
    pulseaudio
    wl-clipboard
    wl-gammactl
    wlsunset
+   
+   nerd-fonts.mononoki
 
-   (pkgs.nerdfonts.override { fonts = [ "Mononoki" ]; })
+
+  # (pkgs.nerdfonts.override { fonts = [ "Mononoki" ]; })
   ];
 
 

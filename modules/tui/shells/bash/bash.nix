@@ -67,6 +67,7 @@
         hmflake = "export NIXPKGS_ALLOW_INSECURE=1 && export NIXPKGS_ALLOW_UNFREE=1 && home-manager switch --flake .#nico@nixpad --impure --show-trace";
         iio = "/usr/local/bin/iio-hyprland";
         hyprexit = "hyprctl dispatch exit";
+        nvc = "cd .config/nixos && nv";
       };
     };
   };
