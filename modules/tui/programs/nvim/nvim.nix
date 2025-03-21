@@ -3,7 +3,7 @@
   pkgs,
   lib,
   ...
-}: 
+}: {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -15,25 +15,17 @@
       popup-nvim
       telescope-nvim
       telescope-media-files-nvim
-      treesitter
+      nvim-treesitter
       nvim-tree-lua
       alpha-nvim
       dracula-nvim
       tokyonight-nvim
     ];
-
-  #    extraConfig = ''
-  #      lua require("nico.options")
-  #      lua require("nico.keymaps")
-  #      lua require("nico.telescope")
-  #      lua require("nico.nvimtree")
-  #      lua require("nico.treesitter")
-  #      lua require("nico.alpha-nvim")
-  #    '';
   };
 
-  home.file.".config/nvim/lua/nico".source = ./nvim/lua/nico;
-  home.file.".config/nvim/init.lua".source = ./nvim/init.lua;
+
+  #home.file.".config/nvim/lua/nico".source = ~/.config/nvim/lua/nico;
+  #home.file.".config/nvim/init.lua".source = ~/.config/nvim/init.lua;
 
 
 
@@ -54,6 +46,8 @@
       vim.cmd('autocmd VimEnter * source /home/nico/.config/nvim/lua/nico/nvimtree.lua')
     '';
   };
+
+
 
   home.file.".config/nvim/lua/nico/alpha-nvim.lua" = {
     text = ''
