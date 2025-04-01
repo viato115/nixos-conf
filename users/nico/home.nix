@@ -44,7 +44,7 @@ in
    pfetch
    eza
    fortune 
-   neovim
+   #neovim
    zathura
    mpv
    ffmpeg

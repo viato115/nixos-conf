@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }: {
   programs.neovim = {
@@ -24,30 +23,84 @@
   };
 
 
-  #home.file.".config/nvim/lua/nico".source = ~/.config/nvim/lua/nico;
-  #home.file.".config/nvim/init.lua".source = ~/.config/nvim/init.lua;
+## After this point you'll just encounter endless lines of config files. Turn around while you can
 
-
-
-# After this point you'll just encounter endless lines of config files. Turn around while you can
 
   home.file.".config/nvim/init.lua" = {
     text = ''
       require "nico.options"
       require "nico.keymaps"
-      require "nico.plugins"
+      --require "nico.plugins"
       require "nico.telescope"
       require "nico.treesitter"
       require "nico.nvimtree"
       --require "nico.dracula"
       require "nico.alpha-nvim"
-      require "nico.toyko-night"
+      require "nico.tokyo-night"
       --
       vim.cmd('autocmd VimEnter * source /home/nico/.config/nvim/lua/nico/nvimtree.lua')
     '';
   };
 
 
+  home.file.".config/nvim/lua/nico/keymaps.lua" = {
+    text = ''
+      local opts = { noremap = true, silent = true }
+      local term_opts = { silent = true }
+      local keymap = vim.api.nvim_set_keymap
+      
+      -- Remap space as leader key
+      keymap("", "<Space>", "<Nop>", opts)
+      vim.g.mapleader = " "
+      vim.g.maplocalleader = " "
+      
+      -- Modes
+      --    normal-mode = "n"
+      --    insert-mode = "i",
+      --    visual-mode = "v",
+      --    visual-block-mode = "x",
+      --    term-mode = "t",
+      --    command-mode = "c",
+      
+      -- Normal -- 
+      -- Easier navigation between splits
+      keymap("n", "<C-h>", "<C-w>h", opts)
+      keymap("n", "<C-j>", "<C-w>j", opts)
+      keymap("n", "<C-k>", "<C-w>k", opts)
+      keymap("n", "<C-l>", "<C-w>l", opts)
+      
+      -- keymap("n", "<leader>e", ":Lex 20<cr><cr>", opts)  -- NetRW, disabled due to nvim-tree installed  -- NetRW, disabled due to nvim-tree installed
+      keymap("n", "<leader>e", ":NvimTreeToggle<cr><cr>", opts)
+      
+      -- Resize splits with arrow keys
+      keymap("n", "<C-Up>", ":resize -2<CR>", opts)
+      keymap("n", "<C-Down>", ":resize +2<CR>", opts)
+      keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+      keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+      
+      -- Insert --
+      -- Press jk fast to for ESC
+      keymap("i", "jk", "<ESC>", opts)
+      
+      -- Visual --
+      -- Stay in indent mode
+      keymap("v", ">", "<gv", opts)
+      keymap("v", "<", ">gv", opts)
+      
+      -- Move text up and down
+      keymap("v", "<A-j>", ":m .+1<CR>==", opts)
+      keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+      keymap("v", "p", '"_dP', opts)  -- Makes NVIM keep a yanked item in buffer when pasting, instead of yanking the overwritten
+      
+      
+      -- Plugins --
+      -- Telescope
+      --keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
+      keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files({ find_command = { 'rg', '--files', '--hidden', '-g', '!.git' }})<cr>", opts)
+      -- keymap("n", "<leader>ft", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
+      keymap("n", "<leader>g", "<cmd>Telescope live_grep<cr>", opts)
+    '';
+  };
 
   home.file.".config/nvim/lua/nico/alpha-nvim.lua" = {
     text = ''
