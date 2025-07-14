@@ -1,0 +1,32 @@
+{
+  config,
+  pkgs,
+  ...
+}: {
+plugins.treesitter = {
+  enable = true;
+  grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+    bash
+    git_config
+    git_rebase
+    gitattributes
+    gitcommit
+    gitignore
+    json
+    jsonc
+    lua
+    make
+    markdown
+    meson
+    ninja
+    nix
+    readline
+    regex
+    ssh-config
+    toml
+    vim
+    vimdoc
+    xml
+    yaml
+  ];
+};
