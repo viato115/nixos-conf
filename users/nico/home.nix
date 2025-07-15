@@ -95,9 +95,23 @@ in
    wl-clipboard
    wl-gammactl
    wlsunset
+    #find
+   ltrace
+   strace
    
    nerd-fonts.mononoki
 
+    sleuthkit
+    zsteg
+    stegsolve
+    binwalk
+    autopsy
+    nmap
+    wireshark
+    exiftool
+    bviplus
+    scalpel
+    openssl
 
   # (pkgs.nerdfonts.override { fonts = [ "Mononoki" ]; })
   ];
