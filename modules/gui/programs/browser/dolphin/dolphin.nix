@@ -8,7 +8,7 @@
     libsForQt5.dolphin-plugins
     libsForQt5.kdegraphics-thumbnailers
     libsForQt5.qt5ct
-    libsForQt5.breeze-icons
+    #libsForQt5.breeze-icons
     libsForQt5.qtstyleplugin-kvantum
     qt6.qtwayland
     libsForQt5.qt5.qtwayland
