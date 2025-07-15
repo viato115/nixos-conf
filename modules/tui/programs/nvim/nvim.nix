@@ -9,23 +9,19 @@
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
-
+    
+    inherit (import ./treesitter.nvim);
     plugins = with pkgs.vimPlugins; [
       plenary-nvim
       popup-nvim
       telescope-nvim
       telescope-media-files-nvim
-      #nvim-treesitter
       nvim-tree-lua
       alpha-nvim
       dracula-nvim
       tokyonight-nvim
     ];
-
-
-    #extraConfig = lib.fileContents ./treesitter.nvim;  
 };
-  imports = [ ./treesitter.nvim ];
 
 ## After this point you'll just encounter endless lines of config files. Turn around while you can
 
