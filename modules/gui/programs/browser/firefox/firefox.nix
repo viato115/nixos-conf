@@ -25,13 +25,13 @@
 
       settings = {
         "browser.startup.homepage" = "https://viato115.github.io/personalbento/";
-        "browser.search.defaultenginename" = "Google";
-        "browser.search.order.1" = "Google";
+        "browser.search.defaultenginename" = "google";
+        "browser.search.order.1" = "google";
       };
 
       search = {
         force = true;
-        default = "Google";
+        default = "google";
         engines = {
           "Nix Packages" = {
             urls = [{ template = "https://search.nixos.org/packages";
@@ -55,7 +55,7 @@
           };
           "NixOS Wiki" = {
             urls = [{ template = "https://nixos.wiki/index.php?search={searchTerms}"; }];
-            iconUpdateURL = "https://nixos.wiki/favicon.png";
+            icon = "https://nixos.wiki/favicon.png";
             updateInterval = 24 * 60 * 1000;
             definedAliases = [ "@nw" ];
           };
@@ -68,7 +68,7 @@
             definedAliases = [ "@hmo" ];
             icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           };
-          "Google".metaData.alias = "@g";
+          "google".metaData.alias = "@g";
         };
       };
     };

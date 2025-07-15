@@ -108,6 +108,17 @@
   };
 
 
+  systemd.services.configure-sound-leds = rec {   # thanks to AndrewKvalheim @ Codeberg for this hack
+    enable = true;
+    wantedBy = [ "sound.target" ];
+    after = wantedBy;
+    serviceConfig.Type = "oneshot";
+    script = ''
+      echo follow-route > /sys/class/sound/ctl-led/mic/mode
+    '';
+  };
+
+
   ### Enable SSH support
 
   #  programs.gnupg.agent = {
