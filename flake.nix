@@ -4,6 +4,12 @@
       url = github:nixos/nixpkgs/nixos-unstable;
     };
 
+#    sops-nix = {
+#      url = github:Mic92/sops-nix;
+#      inputs.nixpkgs.follows = "nixpkgs"; 
+#
+#    };
+
     flake-utils = {
       url = github:numtide/flake-utils;
     };
@@ -41,8 +47,10 @@
     };
   };
 
-  outputs = { 
+  outputs = {
+    self,
     nixpkgs, 
+    #    sops-nix,
     home-manager, 
     nixos-hardware, 
     hyprland, 
@@ -53,9 +61,11 @@
     nixosConfigurations = {
       nixpad = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = [ 
           ./hosts/nixpad/default.nix 
           nixos-hardware.nixosModules.lenovo-thinkpad-l13-yoga
+            #      sops-nix.nixosModules.sops
         ];
       };
     };
