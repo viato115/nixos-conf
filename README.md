@@ -3,7 +3,6 @@
 System: Lenovo ThinkPad L13 Yoga Gen2 (2-in-1 convertible Laptop) on NixOS unstable with standalone Home-Manager and Hyprland.
 
 **TODO**:
-- Convert my current Neovim Config to Flakes
+- Configure sops-nix
 - Configure EWW and Wofi/Rofi
 - Add ad blocking network module
-
