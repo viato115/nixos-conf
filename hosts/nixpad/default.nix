@@ -1,27 +1,30 @@
 { 
   config, 
+  inputs,
   pkgs,
   user,
   modules,
   lib,
   ... 
-}@inputs:{
+}:{
 
   imports = [
+    #  inputs.sops-nix.nixosModules.sops
+    #"${(import ./nix/sources.nix).sops-nix}/modules/sops"
     ./hardware-configuration.nix
     ../../modules/services/battery/battery_monitor.nix
     ../../modules/services/battery/suspend.nix
     ../../modules/services/greetd/default.nix
   ];
 
+  #sops.defaultSopsFile = ../secrets/secrets.yaml;
+  #sops.defaultSopsFormat = "yaml";
+  #sops.age.keyFile = "/home/user/.config/sops/age/key.txt";
+
   # System settings
 
   networking.hostName = "nixpad";
   networking.networkmanager.enable = true;
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [ 22 ];
-  };
 
  # sound = {
  #   enable = true;
@@ -31,7 +34,7 @@
  #   };
  # };
 
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
   services.pipewire = {
@@ -103,6 +106,29 @@
   hardware.bluetooth = {
     enable = true;
   };
+
+
+  ### Enable SSH support
+
+  #  programs.gnupg.agent = {
+  #    enable = true;
+  #    enableSSHSupport = true;
+  #  };
+  #
+  #  services.openssh = {
+  #    enable = true;
+  #    hostKeys = [];
+  #    settings = {
+  #      PermitRootLogin = "no";
+  #      PasswordAuthentication = false;
+  #    };
+  #    openFirewall = true;
+  #  };
+  # 
+  #  networking.firewall = {
+  #    enable = true;
+  #    allowedTCPPorts = [ 22 ];
+  #  };
 
 ## ## Battery management ##
 
@@ -220,6 +246,7 @@
   users.users.nico = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" "adbusers" "libvirtd" ]; 
+    openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDCfggG2mdBPxyn8O9N/j0PR7fDKcZmm9HJDdmCmTTmo nico@nix"];
     packages = with pkgs; [                                 # User specific PKGS
     ];
 #    shell = "${pkgs.bash}/bin/bash";
@@ -253,6 +280,12 @@
     virt-manager
     gnumake
     bluez
+    file
+    strace
+    ltrace
+    gdb
+    xxd
+    #sops
   ];
 
   programs.light.enable = true;
