@@ -44,7 +44,6 @@ in
    pfetch
    eza
    fortune 
-   #neovim
    zathura
    mpv
    ffmpeg
@@ -53,12 +52,11 @@ in
    ripgrep
    fzf
    trash-cli
+   nerd-fonts.mononoki
    bat
    zip
    unzip
    feh
-   #opengafirefox-wayland
-   chafa
    foot
    imagemagick
    w3m
@@ -96,24 +94,22 @@ in
    wl-gammactl
    wlsunset
     #find
+   
+
+   sleuthkit
+   zsteg
+   stegsolve
+   binwalk
+   autopsy
+   nmap
+   wireshark
+   exiftool
+   bviplus
+   scalpel
+   openssl
    ltrace
    strace
-   
-   nerd-fonts.mononoki
 
-    sleuthkit
-    zsteg
-    stegsolve
-    binwalk
-    autopsy
-    nmap
-    wireshark
-    exiftool
-    bviplus
-    scalpel
-    openssl
-
-  # (pkgs.nerdfonts.override { fonts = [ "Mononoki" ]; })
   ];
 
 
