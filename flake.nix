@@ -7,7 +7,6 @@
 #    sops-nix = {
 #      url = github:Mic92/sops-nix;
 #      inputs.nixpkgs.follows = "nixpkgs"; 
-#
 #    };
 
     flake-utils = {
@@ -45,6 +44,8 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons"; 
       inputs.nixpkgs.follows = "nixpkgs"; 
     };
+
+    nvf.url = "github:notashelf/nvf";
   };
 
   outputs = {
@@ -55,6 +56,7 @@
     nixos-hardware, 
     hyprland, 
     flake-utils,
+    nvf,
     ... 
   }@inputs:{ 
 
@@ -87,6 +89,7 @@
           ./users/nico/home.nix 
           hyprland.homeManagerModules.default
           {wayland.windowManager.hyprland.enable = true;}
+          nvf.homeManagerModules.default
         ];
       };
     };
