@@ -1,11 +1,9 @@
 {
-  profile,
   config, 
   pkgs,
   lib,
   user,
   inputs,
-  hyprland,
   ... 
 }:
 
