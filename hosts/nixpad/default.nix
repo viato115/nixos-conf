@@ -12,11 +12,13 @@
     #  inputs.sops-nix.nixosModules.sops
     #"${(import ./nix/sources.nix).sops-nix}/modules/sops"
     ./hardware-configuration.nix
-    ../../modules/services/battery/battery_monitor.nix
-    ../../modules/services/battery/suspend.nix
-    ../../modules/services/greetd/default.nix
+    ./imports.nix
+    #  ../../modules/services/battery/battery_monitor.nix
+    #  ../../modules/services/battery/suspend.nix
+    #  ../../modules/services/greetd/default.nix
   ];
 
+  
   #sops.defaultSopsFile = ../secrets/secrets.yaml;
   #sops.defaultSopsFormat = "yaml";
   #sops.age.keyFile = "/home/user/.config/sops/age/key.txt";
