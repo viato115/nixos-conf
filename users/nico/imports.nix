@@ -13,8 +13,8 @@ let
     ../../modules/tui/programs/ranger/ranger.nix
     ../../modules/tui/programs/btop/btop.nix
     ../../modules/tui/programs/cava/cava.nix
-    #../../modules/tui/programs/nvim/nvim.nix
-    ../../modules/tui/programs/nvf/nvf.nix
+    ../../modules/tui/programs/nvim/nvim.nix
+    #../../modules/tui/programs/nvf/nvf.nix
     ../../modules/tui/programs/ranger/ranger.nix
     ../../modules/services/dunst/dunst.nix
     ../../modules/services/battery/battery_monitor.nix
@@ -24,6 +24,7 @@ let
     ../../modules/scripts/bin/default.nix
     #../../modules/gui/bars/wayland/waybar/waybar.nix
     ../../modules/gui/launcher/wofi/wofi.nix
+    ../../modules/tui/programs/nh/nh.nix
   ];
 in
 {
