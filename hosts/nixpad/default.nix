@@ -13,9 +13,6 @@
     #"${(import ./nix/sources.nix).sops-nix}/modules/sops"
     ./hardware-configuration.nix
     ./imports.nix
-    #  ../../modules/services/battery/battery_monitor.nix
-    #  ../../modules/services/battery/suspend.nix
-    #  ../../modules/services/greetd/default.nix
   ];
 
   
