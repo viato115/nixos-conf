@@ -5,7 +5,6 @@
 }:
 let
   modules = [
-    ../../modules/gui/DEs/wayland/hypr/hypr.nix
     ../../modules/gui/programs/emulators/kitty/kitty.nix
     ../../modules/gui/programs/emulators/foot/foot.nix
     ../../modules/tui/shells/bash/bash.nix
@@ -17,9 +16,6 @@ let
     #../../modules/tui/programs/nvf/nvf.nix
     ../../modules/tui/programs/ranger/ranger.nix
     ../../modules/services/dunst/dunst.nix
-    ../../modules/services/battery/battery_monitor.nix
-    ../../modules/services/battery/suspend.nix
-    ../../modules/services/gtk3/gtk3.nix
     ../../modules/gui/programs/browser/firefox/firefox.nix
     ../../modules/scripts/bin/default.nix
     #../../modules/gui/bars/wayland/waybar/waybar.nix
