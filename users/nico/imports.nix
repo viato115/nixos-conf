@@ -20,7 +20,8 @@ let
     ../../modules/scripts/bin/default.nix
     #../../modules/gui/bars/wayland/waybar/waybar.nix
     ../../modules/gui/launcher/wofi/wofi.nix
-    ../../modules/tui/programs/nh/nh.nix
+    ../../modules/services/gtk3/gtk3.nix
+    ../../modules/gui/DEs/wayland/hypr/hypr.nix
   ];
 in
 {

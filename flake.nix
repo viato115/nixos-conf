@@ -58,38 +58,68 @@
     flake-utils,
     nvf,
     ... 
-  }@inputs:{ 
+  }@inputs:
+
+    let
+      username = "nico";
+      pkgs =  import nixpkgs {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+        };
+      lib = nixpkgs.lib;
+    in
+
+    { 
 
     nixosConfigurations = {
       nixpad = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
+      system = "x86_64-linux";
+        specialArgs = { 
+          inherit self inputs username; 
+          host = "nixpad";
+        };
         modules = [ 
           ./hosts/nixpad/default.nix 
           nixos-hardware.nixosModules.lenovo-thinkpad-l13-yoga
             #      sops-nix.nixosModules.sops
         ];
       };
-    };
 
-  #  nixosConfigurations = {
-  #    nixtop = nixpkgs.lib.nixosSystem {
-  #      system = "x86_64-linux";
-  #      modules = [ 
-  #        ./hosts/nixtop/default.nix 
-  #      ];
-  #    };
-  #  };
+      nixtop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { 
+          inherit self inputs username; 
+          host = "nixtop";
+        };
+        modules = [ 
+          ./hosts/nixtop/default.nix 
+            # sops-nix.nixosModules.sops
+        ];
+      };
+    };
 
     homeConfigurations = {
       "nico@nixpad" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        inherit pkgs;
         extraSpecialArgs = { inherit inputs; };
         modules = [ 
           ./users/nico/home.nix 
           hyprland.homeManagerModules.default
           {wayland.windowManager.hyprland.enable = true;}
-          nvf.homeManagerModules.default
+            #  nvf.homeManagerModules.default
+        ];
+      };
+    };
+
+    homeConfigurations = {
+      "nico@nixtop" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = { inherit inputs; };
+        modules = [ 
+          ./users/nico/home.nix 
+          hyprland.homeManagerModules.default
+          {wayland.windowManager.hyprland.enable = true;}
+            # nvf.homeManagerModules.default
         ];
       };
     };
