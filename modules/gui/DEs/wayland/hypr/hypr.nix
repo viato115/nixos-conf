@@ -32,7 +32,15 @@ let
 
 in
 {
-  home.packages = with pkgs; [ libnotify grim slurp pamixer ];
+  home = {
+    packages = with pkgs; [ libnotify grim slurp pamixer vimix-cursors ];
+    pointerCursor = {
+      gtk.enable = true;
+          package = pkgs.vimix-cursors;
+          name = "Vimix-cursors";
+          size = 16;
+    };
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -42,7 +50,6 @@ in
       ${sharedConfig}
     '';
   };
-
  
   services.hyprpaper = {
     enable = true;
