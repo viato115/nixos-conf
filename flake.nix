@@ -67,10 +67,16 @@
         config.allowUnfree = true;
         };
       lib = nixpkgs.lib;
+
+      sharedHomeModules = [
+        ./users/nico/home.nix
+        hyprland.homeManagerModules.default
+        { wayland.windowManager.hyprland.enable = true; }
+      ];
+
     in
 
-    { 
-
+  { 
     nixosConfigurations = {
       nixpad = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -101,26 +107,14 @@
     homeConfigurations = {
       "nico@nixpad" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = { inherit inputs; };
-        modules = [ 
-          ./users/nico/home.nix 
-          hyprland.homeManagerModules.default
-          {wayland.windowManager.hyprland.enable = true;}
-            #  nvf.homeManagerModules.default
-        ];
+        extraSpecialArgs = { inherit inputs; hostname = "nixpad"; };
+        modules = sharedHomeModules;
       };
-    };
 
-    homeConfigurations = {
       "nico@nixtop" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = { inherit inputs; };
-        modules = [ 
-          ./users/nico/home.nix 
-          hyprland.homeManagerModules.default
-          {wayland.windowManager.hyprland.enable = true;}
-            # nvf.homeManagerModules.default
-        ];
+        extraSpecialArgs = { inherit inputs; hostname = "nixtop"; };
+        modules = sharedHomeModules;
       };
     };
   };
