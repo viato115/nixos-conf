@@ -75,7 +75,6 @@ in
    scrcpy
    python3
    glib
-   steam-run
 #   renpy
    rofi-wayland
    nil
