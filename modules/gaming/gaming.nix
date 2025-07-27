@@ -1,10 +1,9 @@
 { config, pkgs, inputs, ... }:
 {
   hardware = {
-    opengl = {
+    graphics = {
       enable = true; 
-      driSupport = true;
-      driSupport32bit = true;
+      enable32Bit = true;
     };
   };
 
@@ -15,7 +14,7 @@
   programs = {
     steam = {
       enable = true;
-      gamescopeSessions.enable = true;
+      gamescopeSession.enable = true;
     };
     gamemode.enable = true;
   };
