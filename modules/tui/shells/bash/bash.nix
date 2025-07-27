@@ -32,9 +32,23 @@ in
         export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
         export PATH=$PATH:/usr/bin:/usr/local/bin:$HOME/.local/bin
         export QT_STYLE_OVERRIDE=kvantum
+
+        # Git prompt support
+        if [ -f ${pkgs.git}/share/git/contrib/completion/git-prompt.sh ]; then
+          source ${pkgs.git}/share/git/contrib/completion/git-prompt.sh
+        fi
+
+        export PS1='\[\e[38;5;111m\]\u@\h \[\e[38;5;117m\]\w \[\e[0m\]\$ ' 
         ${greeter}
+        echo
         bind 'set completion-ignore-case on'
+
       '';
+
+
+
+
+
      # initExtra = ''
      #   export TERM='foot'
      #   export EDITOR='nvim'
