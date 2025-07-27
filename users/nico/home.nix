@@ -78,6 +78,8 @@ in
    steam-run
 #   renpy
    rofi-wayland
+   nil
+   nixpkgs-fmt
 
    # Hyprland specific
    #pulseaudio
