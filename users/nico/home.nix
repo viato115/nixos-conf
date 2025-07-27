@@ -4,20 +4,19 @@
   lib,
   user,
   inputs,
+  hostname,
   ... 
 }:
 
 let 
   custom = {
     font = "Mononoki Nerd Font";
-    fontsitze = 12;
+    fontsitze = 16;
     primary_accent = "cba6f7";
     secondary_accent = "89b4fa";
     tertiary_accent = "f5f5f5";
     background = "11111B";
     opacity = "1";
-    #cursor = "Numix-Cursor";
-#    palette = import /home/nico/.config/nixos/users/nico/colors.nix;
     palette = import ./colors.nix;
   };
 
@@ -37,7 +36,6 @@ in
    nh
    nvd
    nix-output-monitor
-   acpi
    kitty
    pfetch
    eza
@@ -57,9 +55,7 @@ in
    feh
    foot
    imagemagick
-   w3m
    #obsidian
-   write_stylus
    gawk
    libreoffice
    hunspell
@@ -71,7 +67,6 @@ in
    networkmanagerapplet
    gjs
    gnome-bluetooth
-   upower
    gtk3
    hyprpicker
    blueberry
@@ -83,11 +78,9 @@ in
    steam-run
 #   renpy
    rofi-wayland
-   brave
-   brightnessctl
 
    # Hyprland specific
-   pulseaudio
+   #pulseaudio
    wl-clipboard
    wl-gammactl
    wlsunset
@@ -107,8 +100,22 @@ in
    openssl
    ltrace
    strace
+  ]
+
+  ++ lib.optionals (hostname == "nixpad") [
+    write_stylus
+    acpi
+    upower
+    brightnessctl
+  ]
+
+
+  ++ lib.optionals (hostname == "nixtop") [
 
   ];
+
+
+
 
 
   dconf.settings = {
