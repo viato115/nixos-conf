@@ -12,7 +12,7 @@
         gtk-theme-name = "fuji";
         gtk-icon-theme-name = "fuji";
         gtk-font-name = "Roboto 11";
-        gtk-cursor-theme-name = "WhiteSur-cursors";
+        gtk-cursor-theme-name = "Vimix-cursors";
         gtk-cursor-theme-size = 0;
         gtk-toolbar-style = "GTK_TOOLBAR_ICONS";
         gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
