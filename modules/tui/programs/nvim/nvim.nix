@@ -20,6 +20,8 @@
       alpha-nvim
       dracula-nvim
       tokyonight-nvim
+      nvim-lspconfig
+      null-ls-nvim
     ];
 };
 
@@ -37,6 +39,7 @@
       --require "nico.dracula"
       require "nico.alpha-nvim"
       require "nico.tokyo-night"
+      require'lspconfig'.nil_ls.setup{}
       --
       vim.cmd('autocmd VimEnter * source /home/nico/.config/nvim/lua/nico/nvimtree.lua')
     '';
