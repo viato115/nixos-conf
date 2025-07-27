@@ -25,23 +25,22 @@
   networking.hostName = "nixtop";
   networking.networkmanager.enable = true;
 
- # sound = {
- #   enable = true;
- #   mediaKeys = {
- #     enable = true;
- #     volumeStep = "5%";
- #   };
- # };
 
- # services.pulseaudio.enable = false;
- # security.rtkit.enable = true;
+  services.pulseaudio.enable = false;
+  security.rtkit.enable = true;
 
- # services.pipewire = {
- #   enable = true;
- #   alsa.enable = true;
- #   alsa.support32Bit = true;
- #   pulse.enable = true;
- # };
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+
+   # lowLatency = {
+   #   enable = true;
+   #   quantum = 64;
+   #   rate = 48000;
+   # };
+  };
 
 
   time = {
@@ -94,9 +93,9 @@
 
   services.libinput.enable = true;
 
-#  hardware.bluetooth = {
-#    enable = true;
-#  };
+  hardware.bluetooth = {
+    enable = true;
+  };
 
 
 
@@ -117,12 +116,10 @@
   #    openFirewall = true;
   #  };
   # 
-  #  networking.firewall = {
-  #    enable = true;
+    networking.firewall = {
+      enable = true;
   #    allowedTCPPorts = [ 22 ];
-  #  };
-
-## ## Battery management ##
+    };
 
 
   services.journald.extraConfig = ''
@@ -151,10 +148,6 @@
 
 
   hardware.ipu6.enable = false;
-
- # hardware.sensor.iio = {
- #   enable = true;
- # };
 
 
   nix = {
@@ -214,7 +207,6 @@
 #    openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDCfggG2mdBPxyn8O9N/j0PR7fDKcZmm9HJDdmCmTTmo nico@nix"];
     packages = with pkgs; [                                 # User specific PKGS
     ];
-#    shell = "${pkgs.bash}/bin/bash";
   };
 
   environment.systemPackages = with pkgs; [                 # System wide PKGS
@@ -229,27 +221,27 @@
     zip
     unzip
     gammastep
-   # acpid
-   # geoclue2
+    acpid
+    geoclue2
     alsa-utils
     htop
     libinput
     pciutils
     tree
-   # rustc
-   # cargo
+    rustc
+    cargo
    # virt-manager
    # gnumake
-   # #bluez
+   bluez
    # file
    # strace
    # ltrace
    # gdb
    # xxd
-    #sops
+   #sops
   ];
 
- # programs.light.enable = true;
+  programs.light.enable = true;
  # programs.adb.enable = true;
 
   environment.pathsToLink = [ "/share/bash-completion" ];
@@ -260,6 +252,26 @@
 
  # services.blueman.enable = true;
 
+
+ # services.actkbd.enable = true;
+ #   services.actkbd.bindings = [
+ #     # Mute
+ #     { keys = [ 113 ]; events = [ "key" ];
+ #       command = "${pkgs.alsa-utils}/bin/amixer -q set Master toggle";
+ #     }
+ #     # Volume down
+ #     { keys = [ 114 ]; events = [ "key" "rep" ];
+ #       command = "${pkgs.alsa-utils}/bin/amixer -q set Master 1- unmute";
+ #     }
+ #     # Volume up
+ #     { keys = [ 115 ]; events = [ "key" "rep" ];
+ #       command = "${pkgs.alsa-utils}/bin/amixer -q set Master 1+ unmute";
+ #     }
+ #     # Mic Mute
+ #     { keys = [ 190 ]; events = [ "key" ];
+ #       command = "${pkgs.alsa-utils}/bin/amixer -q set Capture toggle";
+ #     }
+ #  ];
  # services.actkbd = {
  #   enable = true;
  #   bindings = [
