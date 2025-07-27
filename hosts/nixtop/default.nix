@@ -151,16 +151,19 @@
 
 
   nix = {
-    #package = pkgs.nixFlakes;
+    settings = {
+      substituters = ["https://hyprland.cachix.org"];
+      trusted-substituters = ["https://hyprland.cachix.org"];
+      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+      auto-optimise-store = true;
+    };
+
     extraOptions = ''
       experimental-features = flakes
       extra-experimental-features = nix-command
       keep-outputs = true
       keep-derivations = true
     '';
-    settings = {
-      auto-optimise-store = true;
-    };
 
     gc = {
       automatic = true;
