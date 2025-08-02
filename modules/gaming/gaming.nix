@@ -1,8 +1,8 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, lib, inputs, ... }:
 {
   hardware = {
     graphics = {
-      enable = true; 
+      enable = lib.mkDefault true; 
       enable32Bit = true;
     };
   };
@@ -12,8 +12,9 @@
   };
 
   programs = {
+    java.enable = lib.mkDefault true;
     steam = {
-      enable = true;
+      enable = lib.mkDefault true;
       gamescopeSession.enable = true;
     };
     gamemode.enable = true;
@@ -27,6 +28,9 @@
       bottles
       heroic
       steam-run
+      wineWowPackages.stable
+      winetricks
+      wineWowPackages.waylandFull
     ];
   };
 }
