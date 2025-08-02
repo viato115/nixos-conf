@@ -8,7 +8,7 @@
 
 let
   footFonts = {
-    nixpad = "Mononoki Nerd Font:size=14";
+    nixpad = "Mononoki Nerd Font:size=8";
     nixtop = "Mononoki Nerd Font:size=11";  
   };
 in
