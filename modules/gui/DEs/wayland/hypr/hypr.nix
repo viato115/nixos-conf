@@ -23,7 +23,7 @@ let
       ];
       nixtop = [
         "DP-3,~/.config/nixos/shared/pics/a_drawing_of_a_wolf_and_a_lion.png"
-        "HDMI-A-1,~/.config/shared/nixos/pics/a_drawing_of_a_wolf_and_a_lion.png"
+        "HDMI-A-1,~/.config/nixos/shared/pics/a_drawing_of_a_wolf_and_a_lion.png"
       ];
     };
     wallpapers = hostWallpapers.${hostname} or [];
