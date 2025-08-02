@@ -79,6 +79,7 @@ in
    rofi-wayland
    nil
    nixpkgs-fmt
+   btop
 
    # Hyprland specific
    #pulseaudio

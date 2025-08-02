@@ -249,6 +249,7 @@
    # xxd
    #sops
    ntfs3g
+   jdk
   ];
 
 
