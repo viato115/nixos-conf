@@ -201,6 +201,12 @@
   networking.dhcpcd.wait = "background";
   system.stateVersion = "22.11"; 
 
+#  # Automount my windows drive 
+  fileSystems."/mnt/windows" = {
+    device = "/dev/nvme0n1p3";
+    fsType = "ntfs3";
+    options = [ "defaults" "windows_names" "uid=1000" "gid=100" "umask=022" ];
+  };
 
  # User and Package settings
 
@@ -242,49 +248,14 @@
    # gdb
    # xxd
    #sops
+   ntfs3g
   ];
 
   programs.light.enable = true;
- # programs.adb.enable = true;
 
   environment.pathsToLink = [ "/share/bash-completion" ];
 
- # virtualisation.libvirtd.enable = true;
-
   programs.dconf.enable = true;
-
- # services.blueman.enable = true;
-
-
- # services.actkbd.enable = true;
- #   services.actkbd.bindings = [
- #     # Mute
- #     { keys = [ 113 ]; events = [ "key" ];
- #       command = "${pkgs.alsa-utils}/bin/amixer -q set Master toggle";
- #     }
- #     # Volume down
- #     { keys = [ 114 ]; events = [ "key" "rep" ];
- #       command = "${pkgs.alsa-utils}/bin/amixer -q set Master 1- unmute";
- #     }
- #     # Volume up
- #     { keys = [ 115 ]; events = [ "key" "rep" ];
- #       command = "${pkgs.alsa-utils}/bin/amixer -q set Master 1+ unmute";
- #     }
- #     # Mic Mute
- #     { keys = [ 190 ]; events = [ "key" ];
- #       command = "${pkgs.alsa-utils}/bin/amixer -q set Capture toggle";
- #     }
- #  ];
- # services.actkbd = {
- #   enable = true;
- #   bindings = [
- #    # { keys = [ 113 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'amixer -q set Master toggle'"; }
- #    # { keys = [ 114 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'amixer -q set Master 5%- unmute'"; }
- #    # { keys = [ 115 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'amixer -q set Master 5%+ unmute'"; }
- #    #{ keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'light -U 5'"; }
- #    #{ keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'light -A 5'"; }
- #   ];
- # };
 
   nixpkgs.config.allowUnfree = true;
 }
