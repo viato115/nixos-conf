@@ -81,6 +81,8 @@ in
         iio = "/usr/local/bin/iio-hyprland";
         hyprexit = "hyprctl dispatch exit";
         nvc = "cd ~/.config/nixos && nv";
+        cdw = "cd /mnt/windows";
+        cdc = "cd /home/nico/.config/nixos"
       };
     };
   };
