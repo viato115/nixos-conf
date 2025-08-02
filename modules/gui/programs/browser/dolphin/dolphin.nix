@@ -12,6 +12,7 @@
     libsForQt5.qtstyleplugin-kvantum
     qt6.qtwayland
     libsForQt5.qt5.qtwayland
+    kdePackages.qtsvg
   ];
 
   home.file.".config/qt5ct/qt5ct.conf" = {
