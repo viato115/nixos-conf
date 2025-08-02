@@ -304,7 +304,7 @@
   services = {
     blueman.enable = true;
 
-    services.actkbd = {
+    actkbd = {
       enable = true;
       bindings = [
        # { keys = [ 113 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'amixer -q set Master toggle'"; }
