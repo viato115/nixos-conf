@@ -201,13 +201,13 @@
   networking.dhcpcd.wait = "background";
   system.stateVersion = "22.11"; 
 
-#  # Automount my windows drive 
+# Automount my windows drive 
   fileSystems."/mnt/windows" = {
-    device = "/dev/nvme0n1p3";
     fsType = "ntfs3";
-    options = [ "defaults" "windows_names" "uid=1000" "gid=100" "umask=022" ];
+    device = "/dev/disk/by-uuid/BE64A34F64A3096B";
+    options = [ "defaults" "windows_names" "umask=022" "uid=1000" ];
   };
-
+  
  # User and Package settings
 
   users.users.nico = {
