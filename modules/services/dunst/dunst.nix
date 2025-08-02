@@ -105,7 +105,7 @@ in {
     };
   };
 
-  home.file."scripts/dunst/launch" = {
+  home.file."shared/scripts/dunst/launch" = {
     executable = true;
     text = ''
       #!/usr/bin/env bash
