@@ -1,144 +1,253 @@
-/* 
-┌─┐┬┌┬┐┌─┐┬  ┌─┐
-└─┐││││├─┘│  ├┤ 
-└─┘┴┴ ┴┴  ┴─┘└─┘
-┌─┐┌─┐─┐ ┬      
-├┤ │ │┌┴┬┘      
-└  └─┘┴ └─
-
-by Miguel Avila
-
+/*
+┏━╸┏━┓┏┓╻┏━╸╻┏━╸╻ ╻┏━┓┏━┓╺┳╸╻┏━┓┏┓╻
+┃  ┃ ┃┃┗┫┣╸ ┃┃╺┓┃ ┃┣┳┛┣━┫ ┃ ┃┃ ┃┃┗┫
+┗━╸┗━┛╹ ╹╹  ╹┗━┛┗━┛╹┗╸╹ ╹ ╹ ╹┗━┛╹ ╹
 */
 
 /*
- 
-┌─┐┌─┐┌┐┌┌─┐┬┌─┐┬ ┬┬─┐┌─┐┌┬┐┬┌─┐┌┐┌
-│  │ ││││├┤ ││ ┬│ │├┬┘├─┤ │ ││ ││││
-└─┘└─┘┘└┘└  ┴└─┘└─┘┴└─┴ ┴ ┴ ┴└─┘┘└┘
-
+┏━┓╻╺┳┓┏━╸┏┓ ┏━╸┏━┓╻ ╻
+┗━┓┃ ┃┃┣╸ ┣┻┓┣╸ ┣┳┛┗┳┛
+┗━┛╹╺┻┛┗━╸┗━┛┗━╸╹┗╸ ╹
 */
-
-:root {
-  --sfwindow: #19171a;
-  --sfsecondary: #201e21;
+/*
+#sidebar-box #sidebar-header {
+  visibility: collapse;
 }
 
-/* Urlbar View */
+#sidebar-box {
+  --uc-sidebar-width: 100px !important;
+  --uc-sidebar-hover-width: 275px;
+  --uc-autohide-sidebar-delay: 1s;
+  position: relative;
+  min-width: var(--uc-sidebar-width) !important;
+  width: var(--uc-sidebar-width) !important;
+  max-width: var(--uc-sidebar-width) !important;
+  z-index:3;
+}
 
-/*─────────────────────────────*/
-/* Comment this section if you */
-/* want to show the URL Bar    */
-/*─────────────────────────────*/
+#sidebar-box > #sidebar {
+  transition: min-width 400ms linear var(--uc-autohide-sidebar-delay), 
+              opacity 400ms ease calc(var(--uc-autohide-sidebar-delay) + 100ms) !important;
+  min-width: var(--uc-sidebar-width) !important;
+  opacity: 0 !important;
+  will-change: min-width, opacity;
+}
+
+#sidebar-box:hover > #sidebar {
+  min-width: var(--uc-sidebar-hover-width) !important;
+  opacity: 1 !important;
+  transition-delay: 0s !important;
+}
+
+#sidebar-box > #sidebar-splitter, 
+#sidebar-splitter {
+    display: none;
+}
+
+#sidebar-box {
+  background: var(--lwt-accent-color) !important;
+}
+*/
+
+/*
+┏━┓┏━┓╺┳┓╺┳┓╻┏┓╻┏━╸
+┣━┛┣━┫ ┃┃ ┃┃┃┃┗┫┃╺┓
+╹  ╹ ╹╺┻┛╺┻┛╹╹ ╹┗━┛
+┏━┓╻ ╻┏━┓┏━┓┏━┓╻ ╻┏┓╻╺┳┓
+┗━┓┃ ┃┣┳┛┣┳┛┃ ┃┃ ┃┃┗┫ ┃┃
+┗━┛┗━┛╹┗╸╹┗╸┗━┛┗━┛╹ ╹╺┻┛
+*/
+
+@media not all and (display-mode: fullscreen) {
+  #appcontent .browserStack,
+  #browser,
+  .browserContainer {
+    background: var(--lwt-accent-color)
+  }
+
+  #browser > #appcontent {
+    --margin: 10px;  
+
+    margin-left: 0px;
+    margin-right: var(--margin);
+    margin-top: 0px;
+    margin-bottom: var(--margin);
+  
+    browser {
+      --outline: 1px solid var(--arrowpanel-background);
+      border: var(--outline);
+    }
+  }
+}
+
+/*
+┏━╸┏━┓┏┓╻╺┳╸┏━╸╻ ╻╺┳╸
+┃  ┃ ┃┃┗┫ ┃ ┣╸ ┏╋┛ ┃
+┗━╸┗━┛╹ ╹ ╹ ┗━╸╹ ╹ ╹
+┏┳┓┏━╸┏┓╻╻ ╻
+┃┃┃┣╸ ┃┗┫┃ ┃
+╹ ╹┗━╸╹ ╹┗━┛
+*/
+
+#toolbar-menubar menupopup,
+#toolbar-context-menu,
+#toolbar-context-menu menupopup,
+#unified-extensions-context-menu,
+#unified-extensions-context-menu menupopup,
+#placesContext, #placesContext menupopup,
+#downloadsContextMenu, #downloadsContextMenu menupopup,
+#sidebarMenu-popup, #PopupSearchAutoComplete,
+:is(#back-button, #forward-button) menupopup,
+#permission-popup-menulist menupopup,
+#contentAreaContextMenu[showservicesmenu="true"],
+#contentAreaContextMenu[showservicesmenu="true"] menupopup {
+  --panel-background: var(--arrowpanel-background) !important;
+  --panel-border-color: var(--toolbar-bgcolor) !important;
+  --toolbar-field-focus-background-color: var(--toolbarbutton-icon-fill) !important;
+  --panel-color: var(--toolbarbutton-icon-fill) !important;
+
+  menu:where([_moz-menuactive="true"]:not([disabled="true"])), 
+  menuitem:where([_moz-menuactive="true"]:not([disabled="true"])) {
+    background-color: var(--panel-item-hover-bgcolor) !important;
+    color: var(--toolbarbutton-icon-fill) !important;
+  }
+  
+  menu:where([_moz-menuactive="true"][disabled="true"]), 
+  menuitem:where([_moz-menuactive="true"][disabled="true"]) {
+    background-color: transparent !important;
+  } 
+}
+
+/*
+┏┳┓╻┏┓╻╻┏┳┓┏━┓╻
+┃┃┃┃┃┗┫┃┃┃┃┣━┫┃
+╹ ╹╹╹ ╹╹╹ ╹╹ ╹┗━╸
+┏━╸╻ ╻╺┳╸┏━╸┏┓╻┏━┓╻┏━┓┏┓╻┏━┓
+┣╸ ┏╋┛ ┃ ┣╸ ┃┗┫┗━┓┃┃ ┃┃┗┫┗━┓
+┗━╸╹ ╹ ╹ ┗━╸╹ ╹┗━┛╹┗━┛╹ ╹┗━┛
+┏┳┓┏━╸┏┓╻╻ ╻
+┃┃┃┣╸ ┃┗┫┃ ┃
+╹ ╹┗━╸╹ ╹┗━┛
+ */
+
+#unified-extensions-view{
+    --uei-icon-size: 24px;
+    --extensions-in-row: 4;
+
+    width: 100% !important;
+    :is(
+      toolbarseparator,
+      .unified-extensions-item-menu-button.subviewbutton,
+      .unified-extensions-item-action-button .unified-extensions-item-contents
+    ) {display: none !important;}
+
+    :is(
+      #overflowed-extensions-list,
+      #unified-extensions-area,
+      .unified-extensions-list 
+    ){
+      display: grid !important;
+      grid-template-columns: repeat(var(--extensions-in-row),auto);
+      justify-items: center !important;
+      align-items: center !important;
+    }
+    
+    .unified-extensions-item-action-button {padding-right: 3px !important;}
+}
+
+/*
+┏━╸┏━┓┏┓╻╺┳╸┏━┓
+┣╸ ┃ ┃┃┗┫ ┃ ┗━┓
+╹  ┗━┛╹ ╹ ╹ ┗━┛
+*/
+
+* {
+  font-family: monospace !important;
+  font-size: 16px !important;
+}
+
+/*
+╻ ╻╻╺┳┓╺┳┓┏━╸┏┓╻
+┣━┫┃ ┃┃ ┃┃┣╸ ┃┗┫
+╹ ╹╹╺┻┛╺┻┛┗━╸╹ ╹
+┏┓╻┏━┓╻ ╻┏┓ ┏━┓┏━┓
+┃┗┫┣━┫┃┏┛┣┻┓┣━┫┣┳┛
+╹ ╹╹ ╹┗┛ ┗━┛╹ ╹╹┗╸
+*/
+
+#nav-bar:not([customizing]) {
+  opacity: 0;
+  min-height: 10px;
+  max-height: 10px;
+  transition: max-height 1s linear 3s, opacity 600ms ease 3s !important;
+}
+
+#nav-bar:hover,
+#nav-bar:focus-within {
+  opacity: 1;
+  min-height: 10px;
+  max-height: 50px;
+  transition-duration: 200ms !important;
+  transition-delay: 0s, 200ms !important;
+}
+
+#urlbar:not([customizing]) {
+  opacity: 0;
+  min-height: 10px;
+  max-height: 10px;
+  transition: max-height 1s linear 3s, opacity 600ms ease 3s !important;
+}
+
+#urlbar:hover,
+#urlbar:focus-within {
+  opacity: 1;
+  min-height: 10px;
+  max-height: 50px; 
+  transition-duration: 200ms !important;
+  transition-delay: 0s, 200ms !important;
+}
+
+#urlbar:focus-within {
+  height: 0% !important;
+}
+
+.urlbar-input-container {
+    height: 100% !important;
+}
 
 .urlbarView {
-  display: none !important;
-}
-
-/*─────────────────────────────*/
-
-/* 
-┌─┐┌─┐┬  ┌─┐┬─┐┌─┐
-│  │ ││  │ │├┬┘└─┐
-└─┘└─┘┴─┘└─┘┴└─└─┘ 
-*/
-
-/* Tabs colors  */
-#tabbrowser-tabs:not([movingtab])
-  > #tabbrowser-arrowscrollbox
-  > .tabbrowser-tab
-  > .tab-stack
-  > .tab-background[multiselected='true'],
-#tabbrowser-tabs:not([movingtab])
-  > #tabbrowser-arrowscrollbox
-  > .tabbrowser-tab
-  > .tab-stack
-  > .tab-background[selected='true'] {
-  background-image: none !important;
-  background-color: var(--toolbar-bgcolor) !important;
-}
-
-/* Inactive tabs color */
-#navigator-toolbox {
-  background-color: var(--sfwindow) !important;
-}
-
-/* Window colors  */
-:root {
-  --toolbar-bgcolor: var(--sfsecondary) !important;
-  --tabs-border-color: var(--sfsecondary) !important;
-  --lwt-sidebar-background-color: var(--sfwindow) !important;
-  --lwt-toolbar-field-focus: var(--sfsecondary) !important;
-}
-
-/* Sidebar color  */
-#sidebar-box,
-.sidebar-placesTree {
-  background-color: var(--sfwindow) !important;
+    background: var(--arrowpanel-background) !important;
+    border-radius: 5px;
 }
 
 /* 
-
-┌┬┐┌─┐┬  ┌─┐┌┬┐┌─┐            
- ││├┤ │  ├┤  │ ├┤             
-─┴┘└─┘┴─┘└─┘ ┴ └─┘            
-┌─┐┌─┐┌┬┐┌─┐┌─┐┌┐┌┌─┐┌┐┌┌┬┐┌─┐
-│  │ ││││├─┘│ ││││├┤ │││ │ └─┐
-└─┘└─┘┴ ┴┴  └─┘┘└┘└─┘┘└┘ ┴ └─┘
-
+┏━┓┏━╸┏┳┓┏━┓╻ ╻╻┏┓╻┏━╸
+┣┳┛┣╸ ┃┃┃┃ ┃┃┏┛┃┃┗┫┃╺┓
+╹┗╸┗━╸╹ ╹┗━┛┗┛ ╹╹ ╹┗━┛
+┏━╸┏━┓┏┳┓┏━┓┏━┓┏┓╻┏━╸┏┓╻╺┳╸┏━┓
+┃  ┃ ┃┃┃┃┣━┛┃ ┃┃┗┫┣╸ ┃┗┫ ┃ ┗━┓
+┗━╸┗━┛╹ ╹╹  ┗━┛╹ ╹┗━╸╹ ╹ ╹ ┗━┛
 */
 
 /* Tabs elements  */
-.tab-close-button {
-  display: none;
+#TabsToolbar { display: none !important; }
+
+#TabsToolbar .titlebar-spacer {
+    display: none !important;
 }
 
-.tabbrowser-tab:not([pinned]) .tab-icon-image {
-  display: none !important;
-}
-
-#nav-bar:not([tabs-hidden='true']) {
-  box-shadow: none;
-}
-
-#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
-  > #tabbrowser-arrowscrollbox
-  > .tabbrowser-tab[first-visible-unpinned-tab] {
-  margin-inline-start: 0 !important;
-}
-
-:root {
-  --toolbarbutton-border-radius: 0 !important;
-  --tab-border-radius: 0 !important;
-  --tab-block-margin: 0 !important;
-}
-
-.tab-background {
-  border-right: 0px solid rgba(0, 0, 0, 0) !important;
-  margin-left: -4px !important;
-}
-
-.tabbrowser-tab:is([visuallyselected='true'], [multiselected])
-  > .tab-stack
-  > .tab-background {
-  box-shadow: none !important;
-}
-
-.tabbrowser-tab[last-visible-tab='true'] {
-  padding-inline-end: 0 !important;
-}
-
-#tabs-newtab-button {
-  padding-left: 0 !important;
-}
+/* Titlebar Window Control Buttons */
+.titlebar-buttonbox-container{ display:none }
 
 /* Url Bar  */
 #urlbar-input-container {
-  background-color: var(--sfsecondary) !important;
   border: 1px solid rgba(0, 0, 0, 0) !important;
 }
 
 #urlbar-container {
-  margin-left: 0 !important;
+  margin: 0 !important;
+  padding-block: 2px !important;
+  min-height: var(--urlbar-height) !important;
 }
 
 #urlbar[focused='true'] > #urlbar-background {
@@ -147,6 +256,7 @@ by Miguel Avila
 
 #navigator-toolbox {
   border: none !important;
+  padding: 4px !important;
 }
 
 /* Bookmarks bar  */
@@ -165,31 +275,21 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 #pageActionSeparator,
 #tabs-newtab-button,
 #back-button,
-#PanelUI-button,
 #forward-button,
 .tab-secondary-label {
   display: none !important;
 }
 
-.urlbarView-url {
-  color: #dedede !important;
-}
-
 /* Disable elements  */
-#context-navigation,
-#context-savepage,
 #context-pocket,
 #context-sendpagetodevice,
 #context-selectall,
-#context-viewsource,
 #context-inspect-a11y,
 #context-sendlinktodevice,
 #context-openlinkinusercontext-menu,
-#context-bookmarklink,
 #context-savelink,
 #context-savelinktopocket,
 #context-sendlinktodevice,
-#context-searchselect,
 #context-sendimage,
 #context-print-selection {
   display: none !important;
@@ -202,9 +302,4 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 #context_selectAllTabs,
 #context_closeTabOptions {
   display: none !important;
-}
-
-#unified-extensions-button, #unified-extensions-button > .toolbarbutton-icon{
-width: 0px !important;
-padding: 0px !important;
 }
