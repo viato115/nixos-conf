@@ -25,13 +25,6 @@
   networking.hostName = "nixpad";
   networking.networkmanager.enable = true;
 
- # sound = {
- #   enable = true;
- #   mediaKeys = {
- #     enable = true;
- #     volumeStep = "5%";
- #   };
- # };
 
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -298,26 +291,29 @@
     #sops
   ];
 
-  programs.light.enable = true;
-  programs.adb.enable = true;
+  programs = {
+    light.enable = true;
+    dconf.enable = true;
+    adb.enable = false;
+  };
 
   environment.pathsToLink = [ "/share/bash-completion" ];
 
   virtualisation.libvirtd.enable = true;
 
-  programs.dconf.enable = true;
+  services = {
+    blueman.enable = true;
 
-  services.blueman.enable = true;
-
-  services.actkbd = {
-    enable = true;
-    bindings = [
-     # { keys = [ 113 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'amixer -q set Master toggle'"; }
-     # { keys = [ 114 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'amixer -q set Master 5%- unmute'"; }
-     # { keys = [ 115 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'amixer -q set Master 5%+ unmute'"; }
-     #{ keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'light -U 5'"; }
-     #{ keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'light -A 5'"; }
-    ];
+    services.actkbd = {
+      enable = true;
+      bindings = [
+       # { keys = [ 113 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'amixer -q set Master toggle'"; }
+       # { keys = [ 114 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'amixer -q set Master 5%- unmute'"; }
+       # { keys = [ 115 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'amixer -q set Master 5%+ unmute'"; }
+       #{ keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'light -U 5'"; }
+       #{ keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l nico -c 'light -A 5'"; }
+      ];
+    };
   };
 
   nixpkgs.config.allowUnfree = true;

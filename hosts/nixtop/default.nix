@@ -251,11 +251,14 @@
    ntfs3g
   ];
 
-  programs.light.enable = true;
+
+  programs = {
+    light.enable = true;
+    dconf.enable = true;
+    adb.enable = false;
+  };
 
   environment.pathsToLink = [ "/share/bash-completion" ];
-
-  programs.dconf.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 }
