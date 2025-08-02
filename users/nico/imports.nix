@@ -17,7 +17,7 @@ let
     ../../modules/tui/programs/ranger/ranger.nix
     ../../modules/services/dunst/dunst.nix
     ../../modules/gui/programs/browser/firefox/firefox.nix
-    ../../modules/scripts/bin/default.nix
+    ../../modules/shared/scripts/bin/default.nix
     #../../modules/gui/bars/wayland/waybar/waybar.nix
     ../../modules/gui/launcher/wofi/wofi.nix
     ../../modules/services/gtk3/gtk3.nix

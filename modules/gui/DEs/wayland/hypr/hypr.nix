@@ -18,12 +18,12 @@ let
   hostWallpapers = {
       nixpad = [
         # "monitor-name,path"
-        "eDP-1,~/.config/nixos/pics/a_drawing_of_a_wolf_and_a_lion.png"
-        "DP-3,~/.config/nixos/pics/a_drawing_of_a_wolf_and_a_lion.png"
+        "eDP-1,~/.config/nixos/shared/pics/a_drawing_of_a_wolf_and_a_lion.png"
+        "DP-3,~/.config/nixos/shared/pics/a_drawing_of_a_wolf_and_a_lion.png"
       ];
       nixtop = [
-        "DP-3,~/.config/nixos/pics/a_drawing_of_a_wolf_and_a_lion.png"
-        "HDMI-A-1,~/.config/nixos/pics/a_drawing_of_a_wolf_and_a_lion.png"
+        "DP-3,~/.config/nixos/shared/pics/a_drawing_of_a_wolf_and_a_lion.png"
+        "HDMI-A-1,~/.config/shared/nixos/pics/a_drawing_of_a_wolf_and_a_lion.png"
       ];
     };
     wallpapers = hostWallpapers.${hostname} or [];
@@ -55,10 +55,10 @@ in
     enable = true;
     settings = {
       preload = [
-        "~/.config/nixos/pics/wallpaper.png"
-        "~/.config/nixos/pics/neo_tokyo.png"
-        "~/.config/nixos/pics/floral.png"
-        "~/.config/nixos/pics/a_drawing_of_a_wolf_and_a_lion.png"
+        "~/.config/nixos/shared/pics/wallpaper.png"
+        "~/.config/nixos/shared/pics/neo_tokyo.png"
+        "~/.config/nixos/shared/pics/floral.png"
+        "~/.config/nixos/shared/pics/a_drawing_of_a_wolf_and_a_lion.png"
       ];
       wallpaper = wallpapers;
       splash = false;
