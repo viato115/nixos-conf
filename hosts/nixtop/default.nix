@@ -94,9 +94,10 @@
   services.libinput.enable = true;
 
   hardware.bluetooth = {
-    enable = true;
+    enable = lib.mkDefault true;
   };
 
+  services.blueman.enable = lib.mkDefault true;
 
 
   ### Enable SSH support
