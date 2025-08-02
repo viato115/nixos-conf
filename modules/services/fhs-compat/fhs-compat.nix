@@ -19,7 +19,7 @@
       util-linux
       zstd
     ]
-    ++ lib.optionals (config.harware.graphics.enable) [
+    ++ lib.optionals (config.hardware.graphics.enable) [
       pipewire
       cups
       mesa
