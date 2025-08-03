@@ -80,6 +80,7 @@ in
    nil
    nixpkgs-fmt
    btop
+   dysk
 
    # Hyprland specific
    #pulseaudio
