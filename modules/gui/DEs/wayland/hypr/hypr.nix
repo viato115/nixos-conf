@@ -59,6 +59,7 @@ in
         "~/.config/nixos/shared/pics/neo_tokyo.png"
         "~/.config/nixos/shared/pics/floral.png"
         "~/.config/nixos/shared/pics/a_drawing_of_a_wolf_and_a_lion.png"
+        "~/.config/nixos/shared/pics/flowers.png"
       ];
       wallpaper = wallpapers;
       splash = false;
