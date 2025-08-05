@@ -117,6 +117,10 @@ in
 
   ];
 
+#  home.sessionVariables = lib.mkIf (hostname == "nixtop") {
+#    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
+#  };
+
 
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
