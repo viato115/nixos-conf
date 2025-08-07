@@ -1,4 +1,36 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, ... }: 
+
+let 
+  steamCustomLauncher = pkgs.stdenv.mkDerivation {
+    name = "steam-custom-launcher";
+    src = null;
+    buildCommand = ''
+      mkdir -p $out/share/applications
+      mkdir -p $out/bin
+
+      cat > $out/share/applications/steam-custom.desktop <<EOF
+      [Desktop Entry]
+      Name=Steam (Custom Launch)
+      Comment=Launch Steam with proper environment
+      Exec=$out/bin/steam-launch.sh
+      Icon=steam
+      Terminal=false
+      Type=Application
+      Categories=Game;
+      EOF
+
+      cat > $out/bin/steam-launch.sh <<'EOF'
+      #!/usr/bin/env bash
+      export XDG_SESSION_TYPE=wayland
+      export DBUS_SESSION_BUS_ADDRESS="$DBUS_SESSION_BUS_ADDRESS"
+      exec steam
+      EOF
+      chmod +x $out/bin/steam-launch.sh
+    '';
+  };
+
+in
+
 {
   hardware = {
     graphics = {
@@ -23,6 +55,7 @@
 
   environment = {
     systemPackages = with pkgs; [
+      steamCustomLauncher 
       mangohud
       #protonup-qt
       protonup
