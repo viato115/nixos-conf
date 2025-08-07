@@ -1,18 +1,13 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
-  inherit (pkgs) rofi-wayland;
-  inherit (lib) mkForce;
-  inherit (config.lib.formats.rasi) mkLiteral;
-#  inherit (config.lib.stylix.colors) base00 base05;
+  mkLiteral = lib.hm.gvariant.mkLiteral or (x: x);  # For compat
 in
 {
   programs.rofi = {
     enable = true;
     cycle = false;
-
-    package = rofi-wayland;
-
+    package = with pkgs; rofi-wayland;
     extraConfig = {
       modi = "drun,filebrowser";
       font = "Mononoki Nerd Font 12 ";
@@ -21,97 +16,75 @@ in
       hover-select = true;
       bw = 0;
       display-drun = "";
-      display-window = "";
-      display-combi = "";
-      icon-theme = "Fluent-dark";
       terminal = "footclient";
-      drun-match-fields = "name";
       drun-display-format = "{name}";
-      me-select-entry = "";
-      me-accept-entry = "MousePrimary";
+      sidebar-mode = false;
     };
 
-    # Based on Newman Sánchez's Launchpad theme <https://github.com/newmanls/rofi-themes-collection>
-    theme = mkForce {
+    theme = {
       "*" = {
-        font = "Mononoki Nerd Font 12";
-        background-color = mkLiteral "transparent";
-        foreground = mkLiteral "#${base05}";
-        text-color = mkLiteral "#${base05}";
-        padding = mkLiteral "0px";
-        margin = mkLiteral "0px";
+        bg = "#061115";
+        fg = "#d9d7d6";
+        button = "#0b151a";
+        background-color = mkLiteral "@bg";
+        text-color = mkLiteral "@fg";
       };
 
       window = {
-        fullscreen = true;
-        padding = mkLiteral "1em";
-        background-color = mkLiteral "#${base00}dd";
-      };
-
-      mainbox = {
-        padding = mkLiteral "8px";
-      };
-
-      inputbar = {
-        background-color = mkLiteral "#${base05}20";
-
-        margin = mkLiteral "0px calc( 50% - 230px )";
-        padding = mkLiteral "4px 8px";
-        spacing = mkLiteral "8px";
-
-        border = mkLiteral "1px";
-        border-radius = mkLiteral "2px";
-        border-color = mkLiteral "#${base05}40";
-
-        children = map mkLiteral [ "icon-search" "entry" ];
+        transparency = "real";
+        width = "40%";
       };
 
       prompt = {
         enabled = false;
       };
 
-      icon-search = {
-        expand = false;
-        filename = "search";
-        vertical-align = mkLiteral "0.5";
-      };
-
       entry = {
         placeholder = "Search";
-        placeholder-color = mkLiteral "#${base05}20";
+        placeholder-color = mkLiteral "@fg";
+        expand = true;
+        padding = "1.5%";
+        border-radius = "8px";
+      };
+
+      inputbar = {
+        children = [ "prompt" "entry" ];
+        background-image = "~/.config/nixos/shared/pics/rofi.png";
+        expand = false;
+        border-radius = "0px 0 8px 8px";
+        padding = "100px 30px 30px 300px";
       };
 
       listview = {
-        margin = mkLiteral "48px calc( 50% - 720px )";
-        margin-bottom = mkLiteral "0px";
-        spacing = mkLiteral "48px";
-        columns = 6;
-        fixed-columns = true;
+        columns = 1;
+        lines = 4;
+        cycle = false;
+        dynamic = true;
+        layout = "vertical";
+        padding = "30px 200px 30px 30px";
       };
 
-      "element, element-text, element-icon" = {
-        cursor = mkLiteral "pointer";
+      mainbox = {
+        children = [ "inputbar" "listview" ];
       };
 
       element = {
-        padding = mkLiteral "8px";
-        spacing = mkLiteral "4px";
+        orientation = "vertical";
+        padding = "1.5% 0% 1.5% 0%";
+        border-radius = "8px";
+      };
 
-        orientation = mkLiteral "vertical";
-        border-radius = mkLiteral "12px";
+      "element-text" = {
+        expand = true;
+        vertical-align = "0.5";
+        margin = "0.5% 3% 0% 3%";
+        background-color = "inherit";
+        text-color = "inherit";
       };
 
       "element selected" = {
-        background-color = mkLiteral "#${base05}33";
-      };
-
-      element-icon = {
-        size = mkLiteral "5.75em";
-        horizontal-align = mkLiteral "0.5";
-      };
-
-      element-text = {
-        horizontal-align = mkLiteral "0.5";
+        background-color = mkLiteral "@button";
+        border-radius = "8px";
       };
     };
   };
