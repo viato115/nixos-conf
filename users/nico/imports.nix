@@ -15,11 +15,13 @@ let
     ../../modules/tui/programs/nvim/nvim.nix
     #../../modules/tui/programs/nvf/nvf.nix
     ../../modules/tui/programs/ranger/ranger.nix
+    ../../modules/tui/programs/tealdeer/tealdeer.nix
     ../../modules/services/dunst/dunst.nix
     ../../modules/gui/programs/browser/firefox/firefox.nix
     ../../modules/scripts/bin/default.nix
     #../../modules/gui/bars/wayland/waybar/waybar.nix
-    ../../modules/gui/launcher/wofi/wofi.nix
+    #../../modules/gui/launcher/wofi/wofi.nix
+    ../../modules/gui/launcher/rofi/rofi.nix
     ../../modules/services/gtk3/gtk3.nix
     ../../modules/gui/DEs/wayland/hypr/hypr.nix
   ];

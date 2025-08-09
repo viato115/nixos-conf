@@ -62,7 +62,6 @@ in
    hunspellDicts.de_DE
    hunspellDicts.en_US
    jre8
-   tldr
    playerctl
    networkmanagerapplet
    gjs
@@ -76,7 +75,6 @@ in
    python3
    glib
 #   renpy
-   rofi-wayland
    nil
    nixpkgs-fmt
    btop
