@@ -9,8 +9,8 @@ let
 #      "monitor=DP-3,transform,1"
     ];
     nixtop = [
-      "monitor=DP-3,1920x1080@60,0x0,1"
-      "monitor=HDMI-A-1,1920x1080@60,1920x0,1"
+      "monitor=DP-3,1920x1080@60,0x0,1,vrr,1"
+      "monitor=HDMI-A-1,1920x1080@60,1920x0,1,vrr,1"
     ];
   };
   monitorsConf = builtins.concatStringsSep "\n" (hostMonitors.${hostname} or []);
