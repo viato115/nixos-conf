@@ -33,6 +33,7 @@ in
   home.packages = with pkgs; [
 
    # Basics
+   fd
    nh
    nvd
    nix-output-monitor

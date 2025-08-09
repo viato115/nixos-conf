@@ -10,7 +10,7 @@
     viAlias = true;
     vimAlias = true;
     
-    inherit (import ./treesitter.nvim);
+    #inherit (import ./treesitter.nvim);
     plugins = with pkgs.vimPlugins; [
       plenary-nvim
       popup-nvim
@@ -22,8 +22,35 @@
       tokyonight-nvim
       nvim-lspconfig
       null-ls-nvim
+      nvim-autopairs
+      (nvim-treesitter.withPlugins (p: [
+        p.c
+        p.lua
+        p.vim
+        p.vimdoc
+        p.markdown
+        p.markdown_inline
+        p.bash
+        p.json
+        p.nix
+        p.toml
+        p.yaml
+        p.typescript
+        p.html
+        p.css
+        p.cmake
+        p.go
+        p.ini
+        p.java
+        p.javascript
+        p.make
+        p.ninja
+        p.perl
+        p.python
+        p.rust
+      ]))
     ];
-};
+  };
 
 ## After this point you'll just encounter endless lines of config files. Turn around while you can
 
@@ -32,16 +59,72 @@
     text = ''
       require "nico.options"
       require "nico.keymaps"
-      --require "nico.plugins"
       require "nico.telescope"
       require "nico.treesitter"
       require "nico.nvimtree"
       --require "nico.dracula"
       require "nico.alpha-nvim"
       require "nico.tokyo-night"
+      require "nico.autopairs"
       require'lspconfig'.nil_ls.setup{}
       --
       vim.cmd('autocmd VimEnter * source /home/nico/.config/nvim/lua/nico/nvimtree.lua')
+    '';
+  };
+
+
+  home.file.".config/nvim/lua/nico/autopairs.lua" = {
+    text = ''
+      local ok, npairs = pcall(require, "nvim-autopairs")
+      if not ok then return end
+
+      npairs.setup({
+        enabled = function(_) return true end,
+        disable_filetype = { "TelescopePrompt", "spectre_panel", "snacks_picker_input" },
+        disable_in_macro = true,
+        disable_in_visualblock = false,
+        disable_in_replace_mode = true,
+        ignored_next_char = [=[[%w%%%'%[%"%.%`%$]]=],
+        enable_moveright = true,
+        enable_afterquote = true,
+        enable_check_bracket_line = true,
+        enable_bracket_in_quote = true,
+        enable_abbr = false,
+        break_undo = true,
+        check_ts = true,  -- smarter with Treesitter
+        map_cr = true,
+        map_bs = true,
+        map_c_h = false,
+        map_c_w = false,
+
+        fast_wrap = {
+          map = "<leader>w",  -- use your leader (Space) + w
+          -- the rest keep defaults
+        },
+      })
+
+      -- Optional: extra-safe {} for Nix files
+      local Rule = require("nvim-autopairs.rule")
+      npairs.add_rules({
+        Rule("{", "}")
+          :with_pair(function() return vim.bo.filetype == "nix" end)
+          :with_move()
+          :with_cr()
+          :use_key("{"),
+      })
+
+      -- Toggle autopairs on/off with <leader>ap (normal mode)
+      local enabled = true
+      vim.keymap.set("n", "<leader>ap", function()
+        enabled = not enabled
+        if enabled then
+          npairs.enable()
+          vim.notify("autopairs: enabled")
+        else
+          npairs.disable()
+          vim.notify("autopairs: disabled")
+        end
+      end, { desc = "Toggle nvim-autopairs" })    
     '';
   };
 
@@ -729,8 +812,9 @@
       end
       
       configs.setup {
-        ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "bash", "cmake", "css", "go", "html", "ini", "java", "javascript", "json", "make", "markdown", "markdown_inline", "ninja", "nix", "perl", "python", "rust", "toml", "typescript", "yaml" }, --  "all" or a list of languages
+        ensure_installed = {}, -- managed by home-manager
         sync_install = false, -- install languages synchronously (only applies to ensure_installed)
+        auto_install = false,
         ignore_installed = { "" }, -- list of parsers to ignore installing
         highlight = {
           enable = true, -- false will disable the whole extension
