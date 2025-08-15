@@ -4,7 +4,7 @@
   lib,
   hostname,
   ...
-}: with lib; 
+}: 
 
 let
   footFonts = {
@@ -27,8 +27,9 @@ in
         notify = false;
       };
       cursor = {
-        style = "block";
+        style = "beam";
         blink = true;
+        blink-rate = "750";
         beam-thickness = "1.5";
       };
       mouse = {
@@ -59,6 +60,10 @@ in
         selection-foreground = "ffffff";
         selection-background = "44475a";
         urls = "8be9fd";
+      };
+      tweak = {
+       font-monospace-warn = "no";
+        sixel = "yes";
       };
     };
   };

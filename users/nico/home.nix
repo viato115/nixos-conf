@@ -32,76 +32,76 @@ in
   # Packages to install for specified user
   home.packages = with pkgs; [
 
-   # Basics
-   fd
-   nh
-   nvd
-   nix-output-monitor
-   kitty
-   pfetch
-   eza
-   fortune 
-   zathura
-   mpv
-   ffmpeg
-   pavucontrol
-   blueman
-   ripgrep
-   fzf
-   trash-cli
-   nerd-fonts.mononoki
-   bat
-   zip
-   unzip
-   feh
-   foot
-   imagemagick
-   #obsidian
-   gawk
-   libreoffice
-   hunspell
-   hunspellDicts.de_DE
-   hunspellDicts.en_US
-   jre8
-   playerctl
-   networkmanagerapplet
-   gjs
-   gnome-bluetooth
-   gtk3
-   hyprpicker
-   blueberry
-   polkit_gnome
-   alacritty
-   scrcpy
-   python3
-   glib
-#   renpy
-   nil
-   nixpkgs-fmt
-   btop
-   dysk
+    # Basics
+    fd
+    nh
+    nvd
+    nix-output-monitor
+    kitty
+    pfetch
+    eza
+    fortune 
+    zathura
+    mpv
+    ffmpeg
+    pavucontrol
+    blueman
+    ripgrep
+    fzf
+    trash-cli
+    nerd-fonts.mononoki
+    bat
+    zip
+    unzip
+    feh
+    foot
+    imagemagick
+    #obsidian
+    gawk
+    libreoffice
+    hunspell
+    hunspellDicts.de_DE
+    hunspellDicts.en_US
+    jre8
+    playerctl
+    networkmanagerapplet
+    gjs
+    gnome-bluetooth
+    gtk3
+    hyprpicker
+    blueberry
+    polkit_gnome
+    alacritty
+    scrcpy
+    python3
+    glib
+#    renpy
+    nil
+    nixpkgs-fmt
+    btop
+    dysk
 
-   # Hyprland specific
-   #pulseaudio
-   wl-clipboard
-   wl-gammactl
-   wlsunset
-    #find
-   
+    # Hyprland specific
+    #pulseaudio
+    wl-clipboard
+    wl-gammactl
+    wlsunset
+     #find
+    
 
-   sleuthkit
-   zsteg
-   stegsolve
-   binwalk
-   autopsy
-   nmap
-   wireshark
-   exiftool
-   bviplus
-   scalpel
-   openssl
-   ltrace
-   strace
+    sleuthkit
+    zsteg
+    stegsolve
+    binwalk
+    autopsy
+    nmap
+    wireshark
+    exiftool
+    bviplus
+    scalpel
+    openssl
+    ltrace
+    strace
   ]
 
   ++ lib.optionals (hostname == "nixpad") [
