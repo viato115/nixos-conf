@@ -222,7 +222,6 @@
   environment.systemPackages = with pkgs; [                 # System wide PKGS
     vim 
     wget
-    git
     xdg-utils
     ncurses
     gcc

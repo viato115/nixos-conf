@@ -40,7 +40,7 @@
       merge.conflictedstyle = "diff3";
       push.autoSetupRemove = true;
       core.editor = "nvim";
-      push.default = "default";
+      push.default = "simple";
       merge.stat = "true";
       core.whitespace = "fix,-indent-with-non-tab,trailing-space,cr-at-eol";
       repack.usedeltabaseoffset = "true";
