@@ -24,6 +24,7 @@ let
     ../../modules/gui/launcher/rofi/rofi.nix
     ../../modules/services/gtk3/gtk3.nix
     ../../modules/gui/DEs/wayland/hypr/hypr.nix
+    ../../modules/services/git/git.nix
   ];
 in
 {
