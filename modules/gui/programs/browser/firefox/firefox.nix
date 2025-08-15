@@ -1,4 +1,4 @@
-{ pkgs, inputs, lib, ... }:
+{ pkgs, inputs, ... }:
 {
 ### Shamelessly stole and modified the beautiful Firefox userStyle "scifox" from github:scientiac. Thanks for the upload :)
 
@@ -122,6 +122,11 @@
             "Home-Manager Options" = {
               urls = [{ template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master"; }];
               definedAliases = [ "@hmo" ];
+              icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            };
+            "Noogle" = {
+              urls = [{ template = "https://noogle.dev/q?term={searchTerms}"; }];
+              definedAliases = [ "@noo" ];
               icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             };
             "google".metaData.alias = "@g";
