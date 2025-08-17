@@ -630,7 +630,7 @@
         hlsearch = true,
         ignorecase = true,
         pumheight = 10,
-        mouse = a,
+        mouse = "a",
         showmode = false,
         showtabline = 1,
         smartcase = true,
@@ -653,7 +653,11 @@
         sidescrolloff = 8,
         guifont = "Mononoki Nerd Font:h14",
         termguicolors = true,  -- set term gui colors, most terms support this
-        fillchars = { eob = ' ' }
+        fillchars = { eob = ' ' },
+        timeout = true,
+        timeoutlen = 200,
+        ttimeout = true,
+        ttimeoutlen = 50,
       }
       
       for k, v in pairs(options) do
