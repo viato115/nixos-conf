@@ -78,6 +78,8 @@
 
   { 
     nixosConfigurations = {
+
+      # my Thinkpad Laptop
       nixpad = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
         specialArgs = { 
@@ -91,6 +93,7 @@
         ];
       };
 
+      # my desktop PC
       nixtop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { 
