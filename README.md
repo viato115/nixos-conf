@@ -8,5 +8,4 @@ Nixtop: PC with an Radeon RX 6950XT, Ryzen 6 7600X, 32G RAM, dual booting NixOS 
 - Configure sops-nix
 - Configure EWW and Wofi/Rofi
 - Add ad blocking network module
-- Fix the nh module
 - modify the lact.nix module

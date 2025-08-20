@@ -25,6 +25,7 @@ let
     ../../modules/services/gtk3/gtk3.nix
     ../../modules/gui/DEs/wayland/hypr/hypr.nix
     ../../modules/services/git/git.nix
+    #../../modules/tui/programs/nh/nh.nix
   ];
 in
 {

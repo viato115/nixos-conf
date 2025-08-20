@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ config, lib, ... }:
 {
-  environment.variables.FLAKE = "$HOME/.config/nixos#nixpad";
   programs.nh = {
     enable = true;
-    flake = "/home/nico/.config/nixos#nixpad";
+    flake = "${config.users.users.nico.home}/.config/nixos";
+    #flake = "/home/nico/.config/nixos"
     
     clean = {
       enable = false;
