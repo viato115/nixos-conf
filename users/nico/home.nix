@@ -34,7 +34,6 @@ in
 
     # Basics
     fd
-    nh
     nvd
     nix-output-monitor
     kitty
