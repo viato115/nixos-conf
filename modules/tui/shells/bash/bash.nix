@@ -68,8 +68,8 @@ in
         rm = "rm -i";
         df = "df -h";
         free = "free -m";
-        ssn = "sudo shutdown now";
-        sr = "sudo reboot";
+        ssn = "shutdown now";
+        sr = "reboot";
         rr = "ranger";
         cls = "clear ; pfetch ; date | awk '{print $ 1,$ 2,$ 3,$ 4,$ 6}' ; acpi | grep 'Battery 0' | awk '{print $ 1,$ 3,$ 4}' | sed 's/,$//'";
         liwr = "libreoffice --writer";
