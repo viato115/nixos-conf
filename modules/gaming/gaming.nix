@@ -30,9 +30,26 @@ in {
 
   programs.gamemode.enable = true;
 
-  hardware.graphics = {
-    enable = lib.mkDefault true;
-    enable32Bit = true;
+  hardware = {
+    graphics = lib.mkDefault {
+      enable = true;
+      enable32Bit = true;
+      # package = [ pkgs.amdvlk ];
+      # package32 = [ pkgs.driversi686Linux.amdvlk ];
+    };
+
+    amdgpu.amdvlk = {
+      enable = true;
+      support32Bit.enable = true;
+      #support32Bit.package = [ pkgs.driversi686Linux.amdvlk ];
+    };
+  };
+
+  security.wrappers.gamescope = {
+    source = "${pkgs.gamescope}/bin/gamescope";
+    capabilities = "cap_sys_nice+ep";
+    owner = "root";
+    group = "root";
   };
 
   environment.systemPackages = with pkgs; [
@@ -40,6 +57,7 @@ in {
     steam-run
     mangohud
     protonup
+    protontricks
     lutris
     bottles
     heroic
@@ -47,6 +65,7 @@ in {
     wineWowPackages.waylandFull
     lact
   ];
+
 
   environment.sessionVariables.STEAM_EXTRA_COMPAT_TOOLS_PATHS = "$HOME/.steam/root/compatibilitytools.d";
 
