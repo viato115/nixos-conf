@@ -7,22 +7,8 @@
   hostname,
   ... 
 }:
-
-let 
-  custom = {
-    font = "Mononoki Nerd Font";
-    fontsitze = 16;
-    primary_accent = "cba6f7";
-    secondary_accent = "89b4fa";
-    tertiary_accent = "f5f5f5";
-    background = "11111B";
-    opacity = "1";
-    palette = import ./colors.nix;
-  };
-
-in
 {
-  _module.args = { inherit inputs custom; };
+  _module.args = { inherit inputs; };
   
   imports = [
   ./imports.nix
@@ -51,6 +37,7 @@ in
     nerd-fonts.mononoki
     bat
     zip
+    unar
     unzip
     feh
     foot
@@ -109,7 +96,6 @@ in
     upower
     brightnessctl
   ]
-
 
   ++ lib.optionals (hostname == "nixtop") [
 

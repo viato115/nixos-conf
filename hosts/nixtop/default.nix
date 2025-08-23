@@ -59,7 +59,6 @@
       LC_COLLATE = defaultLocale;
       LC_CTYPE = defaultLocale;
       LC_MESSAGE = defaultLocale;
-
       LC_ADDRESS = de;
       LC_IDENTIFICATION = de;
       LC_MEASUREMENT = de;
@@ -220,8 +219,9 @@
   users.users.nico = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" "adbusers" "libvirtd" ]; 
-#    openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDCfggG2mdBPxyn8O9N/j0PR7fDKcZmm9HJDdmCmTTmo nico@nix"];
+#    openssh.authorizedKeys.keys = [" "];
     packages = with pkgs; [                                 # User specific PKGS
+      ###### specified in user/home.nix
     ];
   };
 
