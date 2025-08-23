@@ -8,7 +8,7 @@
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${pkgs.g810-led}/bin/g610-led -a 40";
+      ExecStart = "${pkgs.g810-led}/bin/g610-led -a 25";
     };
   };
 }
