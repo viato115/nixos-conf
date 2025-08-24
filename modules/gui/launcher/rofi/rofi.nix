@@ -35,6 +35,8 @@ in
     window {
       transparency: "real";
       width: 40%;
+      border: 0px;
+      border-radius: 6px;
     }
     prompt { enabled: false; }
     entry {
