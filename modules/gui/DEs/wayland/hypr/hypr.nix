@@ -18,8 +18,8 @@ let
   hostWallpapers = {
       nixpad = [
         # "monitor-name,path"
-        "eDP-1,~/.config/nixos/shared/pics/a_drawing_of_a_wolf_and_a_lion.png"
-        "DP-3,~/.config/nixos/shared/pics/a_drawing_of_a_wolf_and_a_lion.png"
+        "eDP-1,~/.config/nixos/shared/pics/flowers.png"
+        "DP-3,~/.config/nixos/shared/pics/flowers.png"
       ];
       nixtop = [
         "DP-3,~/.config/nixos/shared/pics/flowers.png"
