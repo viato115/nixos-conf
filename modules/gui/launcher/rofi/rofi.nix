@@ -9,7 +9,7 @@ in
     cycle = false;
     package = with pkgs; rofi-wayland;
     extraConfig = {
-      modi = "drun,filebrowser";
+    modi = "favorites:${config.home.homeDirectory}/.config/rofi/scripts/favorites.sh,drun,filebrowser";
       font = "Mononoki Nerd Font 12 ";
       show-icons = true;
       disable-history = true;
@@ -84,4 +84,63 @@ in
       border-radius: 8px;
     }
   '';
+
+  home.file.".config/rofi/scripts/favorites.sh" = {
+    executable = true;
+    text = ''
+      #!/bin/sh
+
+      # List of entries
+      echo "Steam (Wayland)"
+      echo "Firefox"
+      echo "System Monitor (btop)"
+      echo "Mission Center"
+
+      # If this is an action request (user selected entry)
+      if [ "$ROFI_RETV" = "1" ]; then
+        case "$1" in
+          "Steam (Wayland)") exec steam-wayland ;;
+          "Firefox") exec firefox ;;
+          "System Monitor (btop)") exec footclient btop ;;
+          "Mission Center") exec footclient mission-center ;;
+        esac
+      fi
+    '';
+  };
+
+  systemd.user.services.hideSteamGames = {
+    Unit = {
+      Description = "Hide Steam games from Rofi and app menus";
+      After = [ "graphical-session.target" ];
+    };
+
+    Service = {
+      Type = "oneshot";
+      ExecStart = pkgs.writeShellScript "hide-steam-desktop-entries" ''
+        set -e
+
+        echo "[hideSteamGames] Patching .desktop entries..."
+
+        # Where Steam usually places game shortcuts
+        SEARCH_PATHS=(
+          "$HOME/.local/share/applications"
+          "$HOME/.steam"
+          "$HOME/.steam/root"
+          "$HOME/.var/app/com.valvesoftware.Steam"
+        )
+
+        for path in "''${SEARCH_PATHS[@]}"; do
+          find "$path" -type f -name '*.desktop' 2>/dev/null | grep steam | while read -r file; do
+            # Only patch if not already hidden
+            if ! grep -q '^NoDisplay=true' "$file"; then
+              echo 'NoDisplay=true' >> "$file"
+            fi
+          done
+        done
+      '';
+    };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+  };
 }

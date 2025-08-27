@@ -57,7 +57,6 @@
     hyprpicker
     blueberry
     polkit_gnome
-    alacritty
     scrcpy
     python3
     glib
@@ -66,6 +65,7 @@
     nixpkgs-fmt
     btop
     dysk
+    gnome-frog
 
     # Hyprland specific
     #pulseaudio
@@ -73,6 +73,7 @@
     wl-gammactl
     wlsunset
      #find
+    mission-center
     
 
     sleuthkit

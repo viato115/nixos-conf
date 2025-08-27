@@ -4,9 +4,11 @@
   ...
 }: {
   home.packages = with pkgs; [ 
-    libsForQt5.dolphin
-    libsForQt5.dolphin-plugins
-    libsForQt5.kdegraphics-thumbnailers
+    kdePackages.dolphin
+    kdePackages.dolphin-plugins
+    #libsForQt5.dolphin
+    #libsForQt5.dolphin-plugins
+    #libsForQt5.kdegraphics-thumbnailers
     libsForQt5.qt5ct
     #libsForQt5.breeze-icons
     libsForQt5.qtstyleplugin-kvantum

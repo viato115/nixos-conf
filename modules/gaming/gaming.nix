@@ -21,14 +21,17 @@ let
     name = "steam-wayland-launcher";
     paths = [ steamWrapper steamDesktop ];
   };
-in {
-  programs.steam = {
-    enable = lib.mkDefault true;
-    gamescopeSession.enable = true;
-    extraCompatPackages = [ pkgs.proton-ge-bin ];
-  };
 
-  programs.gamemode.enable = true;
+in {
+
+  programs = {
+    steam = {
+      enable = lib.mkDefault true;
+      gamescopeSession.enable = true;
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
+    };
+    gamemode.enable = true;
+  };
 
   hardware = {
     graphics = lib.mkDefault {
@@ -69,6 +72,8 @@ in {
 
   environment.sessionVariables.STEAM_EXTRA_COMPAT_TOOLS_PATHS = "$HOME/.steam/root/compatibilitytools.d";
 
-  systemd.packages = [ pkgs.lact ];
-  systemd.services.lactd.wantedBy = [ "multi-user.target" ];
+  systemd = {
+    packages = [ pkgs.lact ];
+    services.lactd.wantedBy = [ "multi-user.target" ];
+  };
 }
