@@ -86,9 +86,9 @@
     lidSwitch = "suspend-then-hibernate";
     lidSwitchDocked = "suspend-then-hibernate";
     lidSwitchExternalPower = "suspend";
-    extraConfig = ''
-      HandlePowerKey = ignore
-    '';
+    # extraConfig = ''
+    #   HandlePowerKey = ignore
+    # '';
   };
 
   hardware.bluetooth = {
