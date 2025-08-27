@@ -53,6 +53,7 @@
       flake = false;
     };
 
+    stylix.url = "github:danth/stylix";
   };
 
   nixConfig = {
@@ -102,8 +103,9 @@
         };
         modules = [ 
           ./hosts/nixpad/default.nix 
+          inputs.stylix.nixosModules.stylix
           nixos-hardware.nixosModules.lenovo-thinkpad-l13-yoga
-            #      sops-nix.nixosModules.sops
+          #sops-nix.nixosModules.sops
         ];
       };
 
@@ -116,7 +118,8 @@
         };
         modules = [ 
           ./hosts/nixtop/default.nix 
-            # sops-nix.nixosModules.sops
+          inputs.stylix.nixosModules.stylix
+          #sops-nix.nixosModules.sops
         ];
       };
     };
