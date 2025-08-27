@@ -1,9 +1,18 @@
 {
-  config,
   pkgs,
-  lib,
+  inputs,
   ...
-}: {
+}:
+
+let 
+  hlsearchPlugin = pkgs.vimUtils.buildVimPlugin {
+    pname = "hlsearch.nvim";
+    version = inputs."hlsearch-nvim".rev or "unstable";
+    src = inputs."hlsearch-nvim";
+  };
+in
+
+{
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -12,6 +21,7 @@
     
     #inherit (import ./treesitter.nvim);
     plugins = with pkgs.vimPlugins; [
+      hlsearchPlugin
       plenary-nvim
       popup-nvim
       telescope-nvim
@@ -52,6 +62,7 @@
     ];
   };
 
+
 ## After this point you'll just encounter endless lines of config files. Turn around while you can
 
 
@@ -67,6 +78,7 @@
       require "nico.tokyo-night"
       require "nico.autopairs"
       require'lspconfig'.nil_ls.setup{}
+      require "nico.hlsearch"
       --
       vim.cmd('autocmd VimEnter * source /home/nico/.config/nvim/lua/nico/nvimtree.lua')
     '';
@@ -837,4 +849,17 @@
       }
     '';
   };
+  
+  home.file.".config/nvim/lua/nico/hlsearch.lua".text = ''
+    -- Highlight current search result(s) dynamically
+    local ok, hlsearch = pcall(require, "hlsearch")
+    if not ok then return end
+
+    hlsearch.setup({
+      -- defaults are fine; tweak if you like:
+      -- calm_down = true,         -- clear highlight on cursor move
+      -- nearest_only = false,     -- show all matches, not just nearest
+      -- nearest_float_when = 'always', -- small float number near nearest match
+    })
+  '';
 }
