@@ -66,6 +66,10 @@ in
     };
   }; 
 
+  programs.hyprshot = {
+    enable = true;
+    saveLocation = "$HOME/Pictures/Screenshots";
+  };
 
   home.file.".local/bin/wrappedhl" = {
     executable = true;
