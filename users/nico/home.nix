@@ -1,8 +1,6 @@
 {
-  config, 
   pkgs,
   lib,
-  user,
   inputs,
   hostname,
   ... 
@@ -25,7 +23,6 @@
     kitty
     pfetch
     eza
-    fortune 
     zathura
     mpv
     ffmpeg
@@ -38,11 +35,10 @@
     bat
     zip
     unar
-    unzip
     feh
     foot
     imagemagick
-    #obsidian
+    obsidian
     gawk
     libreoffice
     hunspell
@@ -55,7 +51,7 @@
     gnome-bluetooth
     gtk3
     hyprpicker
-    blueberry
+    blueman
     polkit_gnome
     scrcpy
     python3
@@ -63,9 +59,10 @@
 #    renpy
     nil
     nixpkgs-fmt
-    btop
     dysk
     gnome-frog
+    discord
+    cmake
 
     # Hyprland specific
     #pulseaudio
@@ -99,6 +96,7 @@
   ]
 
   ++ lib.optionals (hostname == "nixtop") [
+    prismlauncher
 
   ];
 

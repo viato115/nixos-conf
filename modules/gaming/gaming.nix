@@ -41,11 +41,11 @@ in {
       # package32 = [ pkgs.driversi686Linux.amdvlk ];
     };
 
-    amdgpu.amdvlk = {
-      enable = true;
-      support32Bit.enable = true;
-      #support32Bit.package = [ pkgs.driversi686Linux.amdvlk ];
-    };
+      # amdgpu.amdvlk = {
+      #   enable = true;
+      #   support32Bit.enable = true;
+      #   #support32Bit.package = [ pkgs.driversi686Linux.amdvlk ];
+      # };
   };
 
   security.wrappers.gamescope = {
@@ -59,14 +59,17 @@ in {
     steamBundle
     steam-run
     mangohud
-    protonup
-    protontricks
+    protonup-ng
+   #protontricks
     lutris
-    bottles
+    #bottles
     heroic
-    winetricks
-    wineWowPackages.waylandFull
+   #winetricks
+   #wineWowPackages.waylandFull
     lact
+    # mgba
+    #nexusmods-app
+    #retroarch-full
   ];
 
 

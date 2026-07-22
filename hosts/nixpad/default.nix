@@ -294,12 +294,13 @@
     gdb
     xxd
     #sops
+    android-tools
   ];
 
   programs = {
-    light.enable = true;
+    #light.enable = true;
     dconf.enable = true;
-    adb.enable = false;
+    #adb.enable = false;
   };
 
   environment.pathsToLink = [ "/share/bash-completion" ];

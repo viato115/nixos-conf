@@ -35,14 +35,16 @@ in
   home = {
     packages = with pkgs; [ libnotify grim slurp pamixer vimix-cursors ];
     pointerCursor = {
-      gtk.enable = true;
-          package = pkgs.vimix-cursors;
-          name = "Vimix-cursors";
-          size = 16;
+        enable = true;
+        gtk.enable = true;
+        package = pkgs.vimix-cursors;
+        name = "Vimix-cursors";
+        size = 16;
     };
-  };
+ };
 
   wayland.windowManager.hyprland = {
+    configType = "lua";
     enable = true;
     xwayland.enable = true;
     extraConfig = ''
@@ -91,7 +93,7 @@ in
       export MOZ_USE_XINPUT2=1
       export QT_AUTO_SCREEN_SCALE_FACTOR=1
       export QT_QPA_PLATFORM=wayland
-      export QT_QPA_PLATFORMTHEME="qt5ct"
+      export QT_QPA_PLATFORMTHEME="qt6ct"
       export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
       exec Hyprland

@@ -6,21 +6,16 @@
   home.packages = with pkgs; [ 
     kdePackages.dolphin
     kdePackages.dolphin-plugins
-    #libsForQt5.dolphin
-    #libsForQt5.dolphin-plugins
-    #libsForQt5.kdegraphics-thumbnailers
-    libsForQt5.qt5ct
-    #libsForQt5.breeze-icons
-    libsForQt5.qtstyleplugin-kvantum
+    qt6Packages.qt6ct
+    qt6Packages.qtstyleplugin-kvantum
     qt6.qtwayland
-    libsForQt5.qt5.qtwayland
     kdePackages.qtsvg
   ];
 
-  home.file.".config/qt5ct/qt5ct.conf" = {
+  home.file.".config/qt6ct/qt6ct.conf" = {
     text = ''
       [Appearance]
-      color_scheme_path=/home/nico/.config/qt5ct/colors/Dracula.conf
+      color_scheme_path=/home/nico/.config/qt6ct/colors/Dracula.conf
       custom_palette=true
       icon_theme=dracula-icons-main
       standard_dialogs=default
@@ -76,7 +71,9 @@
       ShowZoomSlider=false
       Version=202
       ViewPropsTimestamp=2023,5,18,23,12,35.264
-      
+      TerminalApplication=alacritty
+      TerminalService=Alacritty.desktop      
+
       [KFileDialog Settings]
       Places Icons Auto-resize=false
       Places Icons Static Size=22
@@ -96,7 +93,7 @@
     '';
   };
 
-  home.file.".config/qt5ct/colors/Dracula.conf" = {
+  home.file.".config/qt6ct/colors/Dracula.conf" = {
     text = ''
       [ColorScheme]
       active_colors=#ffbd93f9, #ff424559, #ff484d6b, #ff6272a4, #ff44475a, #ff44475a, #ff6272a4, #ff44475a, #ffbd93f9, #ff282a36, #ff282a36, #ff44475a, #ff6272a4, #ffbd93f9, #ff8be9fd, #ff8be9fd, #ff44475a, #ff6272a4, #ff44475a, #fff8f8f2, #ff44475a

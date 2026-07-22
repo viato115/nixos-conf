@@ -38,7 +38,6 @@ in {
 
   services.dunst = {
     enable = true;
-    configFile = "~/.config/dunst/dunstrc";
     settings = {
       global = {
         title = "Dunst";
@@ -75,7 +74,7 @@ in {
         icon_position = "left";
         min_icon_size = 32;
         max_icon_size = 128;
-        icon_path = "/usr/share/icons/Papirus-Dark/48x48/actions/:/usr/share/icons/Papirus-Dark/48x48/apps/:/usr/share/icons/Papirus-Dark/48x48/devices/:/usr/share/icons/Papirus-Dark/48x48/emblems/:/usr/share/icons/Papirus-Dark/48x48/emotes/:/usr/share/icons/Papirus-Dark/48x48/mimetypes/:/usr/share/icons/Papirus-Dark/48x48/places/:/usr/share/icons/Papirus-Dark/48x48/status/";
+        #icon_path = "/usr/share/icons/Papirus-Dark/48x48/actions/:/usr/share/icons/Papirus-Dark/48x48/apps/:/usr/share/icons/Papirus-Dark/48x48/devices/:/usr/share/icons/Papirus-Dark/48x48/emblems/:/usr/share/icons/Papirus-Dark/48x48/emotes/:/usr/share/icons/Papirus-Dark/48x48/mimetypes/:/usr/share/icons/Papirus-Dark/48x48/places/:/usr/share/icons/Papirus-Dark/48x48/status/";
         icon_theme = "Papirus-Dark";
         enable_recursive_icon_lookup = true;
         sticky_history = true;
@@ -96,12 +95,17 @@ in {
         foreground = "#e7e7e7";
         highlight = "#c49ec4";
       };
-      urgency_critikal = {
+      urgency_critical = {
         timeout = 0;
         background = "#0f0f0f";
         foreground = "#e7e7e7";
         highlight = "#c49ec4";
       };
+    };
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus-Dark";
+      size = "48x48";
     };
   };
 

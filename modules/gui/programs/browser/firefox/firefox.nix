@@ -10,7 +10,7 @@
         DisableFirefoxStudies = true;
         DisablePocket = true;
         DisableTelemetry = true;
-        DisalbeFirefoxAccounts = false;
+        DisableFirefoxAccounts = false;
         NoDefaultBookmarks = true;
         OfferToSaveLogins = false;
         OfferToSaveLoginsDefault = false;
@@ -23,11 +23,12 @@
           Highlights = false;
         };
         UserMessaging = {
-          ExtensionReccomendations = false;
+          ExtensionRecommendations = false;
           SkipOnboarding = true;
         };
       };
     };
+    configPath = ".mozilla/firefox"; 
 
     profiles = {
       default = {
@@ -35,7 +36,7 @@
         name = "nix";
         isDefault = true;
 
-        extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+        extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
           ublock-origin
           sponsorblock
           i-dont-care-about-cookies

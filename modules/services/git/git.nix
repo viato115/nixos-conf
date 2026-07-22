@@ -4,11 +4,42 @@
 
   home.sessionVariables.DELTA_PAGER = "less -R";
 
-  programs.git = {
-    enable = true;
-    lfs.enable = true;
-    userName = "viato115";
-    userEmail = "133047323+viato115@users.noreply.github.com";
+  programs = {
+    git = {
+      enable = true;
+      lfs.enable = true;
+      settings = {
+        user = {
+          name = "viato115";
+          email = "133047323+viato115@users.noreply.github.com";
+        };
+        init.defaultBranch = "main";
+        diff.colorMoved = "default";
+        merge.conflictedstyle = "diff3";
+        push.autoSetupRemove = true;
+        core.editor = "nvim";
+        push.default = "simple";
+        merge.stat = "true";
+        core.whitespace = "fix,-indent-with-non-tab,trailing-space,cr-at-eol";
+        repack.usedeltabaseoffset = "true";
+        pull.ff = "only";
+        rebase = {
+          autoSquash = true;
+          autoStash = true;
+        };
+        rerere = {
+          enabled = true;
+          autoupdate = true;
+        };
+
+        aliases = {
+          st = "status";
+          d = "diff";
+          p = "pull";
+          fuck = "commit --amend -m";
+        };
+      };
+    };
 
     delta = {
       enable = true;
@@ -34,32 +65,5 @@
       };
     };
 
-    extraConfig = {
-      init.defaultBranch = "main";
-      diff.colorMoved = "default";
-      merge.conflictedstyle = "diff3";
-      push.autoSetupRemove = true;
-      core.editor = "nvim";
-      push.default = "simple";
-      merge.stat = "true";
-      core.whitespace = "fix,-indent-with-non-tab,trailing-space,cr-at-eol";
-      repack.usedeltabaseoffset = "true";
-      pull.ff = "only";
-      rebase = {
-        autoSquash = true;
-        autoStash = true;
-      };
-      rerere = {
-        enabled = true;
-        autoupdate = true;
-      };
-
-      aliases = {
-        st = "status";
-        d = "diff";
-        p = "pull";
-        fuck = "commit --amend -m";
-      };
-    };
   };
 }

@@ -25,6 +25,7 @@
   networking.hostName = "nixtop";
   networking.networkmanager.enable = true;
 
+  services.flatpak.enable = true;
 
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -245,24 +246,27 @@
     tree
     rustc
     cargo
-   # virt-manager
-   # gnumake
-   bluez
-   # file
-   # strace
-   # ltrace
-   # gdb
-   # xxd
-   #sops
-   ntfs3g
-   jdk
+    # virt-manager
+    # gnumake
+    bluez
+    # file
+    # strace
+    # ltrace
+    # gdb
+    # xxd
+    #sops
+    ntfs3g
+    jdk
+    freetype
+    spotify
+    android-tools
   ];
 
 
   programs = {
-    light.enable = true;
+    #light.enable = true;
     dconf.enable = true;
-    adb.enable = false;
+    #adb.enable = false;
   };
 
   environment.pathsToLink = [ "/share/bash-completion" ];

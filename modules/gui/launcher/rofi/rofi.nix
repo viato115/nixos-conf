@@ -7,7 +7,7 @@ in
   programs.rofi = {
     enable = true;
     cycle = false;
-    package = with pkgs; rofi-wayland;
+    package = with pkgs; rofi;
     extraConfig = {
     modi = "favorites:${config.home.homeDirectory}/.config/rofi/scripts/favorites.sh,drun,filebrowser";
       font = "Mononoki Nerd Font 12 ";

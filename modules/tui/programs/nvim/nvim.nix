@@ -15,9 +15,15 @@ in
 {
   programs.neovim = {
     enable = true;
+
+    sideloadInitLua = true;
+
+
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
+    withRuby = false;
+    withPython3 = false;
     
     #inherit (import ./treesitter.nvim);
     plugins = with pkgs.vimPlugins; [
@@ -31,7 +37,8 @@ in
       dracula-nvim
       tokyonight-nvim
       nvim-lspconfig
-      null-ls-nvim
+      #null-ls-nvim
+      none-ls-nvim
       nvim-autopairs
       (nvim-treesitter.withPlugins (p: [
         p.c
