@@ -84,10 +84,10 @@ in
       require "nico.alpha-nvim"
       require "nico.tokyo-night"
       require "nico.autopairs"
-      require'lspconfig'.nil_ls.setup{}
+      --require'lspconfig'.nil_ls.setup{}
       require "nico.hlsearch"
-      --
-      vim.cmd('autocmd VimEnter * source /home/nico/.config/nvim/lua/nico/nvimtree.lua')
+      --vim.cmd('autocmd VimEnter * source /home/nico/.config/nvim/lua/nico/nvimtree.lua')
+      vim.lsp.enable("nil_ls")
     '';
   };
 
@@ -499,10 +499,6 @@ in
           enable = false,
           update_root = false,
           ignore_list = {},
-        },
-        system_open = {
-          cmd = "",
-          args = {},
         },
         diagnostics = {
           enable = false,

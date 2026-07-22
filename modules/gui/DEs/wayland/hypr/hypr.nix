@@ -15,18 +15,7 @@ let
   };
   monitorsConf = builtins.concatStringsSep "\n" (hostMonitors.${hostname} or []);
 
-  hostWallpapers = {
-      nixpad = [
-        # "monitor-name,path"
-        "eDP-1,~/.config/nixos/shared/pics/flowers.png"
-        "DP-3,~/.config/nixos/shared/pics/flowers.png"
-      ];
-      nixtop = [
-        "DP-3,~/.config/nixos/shared/pics/flowers.png"
-        "HDMI-A-1,~/.config/nixos/shared/pics/flowers.png"
-      ];
-    };
-    wallpapers = hostWallpapers.${hostname} or [];
+  wallpaperImage = ../../../../../shared/pics/flowers.png;
 
   sharedConfig = lib.fileContents ./hyprland.conf;
 
@@ -44,7 +33,9 @@ in
  };
 
   wayland.windowManager.hyprland = {
-    configType = "lua";
+    # The existing configuration in hyprland.conf uses Hyprlang syntax.
+    # Lua mode would write it verbatim to hyprland.lua and make startup fail.
+    configType = "hyprlang";
     enable = true;
     xwayland.enable = true;
     extraConfig = ''
@@ -56,14 +47,13 @@ in
   services.hyprpaper = {
     enable = true;
     settings = {
-      preload = [
-        "~/.config/nixos/shared/pics/wallpaper.png"
-        "~/.config/nixos/shared/pics/neo_tokyo.png"
-        "~/.config/nixos/shared/pics/floral.png"
-        "~/.config/nixos/shared/pics/a_drawing_of_a_wolf_and_a_lion.png"
-        "~/.config/nixos/shared/pics/flowers.png"
+      wallpaper = [
+        {
+          monitor = "*";
+          path = "${wallpaperImage}";
+          fit_mode = "cover";
+        }
       ];
-      wallpaper = wallpapers;
       splash = false;
     };
   }; 
