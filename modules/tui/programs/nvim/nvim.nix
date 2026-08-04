@@ -84,10 +84,20 @@ in
       require "nico.alpha-nvim"
       require "nico.tokyo-night"
       require "nico.autopairs"
-      --require'lspconfig'.nil_ls.setup{}
       require "nico.hlsearch"
-      --vim.cmd('autocmd VimEnter * source /home/nico/.config/nvim/lua/nico/nvimtree.lua')
-      vim.lsp.enable("nil_ls")
+
+      vim.lsp.config("nil_ls", {
+        settings = {
+          ["nil"] = {
+            nix = {
+              flake = {
+                autoArchive = true,
+              },
+            },
+          },
+        },
+      })
+      vim.lsp.enable("nil_ls")vim.lsp.enable("nil_ls")
     '';
   };
 
