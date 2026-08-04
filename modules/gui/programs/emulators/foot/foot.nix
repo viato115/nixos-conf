@@ -35,7 +35,7 @@ in
       mouse = {
         hide-when-typing = true;
       };
-      colors = {
+      "colors-dark" = {
         alpha = "1";
         background = "1a1b26";
         foreground = "c0caf5";

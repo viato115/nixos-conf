@@ -19,6 +19,8 @@ let
 
   sharedConfig = lib.fileContents ./hyprland.conf;
 
+  hyprlandPackage = config.wayland.windowManager.hyprland.package;
+
 in
 {
   home = {
@@ -86,7 +88,10 @@ in
       export QT_QPA_PLATFORMTHEME="qt6ct"
       export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
-      exec Hyprland
+      export PATH="${hyprlandPackage}/bin:$PATH"
+
+      exec "${hyprlandPackage}/bin/start-hyprland" \
+        --path "${hyprlandPackage}/bin/Hyprland"
     '';
   };
 }
