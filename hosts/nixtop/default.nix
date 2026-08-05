@@ -25,7 +25,7 @@
   networking.hostName = "nixtop";
   networking.networkmanager.enable = true;
 
-  services.flatpak.enable = true;
+  services.flatpak.enable = false;
 
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
