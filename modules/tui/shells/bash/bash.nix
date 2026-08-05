@@ -7,10 +7,10 @@
 
 let 
   greeter = if hostname == "nixpad" then ''
-    pfetch
+    fastfetch --logo-type small --structure title:os:kernel:uptime:packages:memory:shell:wm
     LANG=de_DE.UTF-8 date +"%a, %d.%m.%Y %H:%M Uhr" ; acpi | grep 'Battery 0' | awk '{print $1,$3,$4}' | sed 's/,$//'
   '' else ''
-    pfetch
+    fastfetch --logo-type small --structure title:os:kernel:uptime:packages:memory:shell:wm
     LANG=de_DE.UTF-8 date +"%a, %d.%m.%Y %H:%M Uhr"  
   '';
 in

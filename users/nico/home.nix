@@ -21,7 +21,8 @@
     nvd
     nix-output-monitor
     kitty
-    pfetch
+#    pfetch
+    fastfetch
     eza
     zathura
     mpv
