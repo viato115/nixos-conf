@@ -123,12 +123,12 @@
     };
 
 
-  services.journald.extraConfig = ''
-    SystemMaxUse=50M
-    SystemMaxFileSize=10M
-    RuntimeMaxUse=50M
-    RuntimeMaxFileSize=10M
-  '';
+  #services.journald.extraConfig = ''           # remove cause obsolete
+  #  SystemMaxUse=50M
+  #  SystemMaxFileSize=10M
+  #  RuntimeMaxUse=50M
+  #  RuntimeMaxFileSize=10M
+  #'';
 
 
   xdg.portal = {
@@ -201,7 +201,9 @@
     efiSupport = true;
     useOSProber = true;
   };
-  boot.initrd.verbose = false;
+  
+
+  #boot.initrd.verbose = false;               # remove cause obsolete
   boot.consoleLogLevel = 3;
   boot.kernelParams = [ "quiet" "udev.log_priority=3" ];
   boot.loader.timeout = 2;

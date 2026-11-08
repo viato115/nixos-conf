@@ -6,19 +6,20 @@ in
 {
   programs.rofi = {
     enable = true;
-    cycle = false;
-    package = with pkgs; rofi;
-    extraConfig = {
-    modi = "favorites:${config.home.homeDirectory}/.config/rofi/scripts/favorites.sh,drun,filebrowser";
-      font = "Mononoki Nerd Font 12 ";
-      show-icons = true;
-      disable-history = true;
-      hover-select = true;
-      bw = 0;
-      display-drun = "";
-      terminal = "footclient";
-      drun-display-format = "{name}";
-      sidebar-mode = false;
+    settings = {
+      cycle = false;
+      package = with pkgs; rofi;
+      modi = "favorites:${config.home.homeDirectory}/.config/rofi/scripts/favorites.sh,drun,filebrowser";
+        font = "Mononoki Nerd Font 12 ";
+        show-icons = true;
+        disable-history = true;
+        hover-select = true;
+        bw = 0;
+        display-drun = "";
+        terminal = "footclient";
+        drun-display-format = "{name}";
+        sidebar-mode = false;
+      };
     };
     theme = "${config.home.homeDirectory}/.config/rofi/themes/custom.rasi";
   };
