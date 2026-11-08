@@ -159,12 +159,12 @@
 
   modules.battery_monitor.enable = true;
 
-  services.journald.extraConfig = ''
-    SystemMaxUse=50M
-    SystemMaxFileSize=10M
-    RuntimeMaxUse=50M
-    RuntimeMaxFileSize=10M
-  '';
+  #services.journald.extraConfig = ''   # remove cause obsolete
+  #  SystemMaxUse=50M
+  #  SystemMaxFileSize=10M
+  #  RuntimeMaxUse=50M
+  #  RuntimeMaxFileSize=10M
+  #'';
 
 
   xdg.portal = {
@@ -183,7 +183,8 @@
     extraPackages = with pkgs; [
       intel-media-driver
       #vaapiIntel
-      vaapiVdpau
+      #vaapiVdpau     # remove cause obsolete
+      libva-vdpau-driver
       libvdpau-va-gl
     ];
   };
@@ -241,7 +242,7 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.verbose = false;
+  #boot.initrd.verbose = false;       # remove cause obsolete
   boot.consoleLogLevel = 3;
   boot.kernelParams = [ "quiet" "udev.log_priority=3" ];
   boot.loader.timeout = 2;
