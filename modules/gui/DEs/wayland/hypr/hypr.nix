@@ -3,23 +3,37 @@
 let
   hostMonitors = {
     nixpad = [
-      "monitor=eDP-1,preferred,auto,1"
-      "monitor=eDP-1,transform,0"
-#      "monitor=DP-3,1920x1080@60,1920x0,1"
-#      "monitor=DP-3,transform,1"
+      {
+        output = "eDP-1";
+        mode = "preferred";
+        position = "auto";
+        scale = 1;
+        transform = 0;
+      }
     ];
     nixtop = [
-      "monitor=DP-3,1920x1080@60,0x0,1,vrr,1"
-      "monitor=HDMI-A-1,1920x1080@60,1920x0,1,vrr,1"
+      {
+        output = "DP-3";
+        mode = "1920x1080@60";
+        position = "0x0";
+        scale = 1;
+        vrr = 1;
+      }
+      {
+        output = "HDMI-A-1";
+        mode = "1920x1080@60";
+        position = "1920x0";
+        scale = 1;
+        vrr = 1;
+      }
     ];
   };
-  monitorsConf = builtins.concatStringsSep "\n" (hostMonitors.${hostname} or []);
 
   wallpaperImage = ../../../../../shared/pics/flowers.png;
 
-  sharedConfig = lib.fileContents ./hyprland.conf;
+  sharedConfig = lib.fileContents ./hyprland.lua;
 
-  hyprlandPackage = config.wayland.windowManager.hyprland.package;
+  hyprlandPackage = config.wayland.windowManager.hyprland.finalPackage;
 
 in
 {
@@ -35,15 +49,11 @@ in
  };
 
   wayland.windowManager.hyprland = {
-    # The existing configuration in hyprland.conf uses Hyprlang syntax.
-    # Lua mode would write it verbatim to hyprland.lua and make startup fail.
-    configType = "hyprlang";
+    configType = "lua";
     enable = true;
     xwayland.enable = true;
-    extraConfig = ''
-      ${monitorsConf}
-      ${sharedConfig}
-    '';
+    settings.monitor = hostMonitors.${hostname} or [];
+    extraConfig = sharedConfig;
   };
  
   services.hyprpaper = {
@@ -91,7 +101,8 @@ in
       export PATH="${hyprlandPackage}/bin:$PATH"
 
       exec "${hyprlandPackage}/bin/start-hyprland" \
-        --path "${hyprlandPackage}/bin/Hyprland"
+        --path "${hyprlandPackage}/bin/Hyprland" \
+        -- --config "${config.xdg.configHome}/hypr/hyprland.lua"
     '';
   };
 }
