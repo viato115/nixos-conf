@@ -1,6 +1,7 @@
 { 
   pkgs,
   lib,
+  config,
   ... 
 }:{
 
@@ -82,13 +83,10 @@
   };
 
   services.libinput.enable = true;
-  services.logind = {
-    lidSwitch = "suspend-then-hibernate";
-    lidSwitchDocked = "suspend-then-hibernate";
-    lidSwitchExternalPower = "suspend";
-    # extraConfig = ''
-    #   HandlePowerKey = ignore
-    # '';
+  services.logind.settings.Login = {
+      HandlelidSwitch = "suspend-then-hibernate";
+      HandleLidSwitchDocked = "suspend-then-hibernate";
+      HandleLidSwitchExternalPower = "suspend";
   };
 
   hardware.bluetooth = {
@@ -159,13 +157,6 @@
 
   modules.battery_monitor.enable = true;
 
-  #services.journald.extraConfig = ''   # remove cause obsolete
-  #  SystemMaxUse=50M
-  #  SystemMaxFileSize=10M
-  #  RuntimeMaxUse=50M
-  #  RuntimeMaxFileSize=10M
-  #'';
-
 
   xdg.portal = {
     enable = true;
@@ -208,7 +199,6 @@
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       ];
-      #trusted-substituters = ["https://hyprland.cachix.org"];
       auto-optimise-store = true;
     };
 
@@ -238,6 +228,43 @@
       FLAKE = "$HOME/.config/nixos";
     };
   };
+
+
+
+
+  # Window Manager / DE setup
+  
+  programs.niri.enable = true;
+  services.displayManager.sessionPackages = [
+      (
+        (pkgs.writeTextDir "share/wayland-sessions/hyprland-wrapped.desktop" ''
+          [Desktop Entry]
+          Name=Hyprland (your config)
+          Comment=Start Hyprland using Nico's existing wrapper
+          Exec=/home/nico/.local/bin/wrappedhl
+          Type=Application
+        '')
+        // {
+          providedSessions = [ "hyprland-wrapped" ];
+        }
+      )
+    ];
+
+
+
+  ### this shows all registered sessions in tuigreet
+  services.greetd.settings.default_session.command = lib.mkForce (
+    "${pkgs.tuigreet}/bin/tuigreet --time "
+    + "--sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions "
+    + "--cmd /home/nico/.local/bin/wrappedhl"
+  );
+
+
+
+
+
+
+
 
 
   boot.loader.systemd-boot.enable = true;

@@ -41,6 +41,28 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    niri = {
+      url = "github:niri-wm/niri";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    niri-scratchpad-flake = {
+      url = "github:gvolpe/niri-scratchpad";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
+    };
+
+    nirimation = {
+      url = "github:Xansidev/nirimation";
+      flake = false;
+    };
+
+    niri-shaders = {
+      url = "github:liixini/shaders";
+      flake = false;
+    };
+
     firefox-addons = { 
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons"; 
       inputs.nixpkgs.follows = "nixpkgs"; 
