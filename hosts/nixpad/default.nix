@@ -256,14 +256,9 @@
   services.greetd.settings.default_session.command = lib.mkForce (
     "${pkgs.tuigreet}/bin/tuigreet --time "
     + "--sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions "
-    + "--cmd /home/nico/.local/bin/wrappedhl"
+    + "--cmd ${config.programs.niri.package}/bin/niri-session"
+    #+ "--cmd /home/nico/.local/bin/wrappedhl"
   );
-
-
-
-
-
-
 
 
 
@@ -323,6 +318,8 @@
     xxd
     #sops
     android-tools
+    xwayland-satellite
+    iio-niri
   ];
 
   programs = {

@@ -1,0 +1,177 @@
+input {
+    keyboard {
+        xkb {
+            layout "de"
+        }
+        numlock
+    }
+
+    touchpad {
+        tap
+        dwt
+        click-method "clickfinger"
+        scroll-factor 0.5
+        accel-profile "flat"
+    }
+
+    mouse {
+        accel-profile "flat"
+    }
+
+    trackpoint {
+        accel-profile "flat"
+    }
+
+    tablet {
+        map-to-output "eDP-1"
+    }
+
+    touch {
+        map-to-output "eDP-1"
+    }
+}
+
+output "eDP-1" {
+    scale 1
+}
+
+prefer-no-csd
+
+layout {
+    gaps 5
+   // center-focused-column "on-overflow"
+    center-focused-column "never"
+    background-color "transparent"
+
+    default-column-width { proportion 0.60; }
+    preset-column-widths {
+        proportion 0.40
+        proportion 0.60
+        proportion 0.85
+    }
+
+    focus-ring {
+        width 2
+        active-color "#bd93f9"
+        inactive-color "#44475a"
+    }
+
+    struts {
+        left 8
+        right 8
+        top 8
+        bottom 8 
+    }
+
+    shadow {
+        on
+        softness 18
+        spread 2
+        offset x=0 y=3
+        color "#0a0e14aa"
+    }
+}
+
+layer-rule {
+  match namespace="^hyprpaper$"
+  place-within-backdrop true
+}
+
+window-rule {
+    geometry-corner-radius 6
+    clip-to-geometry true
+}
+
+cursor {
+    xcursor-theme "Vimix-cursors"
+    xcursor-size 24
+    hide-after-inactive-ms 5000
+}
+
+// Named workspaces keep these key assignments stable when they are empty.
+workspace "1"
+workspace "2"
+workspace "3"
+workspace "4"
+workspace "stash"
+
+// Both the terminal shortcut and the existing Rofi favorites use footclient.
+spawn-at-startup "foot" "--server"
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+binds {
+    Mod+F1 { show-hotkey-overlay; }
+    Mod+Return hotkey-overlay-title="Open Foot" { spawn "footclient"; }
+    Mod+T hotkey-overlay-title="Open standalone Foot" { spawn "foot"; }
+    Mod+Shift+Return hotkey-overlay-title="Open Kitty" { spawn "kitty"; }
+    Mod+D hotkey-overlay-title="Open Rofi" { spawn "rofi" "-show" "drun"; }
+    Mod+A hotkey-overlay-title="Open Rofi favorites" { spawn "rofi" "-show" "favorites"; }
+    Mod+Shift+E hotkey-overlay-title="Browse files in Rofi" { spawn "rofi" "-show" "filebrowser"; }
+    Mod+W hotkey-overlay-title="Open Firefox" { spawn "firefox"; }
+    Mod+E hotkey-overlay-title="Open Dolphin" { spawn "dolphin"; }
+
+    Mod+C repeat=false { close-window; }
+    Mod+F { fullscreen-window; }
+    Mod+Shift+Space { toggle-window-floating; }
+    Mod+O repeat=false { toggle-overview; }
+    Mod+Shift+M { set-column-width "50%"; }
+    Mod+M { maximize-column; }
+    Mod+R { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-column-width-back; }
+    Mod+Comma { consume-window-into-column; }
+    Mod+Period { expel-window-from-column; }
+    Mod+Shift+T { toggle-column-tabbed-display; }
+    Mod+Shift+X { center-column; }
+
+    Mod+Left { focus-column-left; }
+    Mod+Right { focus-column-right; }
+    Mod+Up { focus-window-or-workspace-up; }
+    Mod+Down { focus-window-or-workspace-down; }
+    Mod+Shift+H { focus-column-left; }
+    Mod+Shift+L { focus-column-right; }
+    Mod+Shift+K { focus-window-or-workspace-up; }
+    Mod+Shift+J { focus-window-or-workspace-down; }
+    Mod+Shift+Left { move-column-left; }
+    Mod+Shift+Right { move-column-right; }
+    Mod+Shift+Up { move-window-up-or-to-workspace-up; }
+    Mod+Shift+Down { move-window-down-or-to-workspace-down; }
+
+    Mod+1 { focus-workspace "1"; }
+    Mod+2 { focus-workspace "2"; }
+    Mod+3 { focus-workspace "3"; }
+    Mod+4 { focus-workspace "4"; }
+    Mod+Shift+1 { move-window-to-workspace "1"; }
+    Mod+Shift+2 { move-window-to-workspace "2"; }
+    Mod+Shift+3 { move-window-to-workspace "3"; }
+    Mod+Shift+4 { move-window-to-workspace "4"; }
+    Mod+odiaeresis { focus-workspace "stash"; }
+    Mod+Shift+odiaeresis { move-window-to-workspace "stash" focus=false; }
+    Mod+Tab { focus-workspace-previous; }
+    Mod+Page_Up { focus-workspace-up; }
+    Mod+Page_Down { focus-workspace-down; }
+    Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
+    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+
+    Mod+Shift+O { screenshot; }
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+
+    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "6%+" "-l" "1.0"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "6%-"; }
+    XF86AudioMute allow-when-locked=true repeat=false { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute allow-when-locked=true repeat=false { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    XF86AudioPlay allow-when-locked=true repeat=false { spawn "playerctl" "play-pause"; }
+    XF86AudioPrev allow-when-locked=true repeat=false { spawn "playerctl" "previous"; }
+    XF86AudioNext allow-when-locked=true repeat=false { spawn "playerctl" "next"; }
+
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+    Mod+Shift+Q { quit; }
+}
