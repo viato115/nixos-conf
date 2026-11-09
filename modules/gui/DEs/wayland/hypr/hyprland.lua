@@ -11,7 +11,7 @@ hl.config({
       natural_scroll = false,
       disable_while_typing = true,
       scroll_factor = 0.5,
-      ["tap-to-click"] = true,
+      tap_to_click = true,
       clickfinger_behavior = true,
     },
   },
@@ -107,7 +107,7 @@ hl.bind(mainMod .. " + C", hl.dsp.window.close())
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("rofi -show drun"))
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("rofi -show favorites"))
 hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd("rofi -show filebrowser"))
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("firefox-beta"))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("firefox"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("dolphin"))
 hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("/usr/local/bin/iio-hyprland"))
