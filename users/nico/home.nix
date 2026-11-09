@@ -90,7 +90,7 @@
   ]
 
   ++ lib.optionals (hostname == "nixpad") [
-    write_stylus
+    styluslabs-write-bin
     acpi
     upower
     brightnessctl
