@@ -320,6 +320,7 @@
     android-tools
     xwayland-satellite
     iio-niri
+    vivaldi
   ];
 
   programs = {

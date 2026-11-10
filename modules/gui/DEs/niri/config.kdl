@@ -51,9 +51,10 @@ layout {
     }
 
     focus-ring {
-        width 2
-        active-color "#bd93f9"
-        inactive-color "#44475a"
+      off
+       // width 2
+       // active-color "#bd93f9"
+       // inactive-color "#44475a"
     }
 
     struts {
@@ -65,10 +66,16 @@ layout {
 
     shadow {
         on
-        softness 18
-        spread 2
-        offset x=0 y=3
-        color "#0a0e14aa"
+        softness 24
+        spread 4
+        offset x=0 y=2
+        //color "#0a0e14aa"
+
+        // Much stronger shadow on the active window
+        color "#000000dd"
+
+        // Much lighter shadow on inactive windows
+        inactive-color "#00000030"
     }
 }
 
@@ -78,9 +85,18 @@ layer-rule {
 }
 
 window-rule {
-    geometry-corner-radius 6
+    geometry-corner-radius 3
     clip-to-geometry true
 }
+
+//// Testing square corners for the Vivaldi browser
+//window-rule {
+//    match app-id="(?i)vivaldi"
+//
+//    geometry-corner-radius 0
+//    clip-to-geometry false
+//}
+
 
 cursor {
     xcursor-theme "Vimix-cursors"
