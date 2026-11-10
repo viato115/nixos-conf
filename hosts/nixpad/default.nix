@@ -181,11 +181,21 @@
   };
 
 
-
   hardware.ipu6.enable = false;
 
+
+  ## Enable screen rotation on my Thinkpad
   hardware.sensor.iio = {
     enable = true;
+  };
+
+  services.iio-niri = {
+    enable = true;
+    extraArgs = [
+      "--monitor"
+      "eDP-1"
+      "--lock-rotation"
+    ];
   };
 
 
@@ -319,7 +329,6 @@
     #sops
     android-tools
     xwayland-satellite
-    iio-niri
     vivaldi
   ];
 

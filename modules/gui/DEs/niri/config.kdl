@@ -128,8 +128,12 @@ binds {
     Mod+D hotkey-overlay-title="Open Rofi" { spawn "rofi" "-show" "drun"; }
     Mod+A hotkey-overlay-title="Open Rofi favorites" { spawn "rofi" "-show" "favorites"; }
     Mod+Shift+E hotkey-overlay-title="Browse files in Rofi" { spawn "rofi" "-show" "filebrowser"; }
-    Mod+W hotkey-overlay-title="Open Firefox" { spawn "firefox"; }
+    Mod+W hotkey-overlay-title="Open Vivaldi" { spawn "vivaldi"; }
     Mod+E hotkey-overlay-title="Open Dolphin" { spawn "dolphin"; }
+
+    Mod+Alt+R repeat=false hotkey-overlay-title="Toggle screen rotation lock" {
+      spawn "toggle-niri-rotation"
+    }
 
     Mod+C repeat=false { close-window; }
     Mod+F { fullscreen-window; }
