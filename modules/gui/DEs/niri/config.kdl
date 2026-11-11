@@ -43,11 +43,11 @@ layout {
     center-focused-column "never"
     background-color "transparent"
 
-    default-column-width { proportion 0.60; }
+    default-column-width { proportion 1.00; }
     preset-column-widths {
-        proportion 0.40
-        proportion 0.60
-        proportion 0.85
+        proportion 0.33
+        proportion 0.50
+        proportion 1.00
     }
 
     focus-ring {
