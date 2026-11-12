@@ -12,6 +12,7 @@ input {
         click-method "clickfinger"
         scroll-factor 0.5
         accel-profile "flat"
+        accel-speed 0.3
     }
 
     mouse {
@@ -87,6 +88,11 @@ layer-rule {
 window-rule {
     geometry-corner-radius 3
     clip-to-geometry true
+}
+
+window-rule {
+    match app-id="(?i)footclient"
+    default-column-width { proportion 0.33; }
 }
 
 //// Testing square corners for the Vivaldi browser
