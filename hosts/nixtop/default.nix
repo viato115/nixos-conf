@@ -262,7 +262,6 @@
     freetype
     spotify
     android-tools
-    vivaldi
   ];
 
 

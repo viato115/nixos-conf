@@ -17,6 +17,7 @@
   home.packages = with pkgs; [
 
     # Basics
+    vivaldi
     fd
     nvd
     nix-output-monitor

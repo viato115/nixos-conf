@@ -329,7 +329,6 @@
     #sops
     android-tools
     xwayland-satellite
-    vivaldi
   ];
 
   programs = {
