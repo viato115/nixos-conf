@@ -10,10 +10,6 @@
 #      inputs.nixpkgs.follows = "nixpkgs"; 
 #    };
 
-    flake-utils = {
-      url = github:numtide/flake-utils;
-    };
-
     nixos-hardware = {
       url = github:nixos/NixOS-hardware/master;
     };
@@ -23,11 +19,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };
-    };
-
-    hyprpaper = {
-      url = github:hyprwm/hyprpaper;
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     firefox-addons = { 
@@ -51,7 +42,6 @@
     #    sops-nix,
     home-manager, 
     nixos-hardware, 
-    flake-utils,
     nvf,
     ... 
   }@inputs:
