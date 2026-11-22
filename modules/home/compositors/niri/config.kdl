@@ -1,41 +1,3 @@
-input {
-    keyboard {
-        xkb {
-            layout "de"
-        }
-        numlock
-    }
-
-    touchpad {
-        tap
-        dwt
-        click-method "clickfinger"
-        scroll-factor 0.5
-        accel-profile "flat"
-        accel-speed 0.3
-    }
-
-    mouse {
-        accel-profile "flat"
-    }
-
-    trackpoint {
-        accel-profile "flat"
-    }
-
-    tablet {
-        map-to-output "eDP-1"
-    }
-
-    touch {
-        map-to-output "eDP-1"
-    }
-}
-
-output "eDP-1" {
-    scale 1
-}
-
 prefer-no-csd
 
 layout {
@@ -137,9 +99,7 @@ binds {
     Mod+W hotkey-overlay-title="Open Vivaldi" { spawn "vivaldi"; }
     Mod+E hotkey-overlay-title="Open Dolphin" { spawn "dolphin"; }
 
-    Mod+Alt+R repeat=false hotkey-overlay-title="Toggle screen rotation lock" {
-      spawn "toggle-niri-rotation"
-    }
+    // HOST_ROTATION_BINDING
 
     Mod+C repeat=false { close-window; }
     Mod+F { fullscreen-window; }
@@ -166,6 +126,12 @@ binds {
     Mod+Shift+Right { move-column-right; }
     Mod+Shift+Up { move-window-up-or-to-workspace-up; }
     Mod+Shift+Down { move-window-down-or-to-workspace-down; }
+
+    // Monitor navigation works on machines with multiple displays.
+    Mod+Ctrl+Left { focus-monitor-left; }
+    Mod+Ctrl+Right { focus-monitor-right; }
+    Mod+Ctrl+Shift+Left { move-column-to-monitor-left; }
+    Mod+Ctrl+Shift+Right { move-column-to-monitor-right; }
 
     Mod+1 { focus-workspace "1"; }
     Mod+2 { focus-workspace "2"; }

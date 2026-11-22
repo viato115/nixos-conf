@@ -7,9 +7,9 @@
 let
   modules = [
     ./hardware-configuration.nix
-    ../../modules/tui/programs/nh/nh.nix
-    ../../modules/services/greetd/default.nix
-    ../../modules/services/dunst/dunst.nix
+    ../../modules/nixos/programs/nh/nh.nix
+    ../../modules/nixos/services/greetd/default.nix
+    ../../modules/home/services/dunst/dunst.nix
   ];
 in
 {

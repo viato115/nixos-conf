@@ -1,6 +1,29 @@
-{ pkgs, ... }:
+{ pkgs, lib, hostname, ... }:
+let
+  hostInput = {
+    nixpad = ./nixpad-input.kdl;
+    nixtop = ./nixtop-input.kdl;
+  }.${hostname} or (throw "No Niri input and output configuration for ${hostname}");
+
+  rotationBinding = lib.optionalString (hostname == "nixpad") ''
+    Mod+Alt+R repeat=false hotkey-overlay-title="Toggle screen rotation lock" {
+      spawn "toggle-niri-rotation"
+    }
+  '';
+
+  commonConfig = lib.replaceStrings
+    [ "// HOST_ROTATION_BINDING" ]
+    [ rotationBinding ]
+    (builtins.readFile ./config.kdl);
+
+  niriConfig = pkgs.writeText "niri-${hostname}-source.kdl" ''
+    ${builtins.readFile hostInput}
+    ${commonConfig}
+    include "${./smoke.kdl}"
+  '';
+in
 {
-  home.packages = [
+  home.packages = lib.optionals (hostname == "nixpad") [
     (pkgs.writeShellApplication {
       name = "toggle-niri-rotation";
 
@@ -48,8 +71,7 @@
 
   xdg.configFile."niri/config.kdl".source =
     pkgs.runCommand "niri-config.kdl" { nativeBuildInputs = [ pkgs.niri ]; } ''
-      cat ${./config.kdl} > "$out"
-      printf '\ninclude "%s"\n' "${./smoke.kdl}" >> "$out"
+      cp ${niriConfig} "$out"
       niri validate --config "$out"
     '';
 }

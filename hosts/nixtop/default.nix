@@ -13,6 +13,8 @@
     #"${(import ./nix/sources.nix).sops-nix}/modules/sops"
     ./hardware-configuration.nix
     ./imports.nix
+    ../../profiles/nixos/core.nix
+    ../../profiles/nixos/desktop.nix
   ];
 
   
@@ -23,65 +25,17 @@
   # System settings
 
   networking.hostName = "nixtop";
-  networking.networkmanager.enable = true;
 
   services.flatpak.enable = false;
 
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-
-   # lowLatency = {
-   #   enable = true;
-   #   quantum = 64;
-   #   rate = 48000;
-   # };
-  };
+  # Optional nixtop PipeWire low-latency settings:
+  # services.pipewire.lowLatency = {
+  #   enable = true;
+  #   quantum = 64;
+  #   rate = 48000;
+  # };
 
 
-  time = {
-    timeZone = "Europe/Berlin";
-    hardwareClockInLocalTime = true;
-  };
-  
-
-  i18n = let
-    defaultLocale = "en_US.UTF-8";
-    de = "de_DE.UTF-8";
-  in {
-    inherit defaultLocale;
-    extraLocaleSettings = {
-      LANG = defaultLocale;
-      LC_COLLATE = defaultLocale;
-      LC_CTYPE = defaultLocale;
-      LC_MESSAGE = defaultLocale;
-      LC_ADDRESS = de;
-      LC_IDENTIFICATION = de;
-      LC_MEASUREMENT = de;
-      LC_MONETARY = de;
-      LC_NAME = de;
-      LC_NUMERIC = de;
-      LC_PAPER = de;
-      LC_TELEPHONE = de;
-      LC_TIME = de;
-    };
-
-    supportedLocales = lib.mkDefault [
-      "en_US.UTF-8/UTF-8"
-      "de_DE.UTF-8/UTF-8"
-    ];
-  };
-
-  console = {
-    font = "${pkgs.terminus_font}/share/consolefonts/ter-128n.psf.gz";
-    packages = with pkgs;[ terminus_font ]; 
-    keyMap = "de-latin1";
-  };
 
   
  # services = {
@@ -91,7 +45,13 @@
  #   };
  # };
 
-  services.libinput.enable = true;
+  # Start Niri by default; other registered sessions remain selectable.
+  programs.niri.enable = true;
+  services.greetd.settings.default_session.command = lib.mkForce (
+    "${pkgs.tuigreet}/bin/tuigreet --time "
+    + "--sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions "
+    + "--cmd ${config.programs.niri.package}/bin/niri-session"
+  );
 
   hardware.bluetooth = {
     enable = lib.mkDefault true;
@@ -135,7 +95,6 @@
     enable = true;
     extraPortals = [
     pkgs.xdg-desktop-portal-gtk
-    pkgs.xdg-desktop-portal-hyprland
     ];
     config.common.default = "*";
   };
@@ -162,20 +121,6 @@
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       ];
       #trusted-substituters = ["https://hyprland.cachix.org"];
-      auto-optimise-store = true;
-    };
-
-    extraOptions = ''
-      experimental-features = flakes
-      extra-experimental-features = nix-command
-      keep-outputs = true
-      keep-derivations = true
-    '';
-
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 14d";
     };
   };
 
@@ -262,6 +207,7 @@
     freetype
     spotify
     android-tools
+    xwayland-satellite
   ];
 
 

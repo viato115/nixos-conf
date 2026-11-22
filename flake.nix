@@ -78,8 +78,7 @@
 
       sharedHomeModules = [
         ./users/nico/home.nix
-        hyprland.homeManagerModules.default
-        { wayland.windowManager.hyprland.enable = true; }
+        ./profiles/home/desktop.nix
       ];
 
     in
@@ -121,13 +120,17 @@
       "nico@nixpad" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = { inherit inputs; hostname = "nixpad"; };
-        modules = sharedHomeModules ++ [ ./modules/gui/DEs/niri/niri.nix ];
+        modules = sharedHomeModules ++ [
+          hyprland.homeManagerModules.default
+          ./modules/home/compositors/hyprland/hypr.nix
+          ./modules/home/compositors/niri/niri.nix
+        ];
       };
 
       "nico@nixtop" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = { inherit inputs; hostname = "nixtop"; };
-        modules = sharedHomeModules;
+        modules = sharedHomeModules ++ [ ./modules/home/compositors/niri/niri.nix ];
       };
     };
   };

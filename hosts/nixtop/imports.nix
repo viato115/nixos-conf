@@ -5,12 +5,12 @@
 }:
 let
   modules = [
-    ../../modules/services/greetd/default.nix
-    ../../modules/gaming/gaming.nix
-    ../../modules/services/fhs-compat/fhs-compat.nix
-    ../../modules/services/bluetooth/bluetooth.nix
-    ../../modules/services/keyboard/keyboard.nix
-    ../../modules/tui/programs/nh/nh.nix
+    ../../modules/nixos/services/greetd/default.nix
+    ../../modules/nixos/gaming/gaming.nix
+    ../../modules/nixos/services/fhs-compat/fhs-compat.nix
+    ../../modules/nixos/services/bluetooth/bluetooth.nix
+    ../../modules/nixos/services/keyboard/keyboard.nix
+    ../../modules/nixos/programs/nh/nh.nix
   ];
 in
 {

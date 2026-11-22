@@ -1,0 +1,26 @@
+// Desktop input and the current monitor arrangement.
+input {
+    keyboard {
+        xkb {
+            layout "de"
+        }
+        numlock
+    }
+
+    mouse {
+        accel-profile "flat"
+    }
+}
+
+output "HDMI-A-1" {
+    mode "1920x1080@60.000"
+    scale 1
+    position x=0 y=0
+    variable-refresh-rate
+}
+
+output "DP-2" {
+    mode "1920x1080@60.000"
+    scale 1
+    position x=1920 y=0
+}

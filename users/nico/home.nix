@@ -1,8 +1,6 @@
 {
   pkgs,
-  lib,
   inputs,
-  hostname,
   ... 
 }:
 {
@@ -13,115 +11,29 @@
   ];
 
 
-  # Packages to install for specified user
+  # Core command-line tools shared by Nico's home configurations.
   home.packages = with pkgs; [
-
-    # Basics
-    vivaldi
     fd
     nvd
     nix-output-monitor
-    kitty
-#    pfetch
     fastfetch
     eza
-    zathura
-    mpv
-    ffmpeg
-    pavucontrol
-    blueman
     ripgrep
     fzf
     trash-cli
-    nerd-fonts.mononoki
     bat
     zip
     unar
-    feh
-    foot
-    imagemagick
-    obsidian
     gawk
-    libreoffice
-    hunspell
-    hunspellDicts.de_DE
-    hunspellDicts.en_US
-    jre8
-    playerctl
-    networkmanagerapplet
-    gjs
-    gnome-bluetooth
-    gtk3
-    hyprpicker
-    blueman
-    polkit_gnome
-    scrcpy
     python3
-    glib
-#    renpy
     nil
     nixpkgs-fmt
     dysk
-    gnome-frog
-    discord
     cmake
-
-    # Hyprland specific
-    #pulseaudio
-    wl-clipboard
-    wl-gammactl
-    wlsunset
-     #find
-    mission-center
-    
-
-    sleuthkit
-    zsteg
-    stegsolve
-    binwalk
-    autopsy
-    nmap
-    wireshark
-    exiftool
-    bviplus
-    scalpel
     openssl
     ltrace
     strace
-  ]
-
-  ++ lib.optionals (hostname == "nixpad") [
-    styluslabs-write-bin
-    acpi
-    upower
-    brightnessctl
-  ]
-
-  ++ lib.optionals (hostname == "nixtop") [
-    prismlauncher
-
   ];
-
-#  home.sessionVariables = lib.mkIf (hostname == "nixtop") {
-#    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
-#  };
-
-
-  dconf.settings = {
-    "org/virt-manager/virt-manager/connections" = {
-      autoconnect = ["qemu:///system"];
-      uris = ["qemu:///system"];
-    };
-  };
-
-
-  services.gammastep = {
-    enable = true;
-    provider = "manual";
-    latitude = 52.52;
-    longitude = 13.40;
-  };
-
 
   home.username = "nico";
   home.homeDirectory = "/home/nico";

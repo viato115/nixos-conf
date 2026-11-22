@@ -29,8 +29,6 @@ let
     ];
   };
 
-  wallpaperImage = ../../../../../shared/pics/flowers.png;
-
   sharedConfig = ''    
 -- Shared Hyprland configuration. Home Manager adds each host's monitor rules.
 hl.config({
@@ -190,17 +188,6 @@ hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ to
 
 in
 {
-  home = {
-    packages = with pkgs; [ libnotify grim slurp pamixer vimix-cursors ];
-    pointerCursor = {
-        enable = true;
-        gtk.enable = true;
-        package = pkgs.vimix-cursors;
-        name = "Vimix-cursors";
-        size = 16;
-    };
- };
-
   wayland.windowManager.hyprland = {
     configType = "lua";
     enable = true;
@@ -209,20 +196,6 @@ in
     extraConfig = sharedConfig;
   };
  
-  services.hyprpaper = {
-    enable = true;
-    settings = {
-      wallpaper = [
-        {
-          monitor = "*";
-          path = "${wallpaperImage}";
-          fit_mode = "cover";
-        }
-      ];
-      splash = false;
-    };
-  }; 
-
   programs.hyprshot = {
     enable = true;
     saveLocation = "$HOME/Pictures/Screenshots";

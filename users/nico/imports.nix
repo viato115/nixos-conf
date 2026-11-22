@@ -1,32 +1,12 @@
+{ ... }:
 {
-  config,
-  pkgs,
-  ...
-}:
-let
-  modules = [
-    ../../modules/gui/programs/emulators/kitty/kitty.nix
-    ../../modules/gui/programs/emulators/foot/foot.nix
-    ../../modules/tui/shells/bash/bash.nix
-    ../../modules/gui/programs/browser/dolphin/dolphin.nix
-    ../../modules/tui/programs/ranger/ranger.nix
-    ../../modules/tui/programs/btop/btop.nix
-    ../../modules/tui/programs/cava/cava.nix
-    ../../modules/tui/programs/nvim/nvim.nix
-    #../../modules/tui/programs/nvf/nvf.nix
-    ../../modules/tui/programs/ranger/ranger.nix
-    ../../modules/tui/programs/tealdeer/tealdeer.nix
-    ../../modules/services/dunst/dunst.nix
-    ../../modules/gui/programs/browser/firefox/firefox.nix
-    ../../modules/scripts/bin/default.nix
-    #../../modules/gui/bars/wayland/waybar/waybar.nix
-    #../../modules/gui/launcher/wofi/wofi.nix
-    ../../modules/gui/launcher/rofi/rofi.nix
-    ../../modules/services/gtk3/gtk3.nix
-    ../../modules/gui/DEs/wayland/hypr/hypr.nix
-    ../../modules/services/git/git.nix
+  # Command-line configuration shared by Nico's home profiles.
+  imports = [
+    ../../modules/home/shells/bash/bash.nix
+    ../../modules/home/programs/cli/ranger/ranger.nix
+    ../../modules/home/programs/cli/btop/btop.nix
+    ../../modules/home/programs/cli/nvim/nvim.nix
+    ../../modules/home/programs/cli/tealdeer/tealdeer.nix
+    ../../modules/home/programs/git/git.nix
   ];
-in
-{
-  imports = modules;
 }

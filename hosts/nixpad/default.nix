@@ -10,6 +10,8 @@
     #"${(import ./nix/sources.nix).sops-nix}/modules/sops"
     ./hardware-configuration.nix
     ./imports.nix
+    ../../profiles/nixos/core.nix
+    ../../profiles/nixos/desktop.nix
   ];
 
   
@@ -20,61 +22,7 @@
   # System settings
 
   networking.hostName = "nixpad";
-  networking.networkmanager.enable = true;
 
-
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-
-  time = {
-    timeZone = "Europe/Berlin";
-    hardwareClockInLocalTime = true;
-  };
-  
-
-  i18n = let
-    defaultLocale = "en_US.UTF-8";
-    de = "de_DE.UTF-8";
-  in {
-    inherit defaultLocale;
-    extraLocaleSettings = {
-      LANG = defaultLocale;
-      LC_COLLATE = defaultLocale;
-      LC_CTYPE = defaultLocale;
-      LC_MESSAGE = defaultLocale;
-
-      LC_ADDRESS = de;
-      LC_IDENTIFICATION = de;
-      LC_MEASUREMENT = de;
-      LC_MONETARY = de;
-      LC_NAME = de;
-      LC_NUMERIC = de;
-      LC_PAPER = de;
-      LC_TELEPHONE = de;
-      LC_TIME = de;
-    };
-
-    supportedLocales = lib.mkDefault [
-      "en_US.UTF-8/UTF-8"
-      "de_DE.UTF-8/UTF-8"
-    ];
-  };
-
-  console = {
-    font = "${pkgs.terminus_font}/share/consolefonts/ter-128n.psf.gz";
-    packages = with pkgs;[ terminus_font ]; 
-    keyMap = "de-latin1";
-  };
-
-  
   services = {
     printing = {
       enable = true;
@@ -82,7 +30,6 @@
     };
   };
 
-  services.libinput.enable = true;
   services.logind.settings.Login = {
       HandlelidSwitch = "suspend-then-hibernate";
       HandleLidSwitchDocked = "suspend-then-hibernate";
@@ -209,21 +156,9 @@
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       ];
-      auto-optimise-store = true;
     };
 
-    extraOptions = ''
-      experimental-features = flakes
-      extra-experimental-features = nix-command
-      keep-outputs = true
-      keep-derivations = true
-    '';
 
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 14d";
-    };
   };
 
 
