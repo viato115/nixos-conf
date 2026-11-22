@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: {
   home.packages = with pkgs; [ 
@@ -11,6 +12,16 @@
     qt6.qtwayland
     kdePackages.qtsvg
   ];
+
+  # Update only the terminal keys, preserving other KDE settings.
+  home.activation.configureKdeTerminal = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    run ${lib.getExe' pkgs.kdePackages.kconfig "kwriteconfig6"} \
+      --file ${lib.escapeShellArg "${config.xdg.configHome}/kdeglobals"} \
+      --group General --key TerminalApplication foot
+    run ${lib.getExe' pkgs.kdePackages.kconfig "kwriteconfig6"} \
+      --file ${lib.escapeShellArg "${config.xdg.configHome}/kdeglobals"} \
+      --group General --key TerminalService foot.desktop
+  '';
 
   home.file.".config/qt6ct/qt6ct.conf" = {
     text = ''
@@ -71,8 +82,8 @@
       ShowZoomSlider=false
       Version=202
       ViewPropsTimestamp=2023,5,18,23,12,35.264
-      TerminalApplication=alacritty
-      TerminalService=Alacritty.desktop      
+      TerminalApplication=foot
+      TerminalService=foot.desktop
 
       [KFileDialog Settings]
       Places Icons Auto-resize=false
