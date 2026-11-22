@@ -6,6 +6,7 @@
 }:
 let
   modules = [
+    ./swap.nix
     ../../modules/nixos/services/battery/battery_monitor.nix
     ../../modules/nixos/services/battery/suspend.nix
     ../../modules/nixos/services/greetd/default.nix

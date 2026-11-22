@@ -78,8 +78,6 @@ in
         nix-rb = "sudo nixos-rebuild switch --rollback";
         hm-gens = "home-manager generations";
         hmflake = "home-manager switch --flake .#nico@nixpad --show-trace";
-        iio = "/usr/local/bin/iio-hyprland";
-        hyprexit = "hyprctl dispatch exit";
         nvc = "cd ~/.config/nixos && nv";
         cdw = "cd /mnt/windows";
         cdc = "cd /home/nico/.config/nixos";

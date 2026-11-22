@@ -8,7 +8,6 @@
     ../../modules/home/programs/cli/cava/cava.nix
     ../../modules/home/services/dunst/dunst.nix
     ../../modules/home/programs/browsers/firefox/firefox.nix
-    ../../modules/home/scripts/bin/default.nix
     ../../modules/home/launchers/rofi/rofi.nix
     ../../modules/home/appearance/gtk3/gtk3.nix
   ];

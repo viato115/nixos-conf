@@ -6,7 +6,7 @@ progress.
 
 | Host | Machine | Desktop sessions |
 | --- | --- | --- |
-| `nixpad` | Lenovo ThinkPad L13 Yoga Gen 2 | Niri by default; Hyprland remains available |
+| `nixpad` | Lenovo ThinkPad L13 Yoga Gen 2 | Niri |
 | `nixtop` | AMD desktop, dual-booting NixOS and Windows | Niri |
 
 The `hosts/nixwsl/` directory contains an older WSL configuration. It is not
@@ -40,16 +40,12 @@ core and desktop profiles.
 
 For Home Manager, the flake selects `users/nico/home.nix` and the shared home
 desktop profile. The user module imports `users/nico/imports.nix`. Each home
-configuration also chooses its compositor modules: Niri on both hosts and
-Hyprland on nixpad. The `hostname` argument supplies host-specific settings.
+configuration chooses the Niri compositor module on both hosts. The `hostname`
+argument supplies host-specific settings.
 
 Niri's shared layout and bindings are in
 `modules/home/compositors/niri/config.kdl`; the input and output settings are
 in `nixpad-input.kdl` and `nixtop-input.kdl` in the same directory.
-
-For Hyprland on nixpad, edit `modules/home/compositors/hyprland/hypr.nix`.
-Its `sharedConfig` contains the Lua settings and bindings; Home Manager
-generates `~/.config/hypr/hyprland.lua` from this module.
 
 For a future headless machine, define a suitable NixOS host and a separate Home
 Manager module list that omits the desktop and compositor modules. The current

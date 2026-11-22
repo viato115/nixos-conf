@@ -31,9 +31,14 @@
   };
 
   services.logind.settings.Login = {
-      HandlelidSwitch = "suspend-then-hibernate";
+      HandleLidSwitch = "suspend-then-hibernate";
       HandleLidSwitchDocked = "suspend-then-hibernate";
       HandleLidSwitchExternalPower = "suspend";
+  };
+
+  systemd.sleep.settings.Sleep = {
+    HibernateDelaySec = "2h";
+    HibernateOnACPower = true;
   };
 
   hardware.bluetooth = {
@@ -109,7 +114,6 @@
     enable = true;
     extraPortals = [
     pkgs.xdg-desktop-portal-gtk
-    pkgs.xdg-desktop-portal-hyprland
     ];
     config.common.default = "*";
   };
@@ -180,20 +184,6 @@
   # Window Manager / DE setup
   
   programs.niri.enable = true;
-  services.displayManager.sessionPackages = [
-      (
-        (pkgs.writeTextDir "share/wayland-sessions/hyprland-wrapped.desktop" ''
-          [Desktop Entry]
-          Name=Hyprland (your config)
-          Comment=Start Hyprland using Nico's existing wrapper
-          Exec=/home/nico/.local/bin/wrappedhl
-          Type=Application
-        '')
-        // {
-          providedSessions = [ "hyprland-wrapped" ];
-        }
-      )
-    ];
 
 
 
@@ -202,7 +192,6 @@
     "${pkgs.tuigreet}/bin/tuigreet --time "
     + "--sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions "
     + "--cmd ${config.programs.niri.package}/bin/niri-session"
-    #+ "--cmd /home/nico/.local/bin/wrappedhl"
   );
 
 

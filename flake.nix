@@ -25,17 +25,6 @@
       };
     };
 
-    xdg-desktop-portal-hyprland = {
-      url = github:hyprwm/xdg-desktop-portal-hyprland;
-    };
-
-    hyprland = {
-      url = git+https://github.com/hyprwm/Hyprland?submodules=1;
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
     hyprpaper = {
       url = github:hyprwm/hyprpaper;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -62,7 +51,6 @@
     #    sops-nix,
     home-manager, 
     nixos-hardware, 
-    hyprland, 
     flake-utils,
     nvf,
     ... 
@@ -121,8 +109,6 @@
         inherit pkgs;
         extraSpecialArgs = { inherit inputs; hostname = "nixpad"; };
         modules = sharedHomeModules ++ [
-          hyprland.homeManagerModules.default
-          ./modules/home/compositors/hyprland/hypr.nix
           ./modules/home/compositors/niri/niri.nix
         ];
       };
