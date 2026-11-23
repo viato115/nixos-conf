@@ -38,19 +38,20 @@ For NixOS, `flake.nix` selects `hosts/<host>/default.nix`. Each current host
 then imports its hardware configuration, `imports.nix`, and the shared NixOS
 core and desktop profiles.
 
-For Home Manager, the flake selects `users/nico/home.nix` and the shared home
-desktop profile. The user module imports `users/nico/imports.nix`. Each home
-configuration chooses the Niri compositor module on both hosts. The `hostname`
+For Home Manager, `coreHomeModules` selects `users/nico/home.nix`, which
+imports `users/nico/imports.nix`. The `desktopHomeModules` list adds the
+shared home desktop profile to that core. Each current home configuration
+uses the desktop list and adds the Niri compositor module. The `hostname`
 argument supplies host-specific settings.
 
 Niri's shared layout and bindings are in
 `modules/home/compositors/niri/config.kdl`; the input and output settings are
 in `nixpad-input.kdl` and `nixtop-input.kdl` in the same directory.
 
-For a future headless machine, define a suitable NixOS host and a separate Home
-Manager module list that omits the desktop and compositor modules. The current
-`sharedHomeModules` list in `flake.nix` includes the desktop profile for both
-existing hosts, so it should not be reused unchanged for a headless home.
+For a future headless machine, define a suitable NixOS host and a Home Manager
+configuration using `coreHomeModules` without the desktop or compositor
+modules. Provide the required `hostname` argument and review the shared
+command-line tools for that host's needs.
 
 ## Building and switching
 

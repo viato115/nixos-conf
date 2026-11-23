@@ -54,8 +54,11 @@
         };
       lib = nixpkgs.lib;
 
-      sharedHomeModules = [
+      coreHomeModules = [
         ./users/nico/home.nix
+      ];
+
+      desktopHomeModules = coreHomeModules ++ [
         ./profiles/home/desktop.nix
       ];
 
@@ -98,7 +101,7 @@
       "nico@nixpad" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = { inherit inputs; hostname = "nixpad"; };
-        modules = sharedHomeModules ++ [
+        modules = desktopHomeModules ++ [
           ./modules/home/compositors/niri/niri.nix
         ];
       };
@@ -106,7 +109,7 @@
       "nico@nixtop" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = { inherit inputs; hostname = "nixtop"; };
-        modules = sharedHomeModules ++ [ ./modules/home/compositors/niri/niri.nix ];
+        modules = desktopHomeModules ++ [ ./modules/home/compositors/niri/niri.nix ];
       };
     };
   };
