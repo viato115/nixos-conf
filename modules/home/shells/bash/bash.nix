@@ -76,7 +76,7 @@ in
         nix-lg = "sudo nix-env -p /nix/var/nix/profiles/system --list-generations";
         nix-rb = "sudo nixos-rebuild switch --rollback";
         hm-gens = "home-manager generations";
-        hmflake = "home-manager switch --flake .#nico@nixpad --show-trace";
+        hmflake = "home-manager switch --flake .#nico@${hostname} --show-trace";
         nvc = "cd ~/.config/nixos && nv";
         cdw = "cd /mnt/windows";
         cdc = "cd /home/nico/.config/nixos";
