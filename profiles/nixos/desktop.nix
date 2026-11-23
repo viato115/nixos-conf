@@ -1,5 +1,7 @@
 { pkgs, lib, ... }:
 {
+  imports = [ ../../modules/nixos/services/media-keys/default.nix ];
+
   # Networking and audio for the existing desktop machines.
   networking.networkmanager.enable = true;
   services.pulseaudio.enable = false;
