@@ -23,6 +23,11 @@ let
   '';
 in
 {
+  imports = [
+    ../../bars/waybar/default.nix
+    ./overview-indicator.nix
+  ];
+
   home.packages = lib.optionals (hostname == "nixpad") [
     (pkgs.writeShellApplication {
       name = "toggle-niri-rotation";

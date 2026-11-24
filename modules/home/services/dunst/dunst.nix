@@ -45,6 +45,7 @@ in {
         width = 350;
         height = 150;
         origin = "bottom-right";
+        follow = "keyboard";
         offset = "40x40";
         notification_limit = 4;
         shrink = true;

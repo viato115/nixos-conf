@@ -42,6 +42,12 @@ layout {
     }
 }
 
+overview {
+    workspace-shadow {
+        off
+    }
+}
+
 layer-rule {
   match namespace="^hyprpaper$"
   place-within-backdrop true
@@ -52,6 +58,12 @@ window-rule {
     clip-to-geometry true
 }
 
+window-rule {
+    match is-focused=false
+    shadow {
+        off
+    }
+}
 window-rule {
     match app-id="(?i)footclient"
     default-column-width { proportion 0.33; }
@@ -81,6 +93,8 @@ workspace "stash"
 
 // Both the terminal shortcut and the existing Rofi favorites use footclient.
 spawn-at-startup "foot" "--server"
+spawn-at-startup "waybar"
+spawn-at-startup "niri-overview-indicator"
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
@@ -90,6 +104,7 @@ hotkey-overlay {
 
 binds {
     Mod+F1 { show-hotkey-overlay; }
+    Mod+B hotkey-overlay-title="Show or hide the status bar" { spawn "toggle-waybar"; }
     Mod+Return hotkey-overlay-title="Open Foot" { spawn "footclient"; }
     Mod+T hotkey-overlay-title="Open standalone Foot" { spawn "foot"; }
     Mod+Shift+Return hotkey-overlay-title="Open Kitty" { spawn "kitty"; }

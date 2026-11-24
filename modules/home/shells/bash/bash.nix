@@ -38,7 +38,7 @@ in
           source ${pkgs.git}/share/git/contrib/completion/git-prompt.sh
         fi
 
-        export PS1='\[\e[38;5;111m\]\u@\h \[\e[38;5;117m\]\w \[\e[0m\]\$ ' 
+        export PS1='\[\e[38;5;111m\]\u@\h \[\e[38;5;117m\]\w \[\e[38;2;255;158;100m\]\$\[\e[0m\] '
         ${greeter}
         echo
         bind 'set completion-ignore-case on'
