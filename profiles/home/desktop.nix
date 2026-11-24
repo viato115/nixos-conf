@@ -10,7 +10,62 @@
     ../../modules/home/programs/browsers/firefox/firefox.nix
     ../../modules/home/launchers/rofi/rofi.nix
     ../../modules/home/appearance/gtk3/gtk3.nix
+    ../../modules/home/power/power-menu.nix
   ];
+
+  programs.hyprlock = {
+    enable = true;
+
+    settings = {
+      general = {
+        hide_cursor = true;
+        ignore_empty_input = true;
+      };
+
+      background = [
+        {
+          monitor = "";
+          path = "screenshot";
+          blur_passes = 2;
+          blur_size = 5;
+          brightness = 0.8;
+        }
+      ];
+
+      label = [
+        {
+          monitor = "";
+          text = "$TIME";
+          color = "rgba(255, 158, 100, 1.0)";
+          font_size = 60;
+          font_family = "Mononoki Nerd Font";
+          position = "0, 100";
+          halign = "center";
+          valign = "center";
+        }
+      ];
+
+      input-field = [
+        {
+          monitor = "";
+          size = "280, 55";
+          position = "0, -35";
+          halign = "center";
+          valign = "center";
+
+          outer_color = "rgba(255, 158, 100, 1.0)";
+          inner_color = "rgba(26, 27, 38, 0.9)";
+          font_color = "rgba(192, 202, 245, 1.0)";
+          outline_thickness = 2;
+          dots_center = true;
+          fade_on_empty = false;
+          placeholder_text = "Password";
+        }
+      ];
+    };
+  };
+
+
 
   # Shared Wayland appearance and tools, independent of the compositor.
   home.pointerCursor = {

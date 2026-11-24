@@ -14,6 +14,7 @@
   };
 
   services.libinput.enable = true;
+  security.pam.services.hyprlock = {};
 
   time = {
     timeZone = "Europe/Berlin";

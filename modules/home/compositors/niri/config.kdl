@@ -53,6 +53,16 @@ layer-rule {
   place-within-backdrop true
 }
 
+// Blur the desktop behind Rofi menus.
+layer-rule {
+    match namespace="^rofi$"
+
+    background-effect {
+        blur true
+        xray false
+    }
+
+}
 window-rule {
     geometry-corner-radius 3
     clip-to-geometry true
@@ -169,6 +179,8 @@ binds {
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
+    Mod+P hotkey-overlay-title="Power menu" { spawn "niri-power-menu"; }
+    Mod+Alt+L hotkey-overlay-title="Lock screen" { spawn "hyprlock"; }
 
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     Mod+Shift+Q { quit; }
